@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  Скрипт сборки плагина ToxSoft в файл *-lib.jar библиотеки.
+  Предусловия:
+    1. Скрипт должен запускаться с задачей ant, с указанием dir="" директории плагина.
+    2. К моменту запуска скрипта должен быть прочитан файл свойств ts-build-commons.properties
+    3. Должно быть выставлено свойство ts-dest-dir-libs
+-->
+
+<project name="*-lib.jar builder" default="build-lib-jar">
+
+  <!-- название JAR-файла библиотеки -->
+  <basename file="${basedir}" property="project.name" />
+  <property name="lib.jar" value="${project.name}-lib.jar" />
+
+  <tstamp>
+    <format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss" />
+  </tstamp>
+
+  <target name="build-lib-jar" description="Сборка *-lib.jar библиотеки">
+    <jar destfile="${ts-dest-dir-libs}/${lib.jar}" duplicate="preserve" manifest="META-INF/MANIFEST.MF" filesetmanifest="merge" manifestencoding="UTF-8" >
+      <manifest>
+        <attribute name="Application-Name" value="${ts.app.name}" />
+        <attribute name="Company-Name" value="${ts.company-name}" />
+        <attribute name="TS-Unit" value="${project.name}" />
+        <attribute name="TS-Version" value="${ts.app.version}" />
+        <attribute name="Built-Date" value="${TODAY}" />
+      </manifest>
+
+      <!-- распаковка всех jar-ов -->
+      <!-- <zipgroupfileset dir="lib/default/" includes="*.jar" excludes="*.properties" /> -->
+      <zipgroupfileset dir="" includes="*.jar" /> 
+	
+      <!-- добавление собственных классов с возможностью перекрытия классов из выше распакованных jars -->
+      <fileset dir="bin" erroronmissingdir="false">
+        <include name="**/*.class" />
+      </fileset>
+      <fileset dir="target/classes" erroronmissingdir="false">
+        <include name="**/*.class" />
+      </fileset>
+      <fileset dir="src" erroronmissingdir="false">
+        <include name="**/*.java*" />
+      </fileset>
+      <fileset dir="src" erroronmissingdir="false">
+        <include name="**/*.properties*" />
+      </fileset>
+      <fileset dir="">
+        <include name="README.txt" />
+      </fileset>
+    </jar>
+  </target>
+
+</project>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde?>
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="Eclipse 2022-12. RAP" sequenceNumber="1583699636">
+  <locations>
+    <location path="../ts4-targets/eclipse-rap-3.17/rap" type="Directory"/>
+    <location path="../ts4-targets/eclipse-rap-3.17/e4" type="Directory"/>
+
+<!--    
+    <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.rap.e4.sdk.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.rap.e4.equinox.target.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.rap.e4.feature.feature.group" version="0.0.0"/>
+      <repository location="http://download.eclipse.org/rt/rap/3.15/e4"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.rap.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.rap.equinox.target.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.rap.sdk.feature.feature.group" version="0.0.0"/>
+      <repository location="http://download.eclipse.org/rt/rap/3.15/"/>
+    </location>
+-->
+  </locations>
+</target>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="toxsoft-rap-3.19">
+  <locations>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <!-- see: https://www.eclipse.org/rap/downloads/  -->
+      <repository id="Eclipse 4.22 (2021-12). RAP (Runtime)" location="https://download.eclipse.org/rt/rap/3.19/"/>
+      <!-- 2021-02-04 mvk need for product build (sitrol.tm) -->
+      <unit id="javax.xml" version="0.0.0"/>
+    </location>
+
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <!-- see: https://www.eclipse.org/rap/downloads/  -->
+      <repository id="Eclipse 4.22 (2021-12). RAP E4 (Runtime)" location="https://download.eclipse.org/rt/rap/3.19/e4/"/>
+      <!-- 2021-02-04 mvk need for product build (sitrol.tm) -->
+      <unit id="javax.xml" version="0.0.0"/>
+    </location>
+
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <!-- see: https://www.eclipse.org/rap/downloads/  -->
+      <repository id="Eclipse 4.22 (2021-12). RAP Tools" location="https://download.eclipse.org/rt/rap/tools/3.19/"/>
+    </location>
+
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-extlibs/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-extlibs/rap" type="Directory"/>
+  </locations>
+</target>

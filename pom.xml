@@ -443,9 +443,9 @@
     <module>eclipse-releng/${platform.rcp.artifactId}</module>
     <module>eclipse-releng/${platform.rap.artifactId}</module>
     <module>../ts4-extlibs</module>
+    <module>../ts4-core</module>
+    <module>../ts4-uskat</module>
 <!--
-    <module>../ts3-core</module>
-    <module>../ts3-uskat</module>
     <module>../ts3-l2</module>
     <module>../ts3-skide</module>
     <module>../ts3-legacy</module>

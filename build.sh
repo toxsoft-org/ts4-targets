@@ -23,23 +23,23 @@
 #
 # 5. send mail configuration (postfix). source: https://linuxhint.com/bash_script_send_email/ 
 
-TS3_EXTLIBS_REPO=ts3-extlibs
-TS3_CORE_REPO=ts3-core
-TS3_USKAT_REPO=ts3-uskat
-TS3_LEGACY_REPO=ts3-legacy
-TS3_L2_REPO=ts3-l2
-TS3_SKIDE_REPO=ts3-skide
-TS3_SITROL_REPO=ts3-sitrol
+TS3_EXTLIBS_REPO=ts4-extlibs
+TS3_CORE_REPO=ts4-core
+TS3_USKAT_REPO=ts4-uskat
+TS3_LEGACY_REPO=ts4-legacy
+TS3_L2_REPO=ts4-l2
+TS3_SKIDE_REPO=ts4-skide
+TS3_SITROL_REPO=ts4-sitrol
 SITROL_TM_REPO=sitrol-tm
 SITROL_MM_REPO=sitrol-mm
 
-TS3_TARGET_EXTLIBS=ts3-target-extlibs
-TS3_TARGET_CORE=ts3-target-core
-TS3_TARGET_USKAT=ts3-target-uskat
-TS3_TARGET_LEGACY=ts3-target-legacy
-TS3_TARGET_L2=ts3-target-l2
-TS3_TARGET_SKIDE=ts3-target-skide
-TS3_TARGET_SITROL=ts3-target-sitrol
+TS3_TARGET_EXTLIBS=ts4-target-extlibs
+TS3_TARGET_CORE=ts4-target-core
+TS3_TARGET_USKAT=ts4-target-uskat
+TS3_TARGET_LEGACY=ts4-target-legacy
+TS3_TARGET_L2=ts4-target-l2
+TS3_TARGET_SKIDE=ts4-target-skide
+TS3_TARGET_SITROL=ts4-target-sitrol
 
 TS3_TARGET_HOME=/home/tsdev/works/git-repos/ts3-targets
 

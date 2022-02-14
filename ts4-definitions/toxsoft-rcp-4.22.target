@@ -23,5 +23,7 @@
     </location>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-extlibs/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-extlibs/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-core/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-core/rcp" type="Directory"/>
   </locations>
 </target>

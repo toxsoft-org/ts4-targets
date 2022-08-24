@@ -36,6 +36,9 @@
         <attribute name="TS-Unit" value="${project.name}" />
         <attribute name="TS-Version" value="${ts.app.version}" />
         <attribute name="Built-Date" value="${TODAY}" />
+        <!-- 2022-08-24 mvk source: https://github.com/infinispan/infinispan-quarkus/issues/55 -->
+        <!-- fix: java.util.ServiceConfigurationError: java.net.spi.URLStreamHandlerProvider: Provider org.infinispan.commons.jdkspecific.ClasspathURLStreamHandlerProvider not found -->
+        <attribute name="Multi-Release" value="true" />
       </manifest>
 
       <!-- распаковка всех jar-ов -->

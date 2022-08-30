@@ -303,7 +303,7 @@ buildAll () {
   popd
   echo "${BUILT_DATE}: ============================================================================== $(date)"
   
-) 9>/tmp/toxsoft-build.lock
+) 9>/tmp/ts4-targets-build.lock
 
 if [ $? -eq 1 ]; then
    echo "${BUILT_DATE}: script $0 is already running: exiting"

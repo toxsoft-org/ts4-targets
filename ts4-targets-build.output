@@ -1,4 +1,4 @@
-Вт 30 авг 2022 14:58:17 MSK: ------------------------------------------------------------------------------ 
+Вт 30 авг 2022 15:02:32 MSK: ------------------------------------------------------------------------------ 
 start build from: '/home/tsdev4/works/git-repos/ts4-targets'
 ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 Already up to date.
@@ -6,19 +6,19 @@ Already up to date.
 Already up to date.
 
 call buildTarget(TS4_REPO=ts4-extlibs, TS4_PREV=, TS4_BRANCH=main, TS4_MODE=none)
-Вт 30 авг 2022 14:58:17 MSK: [ts4-extlibs/main] nothing to do
+Вт 30 авг 2022 15:02:32 MSK: [ts4-extlibs/main] nothing to do
 ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 ~/works/git-repos/ts4-core ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 Already up to date.
 
 call buildTarget(TS4_REPO=ts4-core, TS4_PREV=ts4-extlibs, TS4_BRANCH=main, TS4_MODE=none)
-Вт 30 авг 2022 14:58:17 MSK: [ts4-core/main] nothing to do
+Вт 30 авг 2022 15:02:32 MSK: [ts4-core/main] nothing to do
 ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 ~/works/git-repos/ts4-uskat ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 Updating f334295..6990e9b
 
 call buildTarget(TS4_REPO=ts4-uskat, TS4_PREV=ts4-core, TS4_BRANCH=main, TS4_MODE=none)
-Вт 30 авг 2022 14:58:17 MSK: [ts4-uskat/main] nothing to do
+Вт 30 авг 2022 15:02:32 MSK: [ts4-uskat/main] nothing to do
 ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 BUILDED_REPOS = 
 ERRORED_REPOS = 

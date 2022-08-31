@@ -19,9 +19,10 @@
 # git config --global push.default simple
 #
 # 4. blocking: # The file which represent the lock.
-
 #
 # 5. send mail configuration (postfix). source: https://linuxhint.com/bash_script_send_email/ 
+#
+# 6. start build4.sh by /etc/crotntab
 
 TS4_EXTLIBS_REPO=ts4-extlibs
 TS4_CORE_REPO=ts4-core

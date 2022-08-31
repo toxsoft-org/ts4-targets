@@ -1,4 +1,4 @@
-Ср 31 авг 2022 11:01:12 MSK: ------------------------------------------------------------------------------ 
+Ср 31 авг 2022 13:30:55 MSK: ------------------------------------------------------------------------------ 
 start build from: '/home/tsdev4/works/git-repos/ts4-targets'
 ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 Already up to date.
@@ -6,19 +6,46 @@ Already up to date.
 Already up to date.
 
 call buildTarget(TS4_REPO=ts4-extlibs, TS4_PREV=, TS4_BRANCH=main, TS4_MODE=none)
-Ср 31 авг 2022 11:01:12 MSK: [ts4-extlibs/main] nothing to do
+Ср 31 авг 2022 13:30:55 MSK: [ts4-extlibs/main] nothing to do
 ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 ~/works/git-repos/ts4-core ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
-Already up to date.
+Updating 9400d08..910e43f
+Fast-forward
+ org.toxsoft.core.git.parser/.classpath             |   7 ++
+ org.toxsoft.core.git.parser/.gitignore             |   2 +
+ org.toxsoft.core.git.parser/.project               |  28 ++++++
+ .../.settings/org.eclipse.jdt.core.prefs           | 103 +++++++++++++++++++++
+ .../.settings/org.eclipse.pde.prefs                |  35 +++++++
+ org.toxsoft.core.git.parser/META-INF/MANIFEST.MF   |   9 ++
+ org.toxsoft.core.git.parser/README.txt             |   1 +
+ org.toxsoft.core.git.parser/build.properties       |   4 +
+ org.toxsoft.core.git.parser/pom.xml                |  12 +++
+ org.toxsoft.core.git.parser/run/.gitignore         |   1 +
+ .../src/org/toxsoft/core/git/parser/Main.java      |  82 ++++++++++++++++
+ pom.xml                                            |   1 +
+ releng/ant-builder/ts-build-core.xml               |   1 +
+ releng/org.toxsoft.core.releng.p2/category.xml     |   2 +
+ 14 files changed, 288 insertions(+)
+ create mode 100644 org.toxsoft.core.git.parser/.classpath
+ create mode 100644 org.toxsoft.core.git.parser/.gitignore
+ create mode 100644 org.toxsoft.core.git.parser/.project
+ create mode 100644 org.toxsoft.core.git.parser/.settings/org.eclipse.jdt.core.prefs
+ create mode 100644 org.toxsoft.core.git.parser/.settings/org.eclipse.pde.prefs
+ create mode 100644 org.toxsoft.core.git.parser/META-INF/MANIFEST.MF
+ create mode 100644 org.toxsoft.core.git.parser/README.txt
+ create mode 100644 org.toxsoft.core.git.parser/build.properties
+ create mode 100644 org.toxsoft.core.git.parser/pom.xml
+ create mode 100644 org.toxsoft.core.git.parser/run/.gitignore
+ create mode 100644 org.toxsoft.core.git.parser/src/org/toxsoft/core/git/parser/Main.java
 
 call buildTarget(TS4_REPO=ts4-core, TS4_PREV=ts4-extlibs, TS4_BRANCH=main, TS4_MODE=none)
-Ср 31 авг 2022 11:01:12 MSK: [ts4-core/main] nothing to do
+Ср 31 авг 2022 13:30:55 MSK: [ts4-core/main] nothing to do
 ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 ~/works/git-repos/ts4-uskat ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 Already up to date.
 
 call buildTarget(TS4_REPO=ts4-uskat, TS4_PREV=ts4-core, TS4_BRANCH=main, TS4_MODE=none)
-Ср 31 авг 2022 11:01:12 MSK: [ts4-uskat/main] nothing to do
+Ср 31 авг 2022 13:30:55 MSK: [ts4-uskat/main] nothing to do
 ~/works/git-repos/ts4-targets ~/works/git-repos/ts4-targets
 BUILDED_REPOS = 
 ERRORED_REPOS = 

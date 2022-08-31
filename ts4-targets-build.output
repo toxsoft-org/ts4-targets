@@ -3968,3 +3968,25 @@ call buildTarget(TS4_REPO=ts4-uskat, TS4_PREV=ts4-core, TS4_BRANCH=main, TS4_MOD
 BUILDED_REPOS =  ts4-uskat
 ERRORED_REPOS = 
 CANCELED_REPOS = 
+[main 27d9cc1] autobuild Ср 31 авг 2022 14:45:50 MSK:  ts4-uskat
+ 22 files changed, 3951 insertions(+), 6 deletions(-)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.core.source_1.0.0.202208311138.jar => org.toxsoft.uskat.core.source_1.0.0.202208311145.jar} (93%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.core_1.0.0.202208311138.jar => org.toxsoft.uskat.core_1.0.0.202208311145.jar} (89%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.s5.histdata10.source_1.0.0.202208311138.jar => org.toxsoft.uskat.s5.histdata10.source_1.0.0.202208311145.jar} (94%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.s5.histdata10_1.0.0.202208311138.jar => org.toxsoft.uskat.s5.histdata10_1.0.0.202208311145.jar} (93%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.s5.source_1.0.0.202208311138.jar => org.toxsoft.uskat.s5.source_1.0.0.202208311145.jar} (99%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.s5_1.0.0.202208311138.jar => org.toxsoft.uskat.s5_1.0.0.202208311145.jar} (90%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.skadmin.cli.source_1.0.0.202208311138.jar => org.toxsoft.uskat.skadmin.cli.source_1.0.0.202208311145.jar} (95%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.skadmin.cli_1.0.0.202208311138.jar => org.toxsoft.uskat.skadmin.cli_1.0.0.202208311145.jar} (94%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.skadmin.core.source_1.0.0.202208311138.jar => org.toxsoft.uskat.skadmin.core.source_1.0.0.202208311145.jar} (99%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.skadmin.core_1.0.0.202208311138.jar => org.toxsoft.uskat.skadmin.core_1.0.0.202208311145.jar} (88%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.skadmin.dev.source_1.0.0.202208311138.jar => org.toxsoft.uskat.skadmin.dev.source_1.0.0.202208311145.jar} (97%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.skadmin.dev_1.0.0.202208311138.jar => org.toxsoft.uskat.skadmin.dev_1.0.0.202208311145.jar} (92%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.skadmin.logon.source_1.0.0.202208311138.jar => org.toxsoft.uskat.skadmin.logon.source_1.0.0.202208311145.jar} (97%)
+ rename ts4-target-uskat/main/plugins/{org.toxsoft.uskat.skadmin.logon_1.0.0.202208311138.jar => org.toxsoft.uskat.skadmin.logon_1.0.0.202208311145.jar} (91%)
+BUILDED_REPOS =  ts4-uskat
+ERRORED_REPOS = 
+CANCELED_REPOS = 
+mail: send for users: goga@toxsoft.ru,vs@toxsoft.ru,egorov.dmitry.alex@gmail.com,prokhorov_m@mail.ru,tdo@toxsoft.ru,kovach@toxsoft.ru,kovach.mike@gmail.com
+~/works/git-repos/ts4-targets
+Ср 31 авг 2022 14:45:50 MSK: ============================================================================== Ср 31 авг 2022 14:47:00 MSK

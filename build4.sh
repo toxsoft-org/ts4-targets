@@ -68,6 +68,9 @@ TS4_MAIL_MESSAGE_CANCEL="server can't rebuilds toxsoft targets (CANCEL)"
 GIT_MAIN_BRANCH=main
 GIT_MASTER_BRANCH=master
 
+# meven command
+MVN_CMD="mvn17"
+
 # git results parser
 DIFF_PARSER="java -jar /home/tsdev4/works/git-repos/ts4-targets/ts4-target-core/lib/org.toxsoft.core.git.parser-lib.jar"
 
@@ -115,7 +118,7 @@ buildTarget () {
     # TODO: build except common, rcp or rap
 #    mvn --fail-at-end -o install -Drcp -pl ${ARTEFACT_MODULES},${TS4_RCP_MODULES}
 #    mvn --fail-at-end -o install -Drap -pl ${ARTEFACT_MODULES},${TS4_RAP_MODULES}
-    mvn clean install -Drcp > /tmp/${TS4_REPO}-build-rcp.log
+    ${MVN_CMD} clean install -Drcp > /tmp/${TS4_REPO}-build-rcp.log
     RCP_BUILD_RETCODE=$?
     RCP_RESULTS=$(cat /tmp/${TS4_REPO}-build-rcp.log)
     echo "${RCP_RESULTS}"
@@ -130,7 +133,7 @@ buildTarget () {
        return 1
     fi
 
-    mvn clean install -Drap > /tmp/${TS4_REPO}-build-rap.log
+    ${MVN_CMD} clean install -Drap > /tmp/${TS4_REPO}-build-rap.log
     RAP_BUILD_RETCODE=$?
     RAP_RESULTS=$(cat /tmp/${TS4_REPO}-build-rcp.log)
     echo "${RAP_RESULTS}"

@@ -30,8 +30,7 @@ TS4_USKAT_REPO=ts4-uskat
 TS4_L2_REPO=ts4-l2
 TS4_SKIDE_REPO=ts4-skide
 TS4_SITROL_REPO=ts4-sitrol
-SITROL_TM_REPO=sitrol-tm
-SITROL_MM_REPO=sitrol-mm
+MCC_REPO=mcc
 
 TS4_TARGET_EXTLIBS=ts4-target-extlibs
 TS4_TARGET_CORE=ts4-target-core
@@ -244,13 +243,13 @@ buildAll () {
   fi
 
   # build project products
-#  buildTarget ${SITROL_TM_REPO} ${TS4_SITROL_REPO} ${GIT_MASTER_BRANCH} ${BUILD_MODE}
-#  case $? in
-#     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SITROL_TM_REPO}";;
-#     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SITROL_TM_REPO}";;
-#     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${SITROL_TM_REPO}";;
-#     * ) 
-#  esac
+  buildTarget ${MCC_REPO} ${TS4_USKAT_REPO} ${GIT_MASTER_BRANCH} ${BUILD_MODE}
+  case $? in
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${MCC_REPO}";;
+     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${MCC_REPO}";;
+     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${MCC_REPO}";;
+     * ) 
+  esac
 
 #  buildTarget ${SITROL_MM_REPO} ${TS4_SITROL_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE}
 #  case $? in

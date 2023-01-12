@@ -31,6 +31,7 @@ TS4_L2_REPO=ts4-l2
 TS4_SKIDE_REPO=ts4-skide
 TS4_SITROL_REPO=ts4-sitrol
 MCC_REPO=mcc
+CI_REPO=ci
 
 TS4_TARGET_EXTLIBS=ts4-target-extlibs
 TS4_TARGET_CORE=ts4-target-core
@@ -248,6 +249,14 @@ buildAll () {
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${MCC_REPO}";;
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${MCC_REPO}";;
      2 ) CANCELED_REPOS="${CANCELED_REPOS} ${MCC_REPO}";;
+     * ) 
+  esac
+
+  buildTarget ${CI_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE}
+  case $? in
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${CI_REPO}";;
+     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${CI_REPO}";;
+     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${CI_REPO}";;
      * ) 
   esac
 

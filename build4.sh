@@ -233,16 +233,6 @@ buildAll () {
     return 2;
   fi
 
-  git add -A .
-
-  if [ -z "${BUILDED_REPOS}" ]; then
-    git commit -a -m"autobuild ${BUILT_DATE}: build changes"
-    git push
-  else
-    git commit -a -m"autobuild ${BUILT_DATE}: ${BUILDED_REPOS}"
-    git push
-  fi
-
   # build project products
   buildTarget ${MCC_REPO} ${TS4_USKAT_REPO} ${GIT_MASTER_BRANCH} ${BUILD_MODE}
   case $? in
@@ -267,6 +257,16 @@ buildAll () {
 #     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${SITROL_MM_REPO}";;
 #     * ) 
 #  esac
+
+  git add -A .
+
+  if [ -z "${BUILDED_REPOS}" ]; then
+    git commit -a -m"autobuild ${BUILT_DATE}: build changes"
+    git push
+  else
+    git commit -a -m"autobuild ${BUILT_DATE}: ${BUILDED_REPOS}"
+    git push
+  fi
 
   echo "BUILDED_REPOS = ${BUILDED_REPOS}"
   echo "ERRORED_REPOS = ${ERRORED_REPOS}"

@@ -199,7 +199,7 @@ buildTarget () {
        return 1
     fi  
 
-    if[ "${TS4_GIT_MODE}" = "${GIT_COMMIT_AND_PUSH}" ] ; then
+    if [ "${TS4_GIT_MODE}" = "${GIT_COMMIT_AND_PUSH}" ] ; then
        git add -A .
        GIT_ADD_INDEX_RETCODE=$?
        if [ $GIT_ADD_INDEX_RETCODE -ne 0 ] ; then

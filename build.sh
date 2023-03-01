@@ -311,51 +311,53 @@ buildAll () {
     return 2;
   fi
 
-  git add -A .
-  GIT_ADD_INDEX_RETCODE=$?
-  if [ $GIT_ADD_INDEX_RETCODE -ne 0 ] ; then
-     # git error
-     echo "mail: send git add index ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
-     # set mail
-     mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_TARGET}"
-  fi  
-
-  if [ -z "${BUILDED_REPOS}" ]; then
-    git commit -a -m"autobuild ${BUILT_DATE}: build repos ${BUILDED_REPOS}"
-    GIT_COMMIT_RETCODE=$?
-    if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
-       # git error
-       echo "mail: send git commit ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
-       # set mail
-       mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_TARGET}"
+  if [ ! -z "${BUILDED_REPOS}" ]; then 
+    git add -A .
+    GIT_ADD_INDEX_RETCODE=$?
+    if [ $GIT_ADD_INDEX_RETCODE -ne 0 ] ; then
+      # git error
+      echo "mail: send git add index ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+      # set mail
+      mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_TARGET}"
     fi  
 
-    git push
-    GIT_PUSH_RETCODE=$?
-    if [ $GIT_PUSH_RETCODE -ne 0 ] ; then
-       # git error
-       echo "mail: send git push ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
-       # set mail
-       mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_PUSH_MESSAGE_ERROR}${TS4_TARGET}"
-    fi  
-  else
-    git commit -a -m"autobuild ${BUILT_DATE}: ${BUILDED_REPOS}"
-    GIT_COMMIT_RETCODE=$?
-    if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
-       # git error
-       echo "mail: send git commit ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
-       # set mail
-       mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_TARGET}"
-    fi  
+    if [ -z "${BUILDED_REPOS}" ]; then
+      git commit -a -m"autobuild ${BUILT_DATE}: build repos ${BUILDED_REPOS}"
+      GIT_COMMIT_RETCODE=$?
+      if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
+        # git error
+        echo "mail: send git commit ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+        # set mail
+        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_TARGET}"
+      fi  
 
-    git push
-    GIT_PUSH_RETCODE=$?
-    if [ $GIT_PUSH_RETCODE -ne 0 ] ; then
-       # git error
-       echo "mail: send git push ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
-       # set mail
-       mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_PUSH_MESSAGE_ERROR}${TS4_TARGET}"
-    fi  
+      git push
+      GIT_PUSH_RETCODE=$?
+      if [ $GIT_PUSH_RETCODE -ne 0 ] ; then
+        # git error
+        echo "mail: send git push ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+        # set mail
+        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_PUSH_MESSAGE_ERROR}${TS4_TARGET}"
+      fi  
+    else
+      git commit -a -m"autobuild ${BUILT_DATE}: ${BUILDED_REPOS}"
+      GIT_COMMIT_RETCODE=$?
+      if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
+        # git error
+        echo "mail: send git commit ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+        # set mail
+        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_TARGET}"
+      fi  
+
+      git push
+      GIT_PUSH_RETCODE=$?
+      if [ $GIT_PUSH_RETCODE -ne 0 ] ; then
+        # git error
+        echo "mail: send git push ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+        # set mail
+        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_PUSH_MESSAGE_ERROR}${TS4_TARGET}"
+      fi  
+    fi
   fi
 
   # build project products

@@ -40,20 +40,21 @@ TS4_TARGET_L2=ts4-target-l2
 TS4_TARGET_SKIDE=ts4-target-skide
 TS4_TARGET_SITROL=ts4-target-sitrol
 
-TS4_TARGET_HOME=/home/tsdev4/works/git-repos/ts4-targets
-
-TS4_MAIL_USERS=\
-goga@toxsoft.ru,\
-vs@toxsoft.ru,\
-egorov.dmitry.alex@gmail.com,\
-prokhorov_m@mail.ru,\
-tdo@toxsoft.ru,\
-kovach@toxsoft.ru,\
-kovach.mike@gmail.com
+TS4_TARGET=ts4-targets
+TS4_TARGET_HOME=/home/tsdev4/works/git-repos/${TS4_TARGET}
 
 # TS4_MAIL_USERS=\
+# goga@toxsoft.ru,\
+# vs@toxsoft.ru,\
+# egorov.dmitry.alex@gmail.com,\
+# prokhorov_m@mail.ru,\
+# tdo@toxsoft.ru,\
 # kovach@toxsoft.ru,\
 # kovach.mike@gmail.com
+
+TS4_MAIL_USERS=\
+kovach@toxsoft.ru,\
+kovach.mike@gmail.com
 
 TS4_MAIL_SUBJECT="updated targets: "
 TS4_MAIL_MESSAGE="server rebuilds toxsoft targets and commit results to github"
@@ -62,8 +63,21 @@ TS4_MAIL_ATTACHMENTS=
 TS4_MAIL_SUBJECT_ERROR="build ERROR: "
 TS4_MAIL_MESSAGE_ERROR="server can't rebuilds toxsoft targets (ERROR)"
 
+
+TS4_GIT_SUBJECT_ERROR="git ERROR: "
+TS4_GIT_FETCH_MESSAGE_ERROR="server can't git fetch repository: "
+TS4_GIT_DIFF_MESSAGE_ERROR="server can't git diff repository: "
+TS4_GIT_MERGE_MESSAGE_ERROR="server can't git merge repository: "
+TS4_GIT_ADD_INDEX_MESSAGE_ERROR="server can't git add index repository: "
+TS4_GIT_COMMIT_MESSAGE_ERROR="server can't git commit repository: "
+TS4_GIT_PUSH_MESSAGE_ERROR="server can't git push repository: "
+
 TS4_MAIL_SUBJECT_CANCEL="build CANCEL: "
 TS4_MAIL_MESSAGE_CANCEL="server can't rebuilds toxsoft targets (CANCEL)"
+
+FORCE="force"
+GIT_DO_NOT_COMMIT="gitDoNotCommit"
+GIT_COMMIT_AND_PUSH="gitCommitAndPush"
 
 # main branch
 GIT_MAIN_BRANCH=main
@@ -90,12 +104,48 @@ buildTarget () {
   TS4_PREV=$2
   TS4_BRANCH=$3
   TS4_MODE=$4
+  TS4_GIT_MODE=$5
   
   pushd ../${TS4_REPO}
   
   git fetch
+  GIT_FETCH_RETCODE=$?
+  if [ $GIT_FETCH_RETCODE -ne 0 ] ; then
+     # build error
+     echo "mail: send git fetch ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+     # set errored flag
+     echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
+     # set mail
+     mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_FETCH_MESSAGE_ERROR}${TS4_REPO}"
+     popd
+     return 1
+  fi  
+
   ARTEFACT_MODULES=$(git diff FETCH_HEAD HEAD | ${DIFF_PARSER})
+  GIT_DIFF_RETCODE=$?
+  if [ $GIT_DIFF_RETCODE -ne 0 ] ; then
+     # build error
+     echo "mail: send git diff ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+     # set errored flag
+     echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
+     # set mail
+     mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_DIFF_MESSAGE_ERROR}${TS4_REPO}"
+     popd
+     return 1
+  fi  
+
   git merge origin/${TS4_BRANCH}
+  GIT_MERGE_RETCODE=$?
+  if [ $GIT_MERGE_RETCODE -ne 0 ] ; then
+     # build error
+     echo "mail: send git merge ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+     # set errored flag
+     echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
+     # set mail
+     mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_MERGE_MESSAGE_ERROR}${TS4_REPO}"
+     popd
+     return 1
+  fi  
 
   # check prev repo build flag
   if [ -f "/tmp/${TS4_PREV}-${CANCELED_SUFFIX}" ] || [ -f "/tmp/${TS4_PREV}-${ERRORED_SUFFIX}" ]; then
@@ -114,7 +164,7 @@ buildTarget () {
   echo
   echo "call buildTarget(TS4_REPO=${TS4_REPO}, TS4_PREV=${TS4_PREV}, TS4_BRANCH=${TS4_BRANCH}, TS4_MODE=${TS4_MODE})"
 
-  if [ ! -z "${ARTEFACT_MODULES}" ] || [ "${TS4_MODE}" = "force" ]; then 
+  if [ ! -z "${ARTEFACT_MODULES}" ] || [ "${TS4_MODE}" = "${FORCE}" ]; then 
     echo "${BUILT_DATE}: [${TS4_REPO}] changed modules: ${ARTEFACT_MODULES}. build repository [${TS4_REPO}/${TS4_BRANCH}]"
     # TODO: build except common, rcp or rap
 #    mvn --fail-at-end -o install -Drcp -pl ${ARTEFACT_MODULES},${TS4_RCP_MODULES}
@@ -149,6 +199,34 @@ buildTarget () {
        return 1
     fi  
 
+    if[ "${TS4_GIT_MODE}" = "${GIT_COMMIT_AND_PUSH}" ] ; then
+       git add -A .
+       GIT_ADD_INDEX_RETCODE=$?
+       if [ $GIT_ADD_INDEX_RETCODE -ne 0 ] ; then
+          # git error
+          echo "mail: send git add index ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+          # set mail
+          mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_REPO}"
+       fi  
+
+       git commit -a -m"autobuild ${BUILT_DATE}. mode = ${TS4_MODE}"
+       GIT_COMMIT_RETCODE=$?
+       if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
+          # git error
+          echo "mail: send git commit ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+          # set mail
+          mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_REPO}"
+       fi  
+
+       git push
+       GIT_PUSH_RETCODE=$?
+       if [ $GIT_PUSH_RETCODE -ne 0 ] ; then
+          # git error
+          echo "mail: send git push ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+          # set mail
+          mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_PUSH_MESSAGE_ERROR}${TS4_REPO}"
+       fi  
+    fi
     # clear errored flag
     rm "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
     # clear canceled flag
@@ -171,49 +249,49 @@ buildAll () {
   ERRORED_REPOS=
   CANCELED_REPOS=
   
-  buildTarget ${TS4_EXTLIBS_REPO} "" ${GIT_MAIN_BRANCH} ${BUILD_MODE}
+  buildTarget ${TS4_EXTLIBS_REPO} "" ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_DO_NOT_COMMIT}
   case $? in
-     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_EXTLIBS_REPO}";BUILD_MODE="force";; 
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_EXTLIBS_REPO}";BUILD_MODE="${FORCE}";; 
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${TS4_EXTLIBS_REPO}";;
      2 ) CANCELED_REPOS="${CANCELED_REPOS} ${TS4_EXTLIBS_REPO}";;
      * ) 
   esac
 
-  buildTarget ${TS4_CORE_REPO} ${TS4_EXTLIBS_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} }
+  buildTarget ${TS4_CORE_REPO} ${TS4_EXTLIBS_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} } ${GIT_DO_NOT_COMMIT}
   case $? in
-     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_CORE_REPO}";BUILD_MODE="force";; 
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_CORE_REPO}";BUILD_MODE="${FORCE}";; 
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${TS4_CORE_REPO}";;
      2 ) CANCELED_REPOS="${CANCELED_REPOS} ${TS4_CORE_REPO}";;
      * ) 
   esac
 
-  buildTarget ${TS4_USKAT_REPO} ${TS4_CORE_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE}
+  buildTarget ${TS4_USKAT_REPO} ${TS4_CORE_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_DO_NOT_COMMIT}
   case $? in
-     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_USKAT_REPO}";BUILD_MODE="force";; 
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_USKAT_REPO}";BUILD_MODE="${FORCE}";; 
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${TS4_USKAT_REPO}";;
      2 ) CANCELED_REPOS="${CANCELED_REPOS} ${TS4_USKAT_REPO}";;
      * ) 
   esac
 
-#  buildTarget ${TS4_L2_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE}
+#  buildTarget ${TS4_L2_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_DO_NOT_COMMIT}
 #  case $? in
-#     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_L2_REPO}";BUILD_MODE="force";; 
+#     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_L2_REPO}";BUILD_MODE="${FORCE}";; 
 #     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${TS4_L2_REPO}";;
 #     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${TS4_L2_REPO}";;
 #     * ) 
 #  esac
 
-#  buildTarget ${TS4_SKIDE_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE}
+#  buildTarget ${TS4_SKIDE_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_DO_NOT_COMMIT}
 #  case $? in
-#     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_SKIDE_REPO}";BUILD_MODE="force";; 
+#     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_SKIDE_REPO}";BUILD_MODE="${FORCE}";; 
 #     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${TS4_SKIDE_REPO}";;
 #     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${TS4_SKIDE_REPO}";;
 #     * ) 
 #  esac
 
-#  buildTarget ${TS4_SITROL_REPO} ${TS4_LEGACY_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE}
+#  buildTarget ${TS4_SITROL_REPO} ${TS4_LEGACY_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_DO_NOT_COMMIT}
 #  case $? in
-#     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_SITROL_REPO}";BUILD_MODE="force";; 
+#     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_SITROL_REPO}";BUILD_MODE="${FORCE}";; 
 #     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${TS4_SITROL_REPO}";;
 #     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${TS4_SITROL_REPO}";;
 #     * ) 
@@ -233,8 +311,55 @@ buildAll () {
     return 2;
   fi
 
+  git add -A .
+  GIT_ADD_INDEX_RETCODE=$?
+  if [ $GIT_ADD_INDEX_RETCODE -ne 0 ] ; then
+     # git error
+     echo "mail: send git add index ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+     # set mail
+     mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_TARGET}"
+  fi  
+
+  if [ -z "${BUILDED_REPOS}" ]; then
+    git commit -a -m"autobuild ${BUILT_DATE}: build repos ${BUILDED_REPOS}"
+    GIT_COMMIT_RETCODE=$?
+    if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
+       # git error
+       echo "mail: send git commit ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+       # set mail
+       mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_TARGET}"
+    fi  
+
+    git push
+    GIT_PUSH_RETCODE=$?
+    if [ $GIT_PUSH_RETCODE -ne 0 ] ; then
+       # git error
+       echo "mail: send git push ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+       # set mail
+       mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_PUSH_MESSAGE_ERROR}${TS4_TARGET}"
+    fi  
+  else
+    git commit -a -m"autobuild ${BUILT_DATE}: ${BUILDED_REPOS}"
+    GIT_COMMIT_RETCODE=$?
+    if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
+       # git error
+       echo "mail: send git commit ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+       # set mail
+       mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_TARGET}"
+    fi  
+
+    git push
+    GIT_PUSH_RETCODE=$?
+    if [ $GIT_PUSH_RETCODE -ne 0 ] ; then
+       # git error
+       echo "mail: send git push ERROR for users = ${TS4_MAIL_USERS}, repos = ${TS4_TARGET}"
+       # set mail
+       mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_TARGET}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_PUSH_MESSAGE_ERROR}${TS4_TARGET}"
+    fi  
+  fi
+
   # build project products
-  buildTarget ${MCC_REPO} ${TS4_USKAT_REPO} ${GIT_MASTER_BRANCH} ${BUILD_MODE}
+  buildTarget ${MCC_REPO} ${TS4_USKAT_REPO} ${GIT_MASTER_BRANCH} ${BUILD_MODE} ${GIT_COMMIT_AND_PUSH}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${MCC_REPO}";;
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${MCC_REPO}";;
@@ -242,31 +367,13 @@ buildAll () {
      * ) 
   esac
 
-  buildTarget ${CI_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE}
+  buildTarget ${CI_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_COMMIT_AND_PUSH}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${CI_REPO}";;
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${CI_REPO}";;
      2 ) CANCELED_REPOS="${CANCELED_REPOS} ${CI_REPO}";;
      * ) 
   esac
-
-#  buildTarget ${SITROL_MM_REPO} ${TS4_SITROL_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE}
-#  case $? in
-#     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SITROL_MM_REPO}";;
-#     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SITROL_MM_REPO}";;
-#     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${SITROL_MM_REPO}";;
-#     * ) 
-#  esac
-
-  git add -A .
-
-  if [ -z "${BUILDED_REPOS}" ]; then
-    git commit -a -m"autobuild ${BUILT_DATE}: build changes"
-    git push
-  else
-    git commit -a -m"autobuild ${BUILT_DATE}: ${BUILDED_REPOS}"
-    git push
-  fi
 
   echo "BUILDED_REPOS = ${BUILDED_REPOS}"
   echo "ERRORED_REPOS = ${ERRORED_REPOS}"

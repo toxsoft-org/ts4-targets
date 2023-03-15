@@ -29,16 +29,9 @@ TS4_CORE_REPO=ts4-core
 TS4_USKAT_REPO=ts4-uskat
 TS4_L2_REPO=ts4-l2
 TS4_SKIDE_REPO=ts4-skide
-TS4_SITROL_REPO=ts4-sitrol
+SKT_VETROL_REPO=skt-vetrol 
 MCC_REPO=mcc
 CI_REPO=ci
-
-TS4_TARGET_EXTLIBS=ts4-target-extlibs
-TS4_TARGET_CORE=ts4-target-core
-TS4_TARGET_USKAT=ts4-target-uskat
-TS4_TARGET_L2=ts4-target-l2
-TS4_TARGET_SKIDE=ts4-target-skide
-TS4_TARGET_SITROL=ts4-target-sitrol
 
 TS4_TARGET=ts4-targets
 TS4_TARGET_HOME=/home/tsdev4/works/git-repos/${TS4_TARGET}
@@ -273,6 +266,15 @@ buildAll () {
      * ) 
   esac
 
+  buildTarget ${SKT_VETROL_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_DO_NOT_COMMIT}
+  case $? in
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SKT_VETROL_REPO}";BUILD_MODE="${FORCE}";; 
+     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SKT_VETROL_REPO}";;
+     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${SKT_VETROL_REPO}";;
+     * ) 
+  esac
+
+
 #  buildTarget ${TS4_L2_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_DO_NOT_COMMIT}
 #  case $? in
 #     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_L2_REPO}";BUILD_MODE="${FORCE}";; 
@@ -361,7 +363,7 @@ buildAll () {
   fi
 
   # build project products
-  buildTarget ${MCC_REPO} ${TS4_USKAT_REPO} ${GIT_MASTER_BRANCH} ${BUILD_MODE} ${GIT_COMMIT_AND_PUSH}
+  buildTarget ${MCC_REPO} ${SKT_VETROL_REPO} ${GIT_MASTER_BRANCH} ${BUILD_MODE} ${GIT_COMMIT_AND_PUSH}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${MCC_REPO}";;
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${MCC_REPO}";;
@@ -369,7 +371,7 @@ buildAll () {
      * ) 
   esac
 
-  buildTarget ${CI_REPO} ${TS4_USKAT_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_COMMIT_AND_PUSH}
+  buildTarget ${CI_REPO} ${SKT_VETROL_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${GIT_COMMIT_AND_PUSH}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${CI_REPO}";;
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${CI_REPO}";;

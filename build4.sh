@@ -107,11 +107,12 @@ buildTarget () {
      # build error
      echo "mail: send git fetch ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
      # set errored flag
-     echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
+     # 2023-03-19 mvk: ошибка fetch не является фатальной (возможно сбой по связи)
+     # echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
      # set mail
      mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_FETCH_MESSAGE_ERROR}${TS4_REPO}"
      popd
-     return 1
+     return 4
   fi  
 
   ARTEFACT_MODULES=$(git diff FETCH_HEAD HEAD | ${DIFF_PARSER})

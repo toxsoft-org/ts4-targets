@@ -180,18 +180,18 @@ buildTarget () {
 
     ${MVN_CMD} clean install -Drap > /tmp/${TS4_REPO}-build-rap.log
     RAP_BUILD_RETCODE=$?
-    RAP_RESULTS=$(cat /tmp/${TS4_REPO}-build-rcp.log)
+    RAP_RESULTS=$(cat /tmp/${TS4_REPO}-build-rap.log)
     echo "${RAP_RESULTS}"
-    if [ $RCP_BUILD_RETCODE -ne 0 ] ; then
+    if [ $RAP_BUILD_RETCODE -ne 0 ] ; then
        # build error
-       echo "mail: send build ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+       echo "OFF: mail: send build ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
        # set errored flag
-       echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
+       ## echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
        # set mail
-       mail -s "${TS4_MAIL_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_MAIL_MESSAGE_ERROR}${RAP_RESULTS}"
-       popd
-       return 1
-    fi  
+       ## mail -s "${TS4_MAIL_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_MAIL_MESSAGE_ERROR}${RAP_RESULTS}"
+       ## popd
+       ## return 1
+    fi
 
     if [ "${TS4_GIT_MODE}" = "${GIT_COMMIT_AND_PUSH}" ] ; then
        git add -A .

@@ -27,7 +27,13 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-core/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-uskat/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-uskat/rcp" type="Directory"/>
-    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-vetrol/main" type="Directory"/>
-    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-vetrol/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-dq/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-dq/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-onews/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-onews/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-ggprefs/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-ggprefs/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skt-vetrol/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skt-vetrol/rcp" type="Directory"/>
   </locations>
 </target>

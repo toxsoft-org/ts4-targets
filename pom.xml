@@ -26,13 +26,13 @@
     <platform.rap.artifactId>org.toxsoft.releng.targetplatform.rap</platform.rap.artifactId>
 
     <!-- Версия платформы swt. Источник для примера windows: https://mvnrepository.com/artifact/org.eclipse.platform/org.eclipse.swt.win32.win32.x86_64 -->    
-    <platform.swt.version>3.115.100</platform.swt.version>
+    <platform.swt.version>3.118.0</platform.swt.version>
 
     <!-- Версия org.eclipse.ui. Источник: https://mvnrepository.com/artifact/org.eclipse.ui/org.eclipse.ui -->
-    <rcp.ui.version>3.5.0.I20090604-2000</rcp.ui.version>
+    <rcp.ui.version>3.200.0.v20211026-0701</rcp.ui.version>
 
     <!-- Версия org.eclipse.rap.ui. Источник: https://mvnrepository.com/artifact/org.eclipse.rap/org.eclipse.rap.ui -->
-    <rap.ui.version>3.15.0</rap.ui.version>
+    <rap.ui.version>0.0.0</rap.ui.version>
 
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -327,6 +327,13 @@
             <!-- 2021-01-09 mvk. source: https://www.eclipse.org/lists/tycho-user/msg03932.html -->
             <dependency-resolution>
               <optionalDependencies>ignore</optionalDependencies>
+              <extraRequirements>
+                <requirement>
+                   <type>eclipse-plugin</type>
+                   <id>org.eclipse.rap.ui</id>
+                   <versionRange>${rap.ui.version}</versionRange>
+                </requirement>
+              </extraRequirements>
             </dependency-resolution>
             <environments>
             <environment>
@@ -445,6 +452,17 @@
     <module>../ts4-extlibs</module>
     <module>../ts4-core</module>
     <module>../ts4-uskat</module>
+
+    <module>../skf-users</module>
+    <module>../skf-bridge</module>
+    <module>../skf-dq</module>
+    <module>../skf-onews</module>
+    <module>../skf-ggprefs</module>
+    <module>../skf-mnemo</module>
+    <module>../skf-refbooks</module>
+    <module>../skf-rri</module>
+
+    <module>../skt-vetrol</module>
 <!--
     <module>../ts3-l2</module>
     <module>../ts3-skide</module>

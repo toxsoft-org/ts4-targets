@@ -47,7 +47,7 @@ CI_REPO=ci
 TS4_TARGET=ts4-targets
 TS4_TARGET_HOME=/home/tsdev4/works/git-repos/${TS4_TARGET}
 
-TS4_MAIL_USERS=\ 
+TS4_MAIL_USERS=\
 goga@toxsoft.ru,\
 vs@toxsoft.ru,\
 egorov.dmitry.alex@gmail.com,\

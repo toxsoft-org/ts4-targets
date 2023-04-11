@@ -461,8 +461,10 @@
     <module>../skf-mnemo</module>
     <module>../skf-refbooks</module>
     <module>../skf-rri</module>
-
     <module>../skt-vetrol</module>
+
+    <module>../ts4-l2</module>
+
 <!--
     <module>../ts3-l2</module>
     <module>../ts3-skide</module>

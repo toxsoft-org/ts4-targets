@@ -83,6 +83,7 @@ TS4_GIT_PUSH_MESSAGE_ERROR="server can't git push repository: "
 TS4_MAIL_SUBJECT_CANCEL="build CANCEL: "
 TS4_MAIL_MESSAGE_CANCEL="server can't rebuilds toxsoft targets (CANCEL)"
 
+NONE="none"
 FORCE="force"
 OUTPUT_TO_LOCAL="outputToLocal"
 OUTPUT_TO_GLOBAL="outputToGlobal"
@@ -222,7 +223,13 @@ buildTarget () {
        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_REPO}"
     fi  
 
-    git commit -a -m"autobuild ${TS4_REPO}, mode = ${TS4_MODE}, ${BUILT_DATE}."
+    if [ "${TS4_MODE}" = "${FORCE}" ]; then 
+      git commit -a -m"autobuild: ${TS4_REPO}, ${BUILT_DATE}."
+    fi  
+    if [ "${TS4_MODE}" = "${NONE}" ]; then 
+      git commit -a -m"autobuild(dependency): ${TS4_REPO}."
+    fi  
+
     GIT_COMMIT_RETCODE=$?
     if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
        # git error
@@ -259,7 +266,7 @@ buildTarget () {
 
 # build all targets
 buildAll () {
-  BUILD_MODE="none"
+  BUILD_MODE=${NONE}
   BUILDED_REPOS=
   ERRORED_REPOS=
   CANCELED_REPOS=

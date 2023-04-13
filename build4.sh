@@ -222,11 +222,10 @@ buildTarget () {
        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_REPO}"
     fi  
 
-    if [ "${TS4_MODE}" = "${NONE}" ]; then 
+    if [ ! -z "${ARTEFACT_MODULES}" ] ; then 
       git commit -a -m"autobuild: ${TS4_REPO}, ${BUILT_DATE}."
-    fi  
-    if [ "${TS4_MODE}" = "${FORCE}" ]; then 
-      git commit -a -m"autobuild (dependence): ${TS4_REPO}."
+    else
+      git commit -a -m"autobuild dependence: ${TS4_REPO}."
     fi  
 
     GIT_COMMIT_RETCODE=$?

@@ -222,7 +222,7 @@ buildTarget () {
        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_REPO}"
     fi  
 
-    git commit -a -m"autobuild repo = ${TS4_REPO}, mode = ${TS4_MODE}, time = ${BUILT_DATE}."
+    git commit -a -m"autobuild ${TS4_REPO}, mode = ${TS4_MODE}, ${BUILT_DATE}."
     GIT_COMMIT_RETCODE=$?
     if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
        # git error

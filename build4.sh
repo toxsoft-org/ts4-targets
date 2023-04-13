@@ -60,6 +60,10 @@ kovach.mike@gmail.com
 # kovach@toxsoft.ru,\
 # kovach.mike@gmail.com
 
+TS4_MAIL_ADMINS=\
+kovach@toxsoft.ru,\
+kovach.mike@gmail.com
+
 TS4_MAIL_SUBJECT="updated targets: "
 TS4_MAIL_MESSAGE="server rebuilds toxsoft targets and commit results to github"
 TS4_MAIL_ATTACHMENTS=
@@ -116,12 +120,12 @@ buildTarget () {
   GIT_FETCH_RETCODE=$?
   if [ $GIT_FETCH_RETCODE -ne 0 ] ; then
      # build error
-     echo "mail: send git fetch ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+     echo "mail: send git fetch ERROR for users = ${TS4_MAIL_ADMINS}, repo = ${TS4_REPO}"
      # set errored flag
      # 2023-03-19 mvk: ������ fetch �� �������� ��������� (�������� ���� �� �����)
      # echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
      # set mail
-     mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_FETCH_MESSAGE_ERROR}${TS4_REPO}"
+     mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_ADMINS} <<< "${TS4_GIT_FETCH_MESSAGE_ERROR}${TS4_REPO}"
      popd
      return 4
   fi  
@@ -218,7 +222,7 @@ buildTarget () {
        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_REPO}"
     fi  
 
-    git commit -a -m"autobuild ${BUILT_DATE}. mode = ${TS4_MODE}"
+    git commit -a -m"autobuild repo = ${TS4_REPO}, mode = ${TS4_MODE}, time = ${BUILT_DATE}."
     GIT_COMMIT_RETCODE=$?
     if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
        # git error

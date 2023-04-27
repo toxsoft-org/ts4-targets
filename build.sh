@@ -210,8 +210,10 @@ buildTarget () {
 
     if [ "${TS4_OUTPUT_TYPE}" = "${OUTPUT_TO_GLOBAL}" ] ; then
        echo "popd OUTPUT_TO_GLOBAL"
-       popd
+       #popd
     fi
+       echo "popd OUTPUT_TO_GLOBAL2"
+       popd
 
 echo "git add -A ."
     # GIT ADD, COMMIT & PUSH 
@@ -226,9 +228,11 @@ echo "git add -A ."
 
 echo "git commit -a -m "
     if [ ! -z "${ARTEFACT_MODULES}" ] ; then 
-      git commit -a -m"autobuild: ${TS4_REPO}, ${BUILT_DATE}."
+#      git commit -a -m"autobuild: ${TS4_REPO}, ${BUILT_DATE}."
+      git commit -a -m"manual commit type 1"
     else
-      git commit -a -m"autobuild dependence: ${TS4_REPO}."
+#      git commit -a -m"autobuild dependence: ${TS4_REPO}."
+      git commit -a -m"manual commit type 2"
     fi  
 
     GIT_COMMIT_RETCODE=$?

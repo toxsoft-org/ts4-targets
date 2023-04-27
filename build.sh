@@ -210,10 +210,8 @@ buildTarget () {
 
     if [ "${TS4_OUTPUT_TYPE}" = "${OUTPUT_TO_GLOBAL}" ] ; then
        echo "popd OUTPUT_TO_GLOBAL"
-       #popd
-    fi
-       echo "popd OUTPUT_TO_GLOBAL2"
        popd
+    fi
 
 echo "git add -A ."
     # GIT ADD, COMMIT & PUSH 
@@ -285,7 +283,7 @@ buildAll () {
      * ) 
   esac
 
-  buildTarget ${TS4_CORE_REPO} ${TS4_EXTLIBS_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} } ${OUTPUT_TO_GLOBAL}
+  buildTarget ${TS4_CORE_REPO} ${TS4_EXTLIBS_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_CORE_REPO}";BUILD_MODE="${FORCE}";; 
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${TS4_CORE_REPO}";;

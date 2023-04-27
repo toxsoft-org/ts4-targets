@@ -193,25 +193,27 @@ buildTarget () {
        return 1
     fi
 
-    ${MVN_CMD} clean install -Drap > /tmp/${TS4_REPO}-build-rap.log
-    RAP_BUILD_RETCODE=$?
-    RAP_RESULTS=$(cat /tmp/${TS4_REPO}-build-rap.log)
-    echo "${RAP_RESULTS}"
-    if [ $RAP_BUILD_RETCODE -ne 0 ] ; then
+    ## ${MVN_CMD} clean install -Drap > /tmp/${TS4_REPO}-build-rap.log
+    ## RAP_BUILD_RETCODE=$?
+    ## RAP_RESULTS=$(cat /tmp/${TS4_REPO}-build-rap.log)
+    ## echo "${RAP_RESULTS}"
+    ## if [ $RAP_BUILD_RETCODE -ne 0 ] ; then
        # build error
-       echo "OFF: mail: send build ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+       ## echo "OFF: mail: send build ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
        # set errored flag
        ## echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
        # set mail
        ## mail -s "${TS4_MAIL_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_MAIL_MESSAGE_ERROR}${RAP_RESULTS}"
        ## popd
        ## return 1
-    fi
+    ## fi
 
     if [ "${TS4_OUTPUT_TYPE}" = "${OUTPUT_TO_GLOBAL}" ] ; then
+       echo "popd OUTPUT_TO_GLOBAL"
        popd
     fi
 
+echo "git add -A ."
     # GIT ADD, COMMIT & PUSH 
     git add -A .
     GIT_ADD_INDEX_RETCODE=$?
@@ -222,6 +224,7 @@ buildTarget () {
        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_REPO}"
     fi  
 
+echo "git commit -a -m "
     if [ ! -z "${ARTEFACT_MODULES}" ] ; then 
       git commit -a -m"autobuild: ${TS4_REPO}, ${BUILT_DATE}."
     else
@@ -236,6 +239,7 @@ buildTarget () {
        mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_USERS} <<< "${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_REPO}"
     fi  
 
+echo "git push"
     git push
     GIT_PUSH_RETCODE=$?
     if [ $GIT_PUSH_RETCODE -ne 0 ] ; then

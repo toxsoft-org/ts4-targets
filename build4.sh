@@ -127,7 +127,7 @@ buildTarget () {
      # set errored flag
      # echo ${BUILT_DATE} > "/tmp/${TS4_REPO}-${ERRORED_SUFFIX}"
      # set mail
-     mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_ADMINS} <<< "${TS4_GIT_FETCH_MESSAGE_ERROR}${TS4_REPO}"
+     ### mail -s "${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}" ${TS4_MAIL_ADMINS} <<< "${TS4_GIT_FETCH_MESSAGE_ERROR}${TS4_REPO}"
      popd
      return 4
   fi  

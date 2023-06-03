@@ -45,6 +45,7 @@ SKT_VETROL_REPO=skt-vetrol
 
 MCC_REPO=mcc
 CI_REPO=ci
+CP_GWP_REPO=cp-gwp
 
 TS4_TARGET=ts4-targets
 TS4_TARGET_HOME=/home/tsdev4/works/git-repos/${TS4_TARGET}
@@ -447,6 +448,14 @@ buildAll () {
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${CI_REPO}";;
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${CI_REPO}";;
      2 ) CANCELED_REPOS="${CANCELED_REPOS} ${CI_REPO}";;
+     * ) 
+  esac
+
+  buildTarget ${CP_GWP_REPO} ${TS4_L2_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_LOCAL}
+  case $? in
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${CP_GWP_REPO}";;
+     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${CP_GWP_REPO}";;
+     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${CP_GWP_REPO}";;
      * ) 
   esac
 

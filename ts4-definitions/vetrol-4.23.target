@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
-<target name="vetrol-4.22">
+<target name="vetrol-4.23">
   <locations>
     <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
       <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
@@ -39,6 +39,8 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-ggprefs/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-journals/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-journals/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-reports/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-reports/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-l2/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-l2/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skt-vetrol/main" type="Directory"/>

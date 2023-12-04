@@ -452,25 +452,29 @@
     <module>../ts4-extlibs</module>
     <module>../ts4-core</module>
     <module>../ts4-uskat</module>
+    <module>../ts4-skide</module>
 
     <module>../skf-users</module>
+    <module>../skf-reports</module>
+    <module>../skf-refbooks</module>
+    <module>../skf-journals</module>
     <module>../skf-bridge</module>
     <module>../skf-dq</module>
     <module>../skf-onews</module>
     <module>../skf-ggprefs</module>
     <module>../skf-mnemo</module>
-    <module>../skf-refbooks</module>
     <module>../skf-rri</module>
+
+    <module>../skf-devs</module>
+    <!-- <module>../skf-tags</module> -->
+    <!-- <module>../skf-maps</module>  -->
+    <!-- <module>../skf-alarms</module> -->
+    <!-- <module>../skf-charts</module> -->
+
     <module>../skt-vetrol</module>
 
     <module>../ts4-l2</module>
 
-<!--
-    <module>../ts3-l2</module>
-    <module>../ts3-skide</module>
-    <module>../ts3-legacy</module>
-    <module>../ts3-sitrol</module>
--->
   </modules>
 
   <distributionManagement>

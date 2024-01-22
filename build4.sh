@@ -98,8 +98,9 @@ OUTPUT_TO_GLOBAL="outputToGlobal"
 GIT_MAIN_BRANCH=main
 GIT_MASTER_BRANCH=master
 
-# meven command
+# maven command
 MVN_CMD="mvn17"
+# MVN_CMD="mvn21"
 
 # git results parser
 DIFF_PARSER="java -jar /home/tsdev4/works/git-repos/ts4-targets/ts4-target-core/lib/org.toxsoft.core.git.parser-lib.jar"

@@ -32,6 +32,7 @@ TS4_SKIDE_REPO=ts4-skide
 
 SKF_USERS_REPO=skf-users
 SKF_BRIDGE_REPO=skf-bridge
+SKF_ALARMS_REPO=skf-alarms
 SKF_DQ_REPO=skf-dq
 SKF_ONEWS_REPO=skf-onews
 SKF_GGPREFS_REPO=skf-ggprefs
@@ -40,12 +41,15 @@ SKF_RRI_REPO=skf-rri
 SKF_MNEMO_REPO=skf-mnemo
 SKF_JOURNALS_REPO=skf-journals
 SKF_REPORTS_REPO=skf-reports
+SKF_DEVS_REPO=skf-devs
 
 SKT_VETROL_REPO=skt-vetrol 
+
 
 MCC_REPO=mcc
 CI_REPO=ci
 CP_GWP_REPO=cp-gwp
+CP_GBH_REPO=cp-gbh
 
 TS4_TARGET=ts4-targets
 TS4_TARGET_HOME=/home/tsdev4/works/git-repos/${TS4_TARGET}
@@ -95,8 +99,9 @@ OUTPUT_TO_GLOBAL="outputToGlobal"
 GIT_MAIN_BRANCH=main
 GIT_MASTER_BRANCH=master
 
-# meven command
+# maven command
 MVN_CMD="mvn17"
+# MVN_CMD="mvn21"
 
 # git results parser
 DIFF_PARSER="java -jar /home/tsdev4/works/git-repos/ts4-targets/ts4-target-core/lib/org.toxsoft.core.git.parser-lib.jar"
@@ -324,7 +329,16 @@ buildAll () {
      * ) 
   esac
 
-  buildTarget ${SKF_DQ_REPO} ${SKF_BRIDGE_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
+  buildTarget ${SKF_ALARMS_REPO} ${SKF_BRIDGE_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
+  case $? in
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SKF_ALARMS_REPO}";BUILD_MODE="${FORCE}";; 
+     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SKF_ALARMS_REPO}";;
+     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${SKF_ALARMS_REPO}";;
+     * ) 
+  esac
+
+
+  buildTarget ${SKF_DQ_REPO} ${SKF_ALARMS_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SKF_DQ_REPO}";BUILD_MODE="${FORCE}";; 
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SKF_DQ_REPO}";;
@@ -364,15 +378,7 @@ buildAll () {
      * ) 
   esac
 
-  buildTarget ${SKF_MNEMO_REPO} ${SKF_RRI_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
-  case $? in
-     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SKF_MNEMO_REPO}";BUILD_MODE="${FORCE}";; 
-     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SKF_MNEMO_REPO}";;
-     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${SKF_MNEMO_REPO}";;
-     * ) 
-  esac
-
-  buildTarget ${SKF_JOURNALS_REPO} ${SKF_MNEMO_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
+  buildTarget ${SKF_JOURNALS_REPO} ${SKF_RRI_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SKF_JOURNALS_REPO}";BUILD_MODE="${FORCE}";; 
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SKF_JOURNALS_REPO}";;
@@ -388,7 +394,15 @@ buildAll () {
      * ) 
   esac
 
-  buildTarget ${TS4_L2_REPO} ${SKF_REPORTS_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
+  buildTarget ${SKF_MNEMO_REPO} ${SKF_REPORTS_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
+  case $? in
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SKF_MNEMO_REPO}";BUILD_MODE="${FORCE}";; 
+     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SKF_MNEMO_REPO}";;
+     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${SKF_MNEMO_REPO}";;
+     * ) 
+  esac
+
+  buildTarget ${TS4_L2_REPO} ${SKF_MNEMO_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_L2_REPO}";BUILD_MODE="${FORCE}";; 
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${TS4_L2_REPO}";;
@@ -396,7 +410,15 @@ buildAll () {
      * ) 
   esac
 
-  buildTarget ${SKT_VETROL_REPO} ${TS4_L2_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
+  buildTarget ${SKF_DEVS_REPO} ${TS4_L2_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
+  case $? in
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SKF_DEVS_REPO}";BUILD_MODE="${FORCE}";; 
+     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SKF_DEVS_REPO}";;
+     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${SKF_DEVS_REPO}";;
+     * ) 
+  esac
+
+  buildTarget ${SKT_VETROL_REPO} ${SKF_DEVS_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_GLOBAL}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${SKT_VETROL_REPO}";BUILD_MODE="${FORCE}";; 
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${SKT_VETROL_REPO}";;
@@ -456,6 +478,14 @@ buildAll () {
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${CP_GWP_REPO}";;
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${CP_GWP_REPO}";;
      2 ) CANCELED_REPOS="${CANCELED_REPOS} ${CP_GWP_REPO}";;
+     * ) 
+  esac
+
+  buildTarget ${CP_GBH_REPO} ${TS4_L2_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_TO_LOCAL}
+  case $? in
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${CP_GBH_REPO}";;
+     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${CP_GBH_REPO}";;
+     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${CP_GBH_REPO}";;
      * ) 
   esac
 

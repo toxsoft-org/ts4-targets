@@ -29,8 +29,12 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-uskat/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skide/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skide/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-alarms/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-alarms/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-users/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-users/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-devs/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-devs/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-dq/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-dq/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-onews/main" type="Directory"/>
@@ -41,6 +45,10 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-journals/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-reports/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-reports/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-rri/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-rri/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-refbooks/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-refbooks/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-mnemo/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-mnemo/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-l2/main" type="Directory"/>

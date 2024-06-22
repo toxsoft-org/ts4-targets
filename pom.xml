@@ -7,12 +7,12 @@
   <packaging>pom</packaging>
 
   <properties>
-    <tychoVersion>2.6.0</tychoVersion>
+    <tychoVersion>4.0.8</tychoVersion>
     <sonar.exclusions>**/src-gen/**</sonar.exclusions>
  
     <!-- Версия java -->
-    <java.version>17</java.version>
-    <java.environment>JavaSE-17</java.environment>
+    <java.version>21</java.version>
+    <java.environment>JavaSE-21</java.environment>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.source>${java.version}</maven.compiler.source>
 
@@ -450,9 +450,12 @@
     <module>eclipse-releng/${platform.rcp.artifactId}</module>
     <module>eclipse-releng/${platform.rap.artifactId}</module>
     <module>../ts4-extlibs</module>
+
     <module>../ts4-core</module>
     <module>../ts4-uskat</module>
+    <module>../skf-alarms</module> 
     <module>../ts4-skide</module>
+
 
     <module>../skf-users</module>
     <module>../skf-reports</module>
@@ -466,14 +469,16 @@
     <module>../skf-rri</module>
 
     <module>../skf-devs</module>
-    <!-- <module>../skf-tags</module> -->
-    <!-- <module>../skf-maps</module>  -->
-    <!-- <module>../skf-alarms</module> -->
-    <!-- <module>../skf-charts</module> -->
+<!--
+    <module>../skf-tags</module> 
+    <module>../skf-maps</module> 
+    <module>../skf-charts</module> 
+-->
 
     <module>../skt-vetrol</module>
 
     <module>../ts4-l2</module>
+
 
   </modules>
 

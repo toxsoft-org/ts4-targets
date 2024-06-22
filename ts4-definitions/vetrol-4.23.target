@@ -8,14 +8,17 @@
       <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.equinox.p2.discovery.feature.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>   
-      <repository id="eclipse-2021-12. RCP" location="http://download.eclipse.org/releases/2021-12/"/>
+      <repository id="eclipse-2024-06. RCP" location="http://download.eclipse.org/releases/2024-06/"/>
 
       <!-- 2021-02-04 mvk need for product build (sitrol.tm) -->
       <unit id="javax.xml" version="0.0.0"/>
       <unit id="org.apache.log4j" version="0.0.0"/>
+    
+      <!-- 2024-06-19 mvk removed: does not exist
       <unit id="org.eclipse.equinox.ds" version="0.0.0"/>
-      <unit id="org.eclipse.equinox.supplement" version="0.0.0"/>
       <unit id="org.eclipse.pde.ds.lib" version="0.0.0"/>
+      -->
+      <unit id="org.eclipse.equinox.supplement" version="0.0.0"/>
       <!-- <unit id="org.eclipse.equinox.launcher.gtk.linux.ppc64le" version="0.0.0"/> -->
       <unit id="org.eclipse.equinox.region" version="0.0.0"/>
       <unit id="org.eclipse.equinox.transforms.hook" version="0.0.0"/>
@@ -31,6 +34,8 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skide/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-alarms/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-alarms/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-bridge/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-bridge/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-users/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-users/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-devs/main" type="Directory"/>
@@ -55,5 +60,7 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-l2/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skt-vetrol/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skt-vetrol/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-legacy/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-legacy/rcp" type="Directory"/>
   </locations>
 </target>

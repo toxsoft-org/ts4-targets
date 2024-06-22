@@ -9,14 +9,18 @@
       <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.equinox.p2.discovery.feature.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>   
-      <repository id="eclipse-2021-12. RCP" location="https://download.eclipse.org/releases/2021-12/"/>
+      <repository id="eclipse-2024-06. RCP" location="https://download.eclipse.org/releases/2024-06/"/>
 
       <!-- 2021-02-04 mvk need for product build (sitrol.tm) -->
       <unit id="javax.xml" version="0.0.0"/>
       <unit id="org.apache.log4j" version="0.0.0"/>
+
+      <!-- 2024-06-19 mvk removed: no longer exists
       <unit id="org.eclipse.equinox.ds" version="0.0.0"/>
-      <unit id="org.eclipse.equinox.supplement" version="0.0.0"/>
       <unit id="org.eclipse.pde.ds.lib" version="0.0.0"/>
+      -->
+
+      <unit id="org.eclipse.equinox.supplement" version="0.0.0"/>
       <!-- <unit id="org.eclipse.equinox.launcher.gtk.linux.ppc64le" version="0.0.0"/> -->
       <unit id="org.eclipse.equinox.region" version="0.0.0"/>
       <unit id="org.eclipse.equinox.transforms.hook" version="0.0.0"/>

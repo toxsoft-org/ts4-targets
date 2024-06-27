@@ -61,17 +61,17 @@ TS4_TARGET_HOME=/home/ts4-targets/works/git-repos/${TS4_TARGET}
 
 # TS4_MAIL_USERS=\
 
-# TS4_MAIL_USERS=\
-# goga@toxsoft.ru,\
-# vs@toxsoft.ru,\
-# egorov.dmitry.alex@gmail.com,\
-# prokhorov_m@mail.ru,\
-# tdo@toxsoft.ru,\
-# kovach@toxsoft.ru,\
-# kovach.mike@gmail.com
+TS4_MAIL_USERS=\
+goga@toxsoft.ru,\
+vs@toxsoft.ru,\
+egorov.dmitry.alex@gmail.com,\
+prokhorov_m@mail.ru,\
+tdo@toxsoft.ru,\
+kovach@toxsoft.ru,\
+kovach.mike@gmail.com
 
 # TS4_MAIL_USERS=
-TS4_MAIL_USERS=kovach.mike@gmail.com
+# TS4_MAIL_USERS=kovach.mike@gmail.com
 
 TS4_MAIL_ADMINS=\
 kovach@toxsoft.ru,\
@@ -143,9 +143,9 @@ writeToGit () {
   GIT_ADD_INDEX_RETCODE=$?
   if [ $GIT_ADD_INDEX_RETCODE -ne 0 ] ; then
     # git error
-    echo "mail: send git add index ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}[${TS4_OUTPUT_TYPE}]"
+    echo "mail: send git add index ERROR for users = ${TS4_MAIL_ADMINS}, repo = ${TS4_REPO}[${TS4_OUTPUT_TYPE}]"
     # send mail
-    eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_USERS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}[${TS4_OUTPUT_TYPE}] -m ${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_REPO}"
+    eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_ADMINS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}[${TS4_OUTPUT_TYPE}] -m ${TS4_GIT_ADD_INDEX_MESSAGE_ERROR}${TS4_REPO}"
   fi
 
   echo "git commit -a -m "
@@ -158,9 +158,9 @@ writeToGit () {
   GIT_COMMIT_RETCODE=$?
   if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
     # git erro
-    echo "mail: send git commit ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}[${TS4_OUTPUT_TYPE}]"
+    echo "mail: send git commit ERROR for users = ${TS4_MAIL_ADMINS}, repo = ${TS4_REPO}[${TS4_OUTPUT_TYPE}]"
     # send mail
-    eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_USERS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}[${TS4_OUTPUT_TYPE}] -m ${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_REPO}"
+    eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_ADMINS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}[${TS4_OUTPUT_TYPE}] -m ${TS4_GIT_COMMIT_MESSAGE_ERROR}${TS4_REPO}"
   fi
 
   echo "git push"
@@ -168,9 +168,9 @@ writeToGit () {
   GIT_PUSH_RETCODE=$?
   if [ $GIT_PUSH_RETCODE -ne 0 ] ; then
     # git error
-    echo "mail: send git push ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}[${TS4_OUTPUT_TYPE}]"
+    echo "mail: send git push ERROR for users = ${TS4_MAIL_ADMINS}, repo = ${TS4_REPO}[${TS4_OUTPUT_TYPE}]"
     # send mail
-    eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_USERS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}[${TS4_OUTPUT_TYPE}] -m ${TS4_GIT_PUSH_MESSAGE_ERROR}${TS4_REPO}"
+    eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_ADMINS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO}[${TS4_OUTPUT_TYPE}] -m ${TS4_GIT_PUSH_MESSAGE_ERROR}${TS4_REPO}"
   fi
 }
 
@@ -206,11 +206,11 @@ buildTarget () {
   GIT_DIFF_RETCODE=$?
   if [ $GIT_DIFF_RETCODE -ne 0 ] ; then
      # build error
-     echo "mail: send git diff ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+     echo "mail: send git diff ERROR for users = ${TS4_MAIL_ADMINS}, repo = ${TS4_REPO}"
      # set errored flag
      echo ${BUILT_DATE} > ${ERROR_TAG_FILE}
      # send mail
-     eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_USERS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO} -m ${TS4_GIT_DIFF_MESSAGE_ERROR}${TS4_REPO}"
+     eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_ADMINS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO} -m ${TS4_GIT_DIFF_MESSAGE_ERROR}${TS4_REPO}"
      popd
      return 1
   fi
@@ -219,11 +219,11 @@ buildTarget () {
   GIT_MERGE_RETCODE=$?
   if [ $GIT_MERGE_RETCODE -ne 0 ] ; then
      # build error
-     echo "mail: send git merge ERROR for users = ${TS4_MAIL_USERS}, repo = ${TS4_REPO}"
+     echo "mail: send git merge ERROR for users = ${TS4_MAIL_ADMINS}, repo = ${TS4_REPO}"
      # set errored flag
      echo ${BUILT_DATE} > ${ERROR_TAG_FILE}
      # send mail
-     eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_USERS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO} -m ${TS4_GIT_MERGE_MESSAGE_ERROR}${TS4_REPO}"
+     eval "${SEND_MAIL_CMD} -t ${TS4_MAIL_ADMINS} -u ${TS4_GIT_SUBJECT_ERROR}${TS4_REPO} -m ${TS4_GIT_MERGE_MESSAGE_ERROR}${TS4_REPO}"
      popd
      return 1
   fi
@@ -318,6 +318,9 @@ buildAll () {
   ERRORED_REPOS=
   CANCELED_REPOS=
 
+  ########################
+  # build libs
+  ########################
   buildTarget ${TS4_EXTLIBS_REPO} "" ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_GLOBAL}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${TS4_EXTLIBS_REPO}";BUILD_MODE="${FORCE}";;
@@ -501,7 +504,9 @@ buildAll () {
     return 2;
   fi
 
+  ########################
   # build project products
+  ########################
   buildTarget ${MCC_REPO} ${TS4_L2_REPO} ${GIT_MASTER_BRANCH} ${BUILD_MODE} ${OUTPUT_LOCAL}
   case $? in
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${MCC_REPO}";;
@@ -561,11 +566,13 @@ if ! [ -d ${TMP_DIR} ]; then
    mkdir --verbose ${TMP_DIR}
 fi
 
+########################
 # start build script
-(
+########################
+( (
 
   flock -n 9 || exit 1
-  
+
   echo "${BUILT_DATE}: ------------------------------------------------------------------------------ "
   echo "start build from: '${TS4_TARGET_HOME}'"
 
@@ -577,11 +584,13 @@ fi
 
   popd
   echo "${BUILT_DATE}: ============================================================================== $(date)"
-  
-) 9>${TMP_DIR}/ts4-targets-build.lock
+
+) 9>${TMP_DIR}/${TS4_TARGET}-build.lock
 
 
 if [ $? -eq 1 ]; then
    echo "${BUILT_DATE}: script $0 is already running: exiting"
    echo "${BUILT_DATE}: ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "
 fi
+) >> ${TMP_DIR}/_build.log
+

@@ -78,7 +78,7 @@ kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 
 TS4_MAIL_SUBJECT="SoftwareBuilder. Updated targets: "
-TS4_MAIL_MESSAGE="The software builder rebuilds toxsoft targets and commit results to github."
+TS4_MAIL_MESSAGE="The software builder rebuilt the toxsoft targets and committed the results to github."
 TS4_MAIL_ATTACHMENTS=
 
 TS4_MAIL_SUBJECT_ERROR="SoftwareBuilder. Build ERROR: "
@@ -215,7 +215,7 @@ buildTarget () {
      return 1
   fi
 
-  git merge origin/${TS4_BRANCH}
+  git reset --hard origin/${TS4_BRANCH}
   GIT_MERGE_RETCODE=$?
   if [ $GIT_MERGE_RETCODE -ne 0 ] ; then
      # build error

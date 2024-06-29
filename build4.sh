@@ -215,8 +215,7 @@ buildTarget () {
      return 1
   fi
 
-  # git merge origin/${TS4_BRANCH}
-  git pull
+  git merge origin/${TS4_BRANCH}
   GIT_MERGE_RETCODE=$?
   if [ $GIT_MERGE_RETCODE -ne 0 ] ; then
      # build error

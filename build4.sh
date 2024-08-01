@@ -54,6 +54,7 @@ MCC_REPO=mcc
 CI_REPO=vetrol-ci
 CP_GWP_REPO=cp-gwp
 CP_GBH_REPO=cp-gbh
+CP_VAL_REPO=cp-val
 
 
 TS4_TARGET=ts4-targets
@@ -536,6 +537,14 @@ buildAll () {
      0 ) BUILDED_REPOS="${BUILDED_REPOS} ${CP_GBH_REPO}";;
      1 ) ERRORED_REPOS="${ERRORED_REPOS} ${CP_GBH_REPO}";;
      2 ) CANCELED_REPOS="${CANCELED_REPOS} ${CP_GBH_REPO}";;
+     * ) 
+  esac
+
+  buildTarget ${CP_VAL_REPO} ${TS4_L2_REPO} ${GIT_MAIN_BRANCH} ${BUILD_MODE} ${OUTPUT_LOCAL}
+  case $? in
+     0 ) BUILDED_REPOS="${BUILDED_REPOS} ${CP_VAL_REPO}";;
+     1 ) ERRORED_REPOS="${ERRORED_REPOS} ${CP_VAL_REPO}";;
+     2 ) CANCELED_REPOS="${CANCELED_REPOS} ${CP_VAL_REPO}";;
      * ) 
   esac
 

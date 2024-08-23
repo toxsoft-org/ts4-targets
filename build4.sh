@@ -68,6 +68,7 @@ vs@toxsoft.ru,\
 egorov.dmitry.alex@gmail.com,\
 prokhorov_m@mail.ru,\
 tdo@toxsoft.ru,\
+slavage@toxsoft.ru,\
 kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 

@@ -1,0 +1,217 @@
+#!/bin/bash
+#
+# build-platform.sh
+#
+
+ABSOLUTE_FILENAME=`readlink -e "$0"`
+BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
+
+# include target configuration
+source ${BUILDER_DIR}/targets-config.sh
+
+# include git configuration
+source ${BUILDER_DIR}/git-config.sh
+
+# include mail support configuration
+source ${BUILDER_DIR}/mail-config.sh
+
+# platform repos (core)
+TS4_EXTLIBS_REPO=ts4-extlibs
+TS4_CORE_REPO=ts4-core
+TS4_USKAT_REPO=ts4-uskat
+TS4_L2_REPO=ts4-l2
+TS4_SKIDE_REPO=ts4-skide
+
+# platform repos (extensions)
+SKF_USERS_REPO=skf-users
+SKF_BRIDGE_REPO=skf-bridge
+SKF_ALARMS_REPO=skf-alarms
+SKF_DQ_REPO=skf-dq
+SKF_ONEWS_REPO=skf-onews
+SKF_GGPREFS_REPO=skf-ggprefs
+SKF_REFBOOKS_REPO=skf-refbooks
+SKF_RRI_REPO=skf-rri
+SKF_MNEMO_REPO=skf-mnemo
+SKF_JOURNALS_REPO=skf-journals
+SKF_REPORTS_REPO=skf-reports
+SKF_DEVS_REPO=skf-devs
+SKF_LEGACY_REPO=skf-legacy
+SKT_VETROL_REPO=skt-vetrol
+
+# projects repos
+MCC_REPO=mcc
+CI_REPO=vetrol-ci
+CP_GWP_REPO=cp-gwp
+CP_GBH_REPO=cp-gbh
+CP_VAL_REPO=cp-val
+
+# build datetime
+BUILT_DATE="$(date)"
+
+# build all targets
+buildAll () {
+
+   ########################
+   # clear prev results
+   ########################
+   if [ -f "${TARGETS_BUILDED_RESULT_FILE}" ]; then
+      echo "clean prev results: remove ${TARGETS_BUILDED_RESULT_FILE}"
+      rm ${TARGETS_BUILDED_RESULT_FILE}
+   fi
+   if [ -f "${TARGETS_ERRORED_RESULT_FILE}" ]; then
+      echo "clean prev results: remove ${TARGETS_ERRORED_RESULT_FILE}"
+      rm ${TARGETS_ERRORED_RESULT_FILE}
+   fi
+   if [ -f "${TARGETS_CANCELED_RESULT_FILE}" ]; then
+      echo "clean prev results: remove ${TARGETS_CANCELED_RESULT_FILE}"
+      rm ${TARGETS_CANCELED_RESULT_FILE}
+   fi
+   if [ -f "${TARGETS_ATTACHMENTS_RESULT_FILE}" ]; then
+      echo "clean prev results: remove ${TARGETS_ATTACHMENTS_RESULT_FILE}"
+      rm ${TARGETS_ATTACHMENTS_RESULT_FILE}
+   fi
+   ########################
+   # build platform
+   ########################
+   echo ""
+   echo "start ${TARGETS_ID} platform building..."
+
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${TS4_EXTLIBS_REPO}  ""                   ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${TS4_CORE_REPO}     ${TS4_EXTLIBS_REPO}  ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${TS4_USKAT_REPO}    ${TS4_CORE_REPO}     ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${TS4_SKIDE_REPO}    ${TS4_USKAT_REPO}    ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_USERS_REPO}    ${TS4_SKIDE_REPO}    ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_BRIDGE_REPO}   ${SKF_USERS_REPO}    ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_RRI_REPO}      ${SKF_BRIDGE_REPO}   ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_DQ_REPO}       ${SKF_RRI_REPO}      ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_ONEWS_REPO}    ${SKF_DQ_REPO}       ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_GGPREFS_REPO}  ${SKF_ONEWS_REPO}    ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_ALARMS_REPO}   ${SKF_ONEWS_REPO}    ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_ALL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_REFBOOKS_REPO} ${SKF_ALARMS_REPO}   ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_JOURNALS_REPO} ${SKF_REFBOOKS_REPO} ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_REPORTS_REPO}  ${SKF_JOURNALS_REPO} ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_MNEMO_REPO}    ${SKF_REPORTS_REPO}  ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${TS4_L2_REPO}       ${SKF_MNEMO_REPO}    ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  # ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_DEVS_REPO}     ${TS4_L2_REPO}       ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+  ${TARGETS_BUILD_REPO_CMD} "${BUILT_DATE}" ${SKF_LEGACY_REPO}   ${SKF_DEVS_REPO}     ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL}
+
+  # multithread building
+  # ./build-repo.sh ${BUILT_DATE} ${SKT_VETROL_REPO}   ${SKF_LEGACY_REPO}   ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL} &
+  # ./build-repo.sh ${BUILT_DATE} ${SKT_SITROL_REPO}   ${SKF_LEGACY_REPO}   ${GIT_MAIN_BRANCH} ${TARGETS_OUTPUT_GLOBAL} &
+
+   echo "waiting for ${TARGETS_ID} platform building to be completed..."
+   wait
+
+   if [ -f ${TARGETS_BUILDED_RESULT_FILE} ]; then
+      BUILDED_REPOS=$(<${TARGETS_BUILDED_RESULT_FILE})
+   fi
+   if [ -f ${TARGETS_ERRORED_RESULT_FILE} ]; then
+      ERRORED_REPOS=$(<${TARGETS_ERRORED_RESULT_FILE})
+   fi
+   if [ -f ${TARGETS_CANCELED_RESULT_FILE} ]; then
+      CANCELED_REPOS=$(<${TARGETS_CANCELED_RESULT_FILE})
+   fi
+
+   echo "##############################"
+   echo "# platform building results: #"
+   echo "##############################"
+   echo "BUILDED_REPOS = ${BUILDED_REPOS}"
+   echo "ERRORED_REPOS = ${ERRORED_REPOS}"
+   echo "CANCELED_REPOS = ${CANCELED_REPOS}"
+   echo ""
+
+   if [ ! -z "${ERRORED_REPOS}" ]; then 
+     # error mail has already been sent in the build-repo.sh
+     return 1;
+   fi
+
+   if [ ! -z "${CANCELED_REPOS}" ]; then
+     echo "mail: send build CANCEL for users = ${MAIL_USERS}, repo = ${CANCELED_REPOS}"
+     eval "${MAIL_SEND_CMD} -t ${MAIL_USERS} -u ${MAIL_SUBJECT_CANCEL}${CANCELED_REPOS} -m ${MAIL_MESSAGE_CANCEL}${CANCELED_REPOS}"
+     return 2;
+   fi
+
+   ########################
+   # build projects
+   ########################
+   echo "start ${TARGETS_ID} projects building..."
+   # ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${MCC_REPO}       ${SKF_LEGACY_REPO}    ${GIT_MASTER_BRANCH}  ${TARGETS_OUTPUT_LOCAL} &
+   # ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CI_REPO}        ${SKF_LEGACY_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
+   # ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CP_GWP_REPO}    ${SKF_LEGACY_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
+   # ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CP_GBH_REPO}    ${SKF_LEGACY_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
+   # ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CP_VAL_REPO}    ${SKF_LEGACY_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
+
+   echo "waiting for ${TARGETS_ID} projects building to be completed..."
+   wait
+
+   if [ -f ${TARGETS_BUILDED_RESULT_FILE} ]; then
+      BUILDED_REPOS=$(<${TARGETS_BUILDED_RESULT_FILE})
+   fi
+   if [ -f ${TARGETS_ERRORED_RESULT_FILE} ]; then
+      ERRORED_REPOS=$(<${TARGETS_ERRORED_RESULT_FILE})
+   fi
+   if [ -f ${TARGETS_ATTACHMENTS_RESULT_FILE} ]; then
+      ATTACHMENTS=$(<${TARGETS_ATTACHMENTS_RESULT_FILE})
+   fi
+
+   echo "##############################"
+   echo "# projects building results: #"
+   echo "##############################"
+   echo "BUILDED_REPOS = ${BUILDED_REPOS}"
+   echo "ERRORED_REPOS = ${ERRORED_REPOS}"
+   echo "CANCELED_REPOS = ${CANCELED_REPOS}"
+   echo ""
+
+   if [ ! -z "${ERRORED_REPOS}" ]; then 
+     # error mail has already been sent in the build-repo.sh
+     return 1;
+   fi
+
+  if [ ! -z "${CANCELED_REPOS}" ]; then 
+    echo "mail: send build CANCEL for users = ${MAIL_USERS}, repo = ${CANCELED_REPOS}"
+    eval "${MAIL_SEND_CMD} -t ${MAIL_USERS} -u ${MAIL_SUBJECT_CANCEL}${CANCELED_REPOS} -m ${MAIL_MESSAGE_CANCEL}${CANCELED_REPOS}"
+    return 2;
+  fi
+
+  if [ -z "${BUILDED_REPOS}" ]; then
+    echo "mail: nothing to do"
+  else
+    echo "mail: send for users: ${MAIL_USERS}"
+    eval "${MAIL_SEND_CMD} -t ${MAIL_USERS} -u ${MAIL_SUBJECT}${BUILDED_REPOS} -m ${MAIL_MESSAGE} -a ${ATTACHMENTS}"
+  fi
+}
+
+# if need create tmp dir 
+if ! [ -d ${TARGETS_TMP_DIR} ]; then
+   mkdir --verbose ${TARGETS_TMP_DIR}
+fi
+
+########################
+# start build script
+########################
+# ( 
+(
+   flock -n 9 || exit 1
+
+   echo "${BUILT_DATE}: ------------------------------------------------------------------------------ "
+   echo "start build for: '${TARGETS_HOME}'"
+
+   pushd ${TARGETS_HOME}
+
+   GIT_PULL_RESULT=$(git pull)
+   echo "git pull result: \"${GIT_PULL_RESULT}\""
+
+   buildAll
+
+   popd
+   echo "${BUILT_DATE}: ============================================================================== $(date)"
+
+) 9>${TARGETS_TMP_DIR}/${TARGETS_ID}-build.lock
+
+
+if [ $? -eq 1 ]; then
+   echo "${BUILT_DATE}: script $0 is already running: exiting"
+   echo "${BUILT_DATE}: ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "
+fi
+# ) >> ${TARGETS_TMP_DIR}/_build.log
+

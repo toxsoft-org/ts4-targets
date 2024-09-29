@@ -30,11 +30,11 @@ BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 # include target configuration
 source ${BUILDER_DIR}/targets-config.sh
 
-# include git configuration
-source ${BUILDER_DIR}/git-config.sh
-
 # include mail support configuration
 source ${BUILDER_DIR}/mail-config.sh
+
+# include git configuration
+source ${BUILDER_DIR}/git-config.sh
 
 # maven command
 MVN_CMD="mvn"
@@ -42,51 +42,6 @@ MVN_CMD="mvn"
 # build mode constants
 MODE_NONE="none"
 MODE_FORCE="force"
-
-# write to git
-writeToGit () {
-  ARG_BUILT_DATE=$1
-  ARG_REPO=$2
-  ARG_OUTPUT_TYPE=$3
-  ARG_ARTEFACT_MODULES=$4
-  ARG_MAIL_USERS=$5
-
-  echo "git add -A ."
-  # GIT ADD, COMMIT & PUSH 
-  git add -A .
-  GIT_ADD_INDEX_RETCODE=$?
-  if [ $GIT_ADD_INDEX_RETCODE -ne 0 ] ; then
-    # git error
-    echo "mail: send git add index ERROR for users = ${ARG_MAIL_USERS}, repo = ${ARG_REPO}[${ARG_OUTPUT_TYPE}]"
-    # send mail
-    eval "${MAIL_SEND_CMD} -t ${ARG_MAIL_USERS} -u ${MAIL_GIT_SUBJECT_ERROR}${ARG_REPO}[${ARG_OUTPUT_TYPE}] -m ${MAIL_GIT_ADD_INDEX_MESSAGE_ERROR}${ARG_REPO}"
-  fi
-
-  echo "git commit -a -m "
-  if [ ! -z "${ARG_ARTEFACT_MODULES}" ] ; then
-    git commit -a -m"autobuild: ${ARG_REPO}, ${ARG_BUILT_DATE}."
-  else
-    git commit -a -m"autobuild dependence: ${ARG_REPO}."
-  fi
-
-  GIT_COMMIT_RETCODE=$?
-  if [ $GIT_COMMIT_RETCODE -ne 0 ] ; then
-    # git erro
-    echo "mail: send git commit ERROR for users = ${ARG_MAIL_USERS}, repo = ${ARG_REPO}[${ARG_OUTPUT_TYPE}]"
-    # send mail
-    eval "${MAIL_SEND_CMD} -t ${ARG_MAIL_USERS} -u ${MAIL_GIT_SUBJECT_ERROR}${ARG_REPO}[${ARG_OUTPUT_TYPE}] -m ${MAIL_GIT_COMMIT_MESSAGE_ERROR}${ARG_REPO}"
-  fi
-
-  echo "git push"
-  git push
-  GIT_PUSH_RETCODE=$?
-  if [ $GIT_PUSH_RETCODE -ne 0 ] ; then
-    # git error
-    echo "mail: send git push ERROR for users = ${ARG_MAIL_USERS}, repo = ${ARG_REPO}[${ARG_OUTPUT_TYPE}]"
-    # send mail
-    eval "${MAIL_SEND_CMD} -t ${ARG_MAIL_USERS} -u ${MAIL_GIT_SUBJECT_ERROR}${ARG_REPO}[${ARG_OUTPUT_TYPE}] -m ${MAIL_GIT_PUSH_MESSAGE_ERROR}${TS4_REPO}"
-  fi
-}
 
 # build one target 
 buildTarget () {
@@ -213,11 +168,11 @@ buildTarget () {
     fi
     popd
 
-    if [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_GLOBAL}" ] || [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_ALL}" ]; then
+    # if [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_GLOBAL}" ] || [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_ALL}" ]; then
        # TODO: mvkd
-       writeToGit "${ARG_BUILT_DATE}" ${ARG_REPO} ${TARGETS_OUTPUT_GLOBAL} ${ARTEFACT_MODULES} ${MAIL_ADMINS}
+       # writeToGit "${ARG_BUILT_DATE}" ${ARG_REPO} ${TARGETS_OUTPUT_GLOBAL} ${ARTEFACT_MODULES} ${MAIL_ADMINS}
        # echo "writeToGit call simulation. REPO = ${ARG_REPO}(global). ARTEFACT_MODULES = ${ARTEFACT_MODULES}"
-    fi
+    # fi
     # clear errored flag
     if [ -f ${ERROR_TAG_FILE} ]; then
        rm ${ERROR_TAG_FILE}

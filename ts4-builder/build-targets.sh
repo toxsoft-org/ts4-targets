@@ -115,6 +115,11 @@ buildAll () {
       CANCELED_REPOS=$(<${TARGETS_CANCELED_RESULT_FILE})
    fi
 
+   if [ ! -z "${BUILDED_REPOS}" ] && [ -z "${ERRORED_REPOS}" ] && [ -z "${CANCELED_REPOS}" ]; then
+       # write result to git
+       writeToGit "${BUILT_DATE}" ${BUILDED_REPOS} ${TARGETS_OUTPUT_GLOBAL} ${BUILDED_REPOS} ${MAIL_ADMINS}
+   fi
+
    # calc build time elapsed
    duration=$SECONDS
    PLATFORM_BUILD_TIME="platform = $((duration / 60)) minutes and $((duration % 60)) seconds."

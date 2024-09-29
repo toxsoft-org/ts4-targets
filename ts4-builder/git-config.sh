@@ -19,6 +19,9 @@ export GIT_MAIN_BRANCH=main
 export GIT_MASTER_BRANCH=master
 
 
+# disable(1)/enable(0) git writing (for debug)
+GIT_WRITE_DISABLE=0
+
 # write to git
 writeToGit () {
   ARG_BUILT_DATE=$1
@@ -34,6 +37,11 @@ writeToGit () {
   echo "ARG_ARTEFACT_MODULES=${ARG_ARTEFACT_MODULES}"
   echo "ARG_MAIL_USERS=${ARG_MAIL_USERS}"
 
+  if [ "${GIT_WRITE_DISABLE}" -ne 0 ] ; then
+     echo "git-config.sh::writeToGit(...): reject git write request. GIT_WRITE_DISABLE = ${GIT_WRITE_DISABLE}"
+     return 1
+  fi
+
   echo "git add -A ."
   # GIT ADD, COMMIT & PUSH 
   git add -A .
@@ -43,6 +51,7 @@ writeToGit () {
     echo "mail: send git add index ERROR for users = ${ARG_MAIL_USERS}, repo = ${ARG_REPO}[${ARG_OUTPUT_TYPE}]"
     # send mail
     eval "${MAIL_SEND_CMD} -t ${ARG_MAIL_USERS} -u ${MAIL_GIT_SUBJECT_ERROR}${ARG_REPO}[${ARG_OUTPUT_TYPE}] -m ${MAIL_GIT_ADD_INDEX_MESSAGE_ERROR}${ARG_REPO}"
+    return 2
   fi
 
   echo "git commit -a -m "
@@ -58,6 +67,7 @@ writeToGit () {
     echo "mail: send git commit ERROR for users = ${ARG_MAIL_USERS}, repo = ${ARG_REPO}[${ARG_OUTPUT_TYPE}]"
     # send mail
     eval "${MAIL_SEND_CMD} -t ${ARG_MAIL_USERS} -u ${MAIL_GIT_SUBJECT_ERROR}${ARG_REPO}[${ARG_OUTPUT_TYPE}] -m ${MAIL_GIT_COMMIT_MESSAGE_ERROR}${ARG_REPO}"
+    return 3
   fi
 
   echo "git push"
@@ -68,5 +78,7 @@ writeToGit () {
     echo "mail: send git push ERROR for users = ${ARG_MAIL_USERS}, repo = ${ARG_REPO}[${ARG_OUTPUT_TYPE}]"
     # send mail
     eval "${MAIL_SEND_CMD} -t ${ARG_MAIL_USERS} -u ${MAIL_GIT_SUBJECT_ERROR}${ARG_REPO}[${ARG_OUTPUT_TYPE}] -m ${MAIL_GIT_PUSH_MESSAGE_ERROR}${TS4_REPO}"
+    return 4
   fi
+  return 0
 }

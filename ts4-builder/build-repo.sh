@@ -163,7 +163,7 @@ buildTarget () {
     # write to git
     if [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_LOCAL}" ] || [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_ALL}" ]; then
        # TODO: mvkd
-       writeToGit "${ARG_BUILT_DATE}" ${ARG_REPO} ${TARGETS_OUTPUT_LOCAL} ${ARTEFACT_MODULES} ${MAIL_ADMINS}
+       writeToGit "${ARG_BUILT_DATE}" "${ARG_REPO}" ${TARGETS_OUTPUT_LOCAL} "${ARTEFACT_MODULES}" "${MAIL_ADMINS}"
        # echo "writeToGit call simulation. REPO = ${ARG_REPO}(local). ARTEFACT_MODULES = ${ARTEFACT_MODULES}"
     fi
     popd
@@ -202,8 +202,11 @@ ARG_OUTPUT_TYPE=$5
 
 # define build mode
 BUILD_MODE=${MODE_NONE}
-if [ -f ${TARGETS_BUILDED_RESULT_FILE} ]; then
-   BUILD_MODE=${MODE_FORCE}
+if [ -f ${TARGETS_BUILDED_RESULT_FILE} ] && [ ! -z "${ARG_PREV}" ]; then
+   BUILDED_REPOS=$(<${TARGETS_BUILDED_RESULT_FILE})
+   if [[ ${BUILDED_REPOS} == *${ARG_PREV}* ]]; then
+      BUILD_MODE=${MODE_FORCE}
+   fi
 fi
 
 echo "build-repo.sh args:"

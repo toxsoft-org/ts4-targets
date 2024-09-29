@@ -117,7 +117,7 @@ buildAll () {
 
    if [ ! -z "${BUILDED_REPOS}" ] && [ -z "${ERRORED_REPOS}" ] && [ -z "${CANCELED_REPOS}" ]; then
        # write result to git
-       writeToGit "${BUILT_DATE}" ${BUILDED_REPOS} ${TARGETS_OUTPUT_GLOBAL} ${BUILDED_REPOS} ${MAIL_ADMINS}
+       writeToGit "${BUILT_DATE}" "${BUILDED_REPOS}" ${TARGETS_OUTPUT_GLOBAL} "${BUILDED_REPOS}" "${MAIL_ADMINS}"
    fi
 
    # calc build time elapsed
@@ -149,11 +149,11 @@ buildAll () {
    # build projects
    ########################
    echo "start ${TARGETS_ID} projects building..."
-   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${MCC_REPO}       ${SKF_LEGACY_REPO}    ${GIT_MASTER_BRANCH}  ${TARGETS_OUTPUT_LOCAL} &
-   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CI_REPO}        ${SKF_LEGACY_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
-   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CP_GWP_REPO}    ${SKF_LEGACY_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
-   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CP_GBH_REPO}    ${SKF_LEGACY_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
-   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CP_VAL_REPO}    ${SKF_LEGACY_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
+   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${MCC_REPO}       ${SKT_VETROL_REPO}    ${GIT_MASTER_BRANCH}  ${TARGETS_OUTPUT_LOCAL} &
+   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CI_REPO}        ${SKT_VETROL_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
+   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CP_GWP_REPO}    ${SKT_VETROL_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
+   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CP_GBH_REPO}    ${SKT_VETROL_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
+   ${TARGETS_BUILD_REPO_CMD}  "${BUILT_DATE}"  ${CP_VAL_REPO}    ${SKT_VETROL_REPO}    ${GIT_MAIN_BRANCH}    ${TARGETS_OUTPUT_LOCAL} &
 
    echo "waiting for ${TARGETS_ID} projects building to be completed..."
    wait
@@ -210,7 +210,7 @@ fi
 ########################
 # start build script
 ########################
-# ( 
+(
 (
    flock -n 9 || exit 1
 
@@ -234,5 +234,5 @@ if [ $? -eq 1 ]; then
    echo "${BUILT_DATE}: script $0 is already running: exiting"
    echo "${BUILT_DATE}: ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "
 fi
-# ) >> ${TARGETS_TMP_DIR}/_build.log
+) >> ${TARGETS_TMP_DIR}/_build.log
 

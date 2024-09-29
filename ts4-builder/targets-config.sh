@@ -16,6 +16,7 @@ export TARGETS_BUILDER_DIR="${TARGETS_HOME}/ts4-builder"
 export TARGETS_TMP_DIR="/tmp/toxsoft-build-for-${TARGETS_ID}"
 
 # build scope constants
+export TARGETS_OUTPUT_NONE="none"
 export TARGETS_OUTPUT_LOCAL="local"
 export TARGETS_OUTPUT_GLOBAL="global"
 export TARGETS_OUTPUT_ALL="all"

@@ -162,17 +162,13 @@ buildTarget () {
 
     # write to git
     if [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_LOCAL}" ] || [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_ALL}" ]; then
-       # TODO: mvkd
        writeToGit "${ARG_BUILT_DATE}" "${ARG_REPO}" ${TARGETS_OUTPUT_LOCAL} "${ARTEFACT_MODULES}" "${MAIL_ADMINS}"
-       # echo "writeToGit call simulation. REPO = ${ARG_REPO}(local). ARTEFACT_MODULES = ${ARTEFACT_MODULES}"
     fi
     popd
 
-    # if [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_GLOBAL}" ] || [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_ALL}" ]; then
-       # TODO: mvkd
-       # writeToGit "${ARG_BUILT_DATE}" ${ARG_REPO} ${TARGETS_OUTPUT_GLOBAL} ${ARTEFACT_MODULES} ${MAIL_ADMINS}
-       # echo "writeToGit call simulation. REPO = ${ARG_REPO}(global). ARTEFACT_MODULES = ${ARTEFACT_MODULES}"
-    # fi
+    if [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_GLOBAL}" ] || [ "${ARG_OUTPUT_TYPE}" = "${TARGETS_OUTPUT_ALL}" ]; then
+       writeToGit "${ARG_BUILT_DATE}" ${ARG_REPO} ${TARGETS_OUTPUT_GLOBAL} ${ARTEFACT_MODULES} ${MAIL_ADMINS}
+    fi
     # clear errored flag
     if [ -f ${ERROR_TAG_FILE} ]; then
        rm ${ERROR_TAG_FILE}

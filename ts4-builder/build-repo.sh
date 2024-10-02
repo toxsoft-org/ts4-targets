@@ -49,9 +49,9 @@ MODE_FORCE="force"
 #############################################
 needCancelByDepends () {
    ARG_DEPENDS=$1
-   echo "#############################################"
-   echo "build-repo.sh::needCancelByDepends() args:"
-   echo "ARG_DEPENDS=${ARG_DEPENDS}"
+#   echo "#############################################"
+#   echo "build-repo.sh::needCancelByDepends() args:"
+#   echo "ARG_DEPENDS=${ARG_DEPENDS}"
    if [ -z "${ARG_DEPENDS}" ]; then
       # depends array is empty - no intersection
       return 0
@@ -73,10 +73,10 @@ needCancelByDepends () {
 logDepends () {
    ARG_LOG_FILE=$1
    ARG_DEPENDS=$2
-   echo "#############################################"
-   echo "build-repo.sh::log depends states() args:"
-   echo "ARG_LOG_FILE=${ARG_LOG_FILE}"
-   echo "ARG_DEPENDS=${ARG_DEPENDS}"
+#   echo "#############################################"
+#   echo "build-repo.sh::log depends states() args:"
+#   echo "ARG_LOG_FILE=${ARG_LOG_FILE}"
+#   echo "ARG_DEPENDS=${ARG_DEPENDS}"
    if [ -z "${ARG_DEPENDS}" ]; then
       # depends array is empty
       return 0
@@ -101,10 +101,10 @@ logDepends () {
 lookupIntersection () {
    ARG_ARRAY1=$1
    ARG_ARRAY2=$2
-   echo "#############################################"
-   echo "build-repo.sh::lookupIntersection() args:"
-   echo "ARG_ARRAY1=${ARG_ARRAY1}"
-   echo "ARG_ARRAY1=${ARG_ARRAY1}"
+#   echo "#############################################"
+#   echo "build-repo.sh::lookupIntersection() args:"
+#   echo "ARG_ARRAY1=${ARG_ARRAY1}"
+#   echo "ARG_ARRAY1=${ARG_ARRAY1}"
 
    if [ -z "${ARG_ARRAY1}" ] && [ -z "${ARG_ARRAY2}" ]; then
       # one or both array is empty - no intersection
@@ -300,14 +300,14 @@ if [ -f ${TARGETS_BUILDED_RESULT_FILE} ] && [ ! -z "${ARG_DEPENDS}" ]; then
    fi
 fi
 
-echo "#############################################"
-echo "build-repo.sh args:"
-echo "ARG_BUILT_DATE=${ARG_BUILT_DATE}"
-echo "ARG_REPO=${ARG_REPO}"
-echo "ARG_DEPENDS=${ARG_DEPENDS}"
-echo "ARG_BRANCH=${ARG_BRANCH}"
-echo "ARG_OUTPUT_TYPE=${ARG_OUTPUT_TYPE}"
-echo "BUILD_MODE=${BUILD_MODE}"
+# echo "#############################################"
+# echo "build-repo.sh args:"
+# echo "ARG_BUILT_DATE=${ARG_BUILT_DATE}"
+# echo "ARG_REPO=${ARG_REPO}"
+# echo "ARG_DEPENDS=${ARG_DEPENDS}"
+# echo "ARG_BRANCH=${ARG_BRANCH}"
+# echo "ARG_OUTPUT_TYPE=${ARG_OUTPUT_TYPE}"
+# echo "BUILD_MODE=${BUILD_MODE}"
 
 # launch build
 buildTarget ${ARG_BUILT_DATE} ${ARG_REPO} "${ARG_DEPENDS}" ${ARG_BRANCH} ${BUILD_MODE} ${ARG_OUTPUT_TYPE}

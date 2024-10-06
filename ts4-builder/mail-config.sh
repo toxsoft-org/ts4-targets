@@ -7,17 +7,17 @@
 # 2. sendemail -f software.builder@toxsoft.org -s smtp.gmail.com:587 -o tls=yes -xu "kovach.mike@gmail.com" -xp "dnhk zuiv ztli ylnm" -t kovach.mike@gmail.com -u "Тема сообщения4" -m "Текст сообщения4" -a attachments files
 
 
-# export MAIL_USERS=\
-# goga@toxsoft.ru,\
-# vs@toxsoft.ru,\
-# egorov.dmitry.alex@gmail.com,\
-# prokhorov_m@mail.ru,\
-# tdo@toxsoft.ru,\
-# slavage@toxsoft.ru,\
-# kovach@toxsoft.ru,\
-# kovach.mike@gmail.com
+export MAIL_USERS=\
+goga@toxsoft.ru,\
+vs@toxsoft.ru,\
+egorov.dmitry.alex@gmail.com,\
+prokhorov_m@mail.ru,\
+tdo@toxsoft.ru,\
+slavage@toxsoft.ru,\
+kovach@toxsoft.ru,\
+kovach.mike@gmail.com
 
-export MAIL_USERS=kovach.mike@gmail.com
+# export MAIL_USERS=kovach.mike@gmail.com
 
 export MAIL_ADMINS=\
 kovach@toxsoft.ru,\

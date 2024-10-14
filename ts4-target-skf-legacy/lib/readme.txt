@@ -1,3 +1,1 @@
-Libraries directory
-
-Do NOT delete this file. It ensures that this directory will be stored in Git repository. 3
+Do NOT delete this file. It ensures that this directory will be stored in Git repository.

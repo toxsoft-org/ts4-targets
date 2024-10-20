@@ -23,7 +23,7 @@
   <!-- название проекта=директории размещения JAR-файлов библиотеки -->
   <basename file="${basedir}" property="project.name" />
   <property name="lib.jar" value="${project.name}-lib.jar" />
-  
+
   <tstamp>
     <format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss" />
   </tstamp>
@@ -46,9 +46,6 @@
       <zipgroupfileset dir="" includes="*.jar" /> 
 
       <!-- добавление собственных классов с возможностью перекрытия классов из выше распакованных jars -->
-      <fileset dir="bin" erroronmissingdir="false">
-        <include name="**/*.class" />
-      </fileset>
       <fileset dir="target/classes" erroronmissingdir="false">
         <include name="**/*.class" />
       </fileset>
@@ -61,18 +58,18 @@
       <fileset dir="">
         <include name="README.txt" />
       </fileset>
-      	
+
     </jar>
-  	 <!-- удаление файлов подписки jar-ов: -->
-  	 <!-- java.lang.SecurityException: Invalid signature file digest for Manifest main attributes -->
-  	 <zip file="${ts-dest-dir-libs}/${lib.jar}">
-  	  <zipfileset src="${ts-dest-dir-libs}/tmp-${lib.jar}">
-      <exclude name="META-INF/*.SF"/>
-      <exclude name="META-INF/*.DSA"/>
-      <exclude name="META-INF/*.RSA"/>
-  	  </zipfileset>
-  	 </zip>
-  	 <delete file="${ts-dest-dir-libs}/tmp-${lib.jar}"/>
+      <!-- удаление файлов подписки jar-ов: -->
+      <!-- java.lang.SecurityException: Invalid signature file digest for Manifest main attributes -->
+      <zip file="${ts-dest-dir-libs}/${lib.jar}">
+         <zipfileset src="${ts-dest-dir-libs}/tmp-${lib.jar}">
+            <exclude name="META-INF/*.SF"/>
+            <exclude name="META-INF/*.DSA"/>
+            <exclude name="META-INF/*.RSA"/>
+         </zipfileset>
+      </zip>
+      <delete file="${ts-dest-dir-libs}/tmp-${lib.jar}"/>
   </target>
 
 </project>

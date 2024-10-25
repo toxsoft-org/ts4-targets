@@ -6,8 +6,11 @@
 # target ID
 export TARGETS_ID=ts4-targets
 
+# git-repos dir
+export GIT_REPOS_HOME=/home/ts4-targets/works/git-repos
+
 # target home dir
-export TARGETS_HOME=/home/ts4-targets/works/git-repos/${TARGETS_ID}
+export TARGETS_HOME=${GIT_REPOS_HOME}/${TARGETS_ID}
 
 # target builder dir
 export TARGETS_BUILDER_DIR="${TARGETS_HOME}/ts4-builder"

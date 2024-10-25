@@ -6,10 +6,16 @@
 ABSOLUTE_FILENAME=`readlink -e "$0"`
 BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 
-# nextcloudcmd --user kovach@toxsoft.ru --password xYyeqTqn  /home/ts4-targets/nextcloud https://tsapp.ru/index.php/apps/files/files/1827089?dir=/kovach/products
-# nextcloudcmd --user kovach@toxsoft.ru --password xYyeqTqn  /home/ts4-targets/nextcloud https://tsapp.ru/index.php/s/aoFQX9kw5iWNcZa
-# nextcloudcmd --user kovach@toxsoft.ru --password xYyeqTqn  /home/ts4-targets/nextcloud https://tsapp.ru/index.php/s/aoFQX9kw5iWNcZa
+# nextcloud address
+NEXTCLOUD_PATH="https://tsapp.ru/remote.php/webdav/kovach/products/"
+# nextcloud user login
+NEXTCLOUD_LOGIN=kovach@toxsoft.ru
+# nextcloud user password
+NEXTCLOUD_PASSWORD=xYyeqTqn
 
-# source: https://serverfault.com/questions/957153/nextcloud-sync-without-gui
-# nextcloudcmd --user kovach@toxsoft.ru --password xYyeqTqn  /home/ts4-targets/nextcloud https://tsapp.ru/remote.php/products
-nextcloudcmd --user kovach@toxsoft.ru --password xYyeqTqn --unsyncedfolders nosync_dirs.txt  /home/ts4-targets/nextcloud   https://tsapp.ru
+
+# curl https://tsapp.ru/remote.php/webdav/products/ --user kovach@toxsoft.ru:xYyeqTqn --upload-file test2.txt
+DEST_PATH=mmk
+SOURCE_FILE=/home/ts4-targets/works/git-repos/cp-mmk/ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-linux.gtk.x86_64.zip
+curl ${NEXTCLOUD_PATH}/${DEST_PATH}/ --user ${NEXTCLOUD_LOGIN}:${NEXTCLOUD_PASSWORD} --upload-file ${SOURCE_FILE}
+

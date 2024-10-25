@@ -28,6 +28,19 @@ cp-mmk 23014_MMK_Ветрол_Магнитогорск ru.toxsoft.mmk.ws.exe.pro
 cp-mmk 23014_MMK_Ветрол_Магнитогорск ru.toxsoft.mmk.ws.exe.product/target/products/mmk_skide_install-macosx.cocoa.x86_64.tar.gz
 
 
+#  create query update repo's products on the cloud.
+updateProductsOnCloud () {
+  ARG_REPOS=$1
+
+  echo "cloud-config::updateProductsOnCloud args:"
+  echo "ARG_REPO=${ARG_REPO}"
+
+  BUILT_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
+  
+
+  return 0
+}
+
 # curl https://tsapp.ru/remote.php/webdav/products/ --user kovach@toxsoft.ru:xYyeqTqn --upload-file test2.txt
 DEST_PATH=mmk
 REPO=cp-mmk

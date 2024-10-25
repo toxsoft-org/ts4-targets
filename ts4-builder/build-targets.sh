@@ -9,11 +9,11 @@ BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 # include target configuration
 source ${BUILDER_DIR}/targets-config.sh
 
-# include git configuration
-source ${BUILDER_DIR}/git-config.sh
+# include git support
+source ${BUILDER_DIR}/git-support.sh
 
-# include mail support configuration
-source ${BUILDER_DIR}/mail-config.sh
+# include mail support
+source ${BUILDER_DIR}/mail-support.sh
 
 # platform repos (core)
 TS4_EXTLIBS_REPO=ts4-extlibs

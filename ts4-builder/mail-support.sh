@@ -23,10 +23,17 @@ export MAIL_ADMINS=\
 kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 
+export MAIL_PRODUCT_USERS=\
+kovach@toxsoft.ru,\
+kovach.mike@gmail.com
+
 export MAIL_SUBJECT="SoftwareBuilder. Updated targets: "
 export MAIL_MESSAGE="The software builder rebuilt the toxsoft targets and committed the results to github."
+export MAIL_MESSAGE_PRODUCT="Здравствуйте!\n\nВ облаке компании ТоксСофт https://tsapp.ru/ обновлены дистрибутивы следующих проектов."
+export MAIL_BEST_REGARDS="С уважением, компания ТоксСофт."
 
 export MAIL_SUBJECT_ERROR="SoftwareBuilder. Build ERROR: "
+export MAIL_SUBJECT_PRODUCT="tsapp.ru: обновление продуктов компании ТоксСофт."
 export MAIL_MESSAGE_ERROR="The software builder cannot execute rebuild toxsoft targets [ERROR]."
 
 

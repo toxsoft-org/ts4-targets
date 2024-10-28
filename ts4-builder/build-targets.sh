@@ -15,6 +15,9 @@ source ${BUILDER_DIR}/git-support.sh
 # include mail support
 source ${BUILDER_DIR}/mail-support.sh
 
+# include nextcloud support
+source ${BUILDER_DIR}/nextcloud-support.sh
+
 # platform repos (core)
 TS4_EXTLIBS_REPO=ts4-extlibs
 TS4_CORE_REPO=ts4-core
@@ -215,6 +218,9 @@ buildAll () {
    if [ -z "${BUILDED_REPOS}" ]; then
      echo "mail: nothing to do"
    else
+     echo "nextcloud: send query for sync"
+     createSyncQuery "${BUILDED_REPOS}"
+
      echo "mail: send for users: ${MAIL_USERS}"
      MESSAGE="${MAIL_MESSAGE}\n\nBuild Time:\n${PLATFORM_BUILD_TIME}\n${PROJECTS_BUILD_TIME}"
      eval "${MAIL_SEND_CMD} -t ${MAIL_USERS} -u ${MAIL_SUBJECT}${BUILDED_REPOS} -m \"${MESSAGE}\" -a ${ATTACHMENTS}"

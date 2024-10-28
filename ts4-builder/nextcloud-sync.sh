@@ -173,6 +173,8 @@ handleSyncQueries () {
       echo "query sync repo: ${QUERY_SYNC_REPOS}"
       handleSyncQuery "${QUERY_SYNC_REPOS}"
       rm ${QUERY_FILE}
+      # one query at a time
+      break
    done
 
    if [ ! -z "${HANDLING_REPOS}" ]; then

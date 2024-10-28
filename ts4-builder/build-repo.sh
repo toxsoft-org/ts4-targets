@@ -206,7 +206,7 @@ buildTarget () {
          logDepends ${BUILD_LOG_FILE} "${ARG_DEPENDS}"
          printf "${BUILD_LOG_FILE} " >> ${TARGETS_ATTACHMENTS_RESULT_FILE}
       fi
-      if [ ! -z "${ARTEFACT_MODULES}" ]; then
+      if [ ! -z "${ARTEFACT_MODULES}" ] || [ -f ${TARGETS_BUILDED_RESULT_FILE} ]; then
          return 2
       fi
       return 3

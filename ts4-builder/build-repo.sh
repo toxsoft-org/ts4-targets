@@ -71,8 +71,8 @@ needCancelByDepends () {
 # log depends states
 #############################################
 logDepends () {
-   ARG_LOG_FILE=$1
-   ARG_DEPENDS=$2
+   local ARG_LOG_FILE=$1
+   local ARG_DEPENDS=$2
 #   echo "#############################################"
 #   echo "build-repo.sh::log depends states() args:"
 #   echo "ARG_LOG_FILE=${ARG_LOG_FILE}"
@@ -81,6 +81,8 @@ logDepends () {
       # depends array is empty
       return 0
    fi
+   local DEPENDS
+   local item
    read -a DEPENDS <<< "${ARG_DEPENDS}"
    for item in "${DEPENDS[@]}"; do
       ERROR_DEPEND_TAG_FILE="${TARGETS_TMP_DIR}/${item}-${TARGETS_ERRORED_SUFFIX}"
@@ -92,32 +94,6 @@ logDepends () {
          echo "   ${item}: errored." >> ${BUILD_LOG_FILE}
       fi
    done
-   return 0
-}
-
-#############################################
-# lookup array's intersection
-#############################################
-lookupIntersection () {
-   ARG_ARRAY1=$1
-   ARG_ARRAY2=$2
-#   echo "#############################################"
-#   echo "build-repo.sh::lookupIntersection() args:"
-#   echo "ARG_ARRAY1=${ARG_ARRAY1}"
-#   echo "ARG_ARRAY1=${ARG_ARRAY1}"
-
-   if [ -z "${ARG_ARRAY1}" ] && [ -z "${ARG_ARRAY2}" ]; then
-      # one or both array is empty - no intersection
-      return 0
-   fi
-   read -a ARRAY2 <<< "${ARG_ARRAY2}"
-   for item in "${ARRAY2[@]}"; do
-      if [[ ${ARG_ARRAY1} == *${item}* ]]; then
-         # found intersection
-         return 1
-      fi
-   done
-   # no intersection
    return 0
 }
 

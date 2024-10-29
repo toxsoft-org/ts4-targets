@@ -219,7 +219,7 @@ buildAll () {
      echo "mail: nothing to do"
    else
      echo "nextcloud: send query for sync"
-     createSyncQuery "${BUILDED_REPOS}"
+     ### createSyncQuery "${BUILDED_REPOS}"
 
      echo "mail: send for users: ${MAIL_USERS}"
      MESSAGE="${MAIL_MESSAGE}\n\nBuild Time:\n${PLATFORM_BUILD_TIME}\n${PROJECTS_BUILD_TIME}"

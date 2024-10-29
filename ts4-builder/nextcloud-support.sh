@@ -30,16 +30,28 @@ createIfNeedQueriesDir () {
 #  create query update repo's products on the cloud.
 #############################################
 createSyncQuery () {
-   ARG_REPOS=$1
-
+   local ARG_REPOS=$1
    echo "nextcloud-support::createSyncQuery args:"
    echo "ARG_REPOS=${ARG_REPOS}"
 
    #  if necessary creates a queries directory
    createIfNeedQueriesDir
 
-   QUERY_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
-   QUERY_FILE=${NEXTCLOUD_QUERIES_DIR}/query-${QUERY_DATE}.txt
+#   for FILE in ${NEXTCLOUD_QUERIES_DIR}/*;
+#   do
+#      local QUERY_SYNC_REPOS=$(<${FILE})
+#      local ARG_REPOS_ARRAY
+#      read -a ARG_REPOS_ARRAY <<< "${ARG_REPOS}"
+#      for item in "${ARG_REPOS_ARRAY[@]}"; do
+#         if [[ "${QUERY_SYNC_REPOS}" != *${item}* ]]; then
+#            printf "${item}" >> ${FILE}
+#         fi
+#      done
+#      return 1
+#   done
+
+   local QUERY_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
+   local QUERY_FILE=${NEXTCLOUD_QUERIES_DIR}/query-${QUERY_DATE}.txt
    printf "${ARG_REPOS}" >> ${QUERY_FILE}
 
    return 0

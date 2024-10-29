@@ -38,3 +38,30 @@ export TARGETS_ATTACHMENTS_RESULT_FILE="${TARGETS_TMP_DIR}/${TARGETS_ID}-${TARGE
 
 # build repo command
 export TARGETS_BUILD_REPO_CMD="${TARGETS_BUILDER_DIR}/build-repo.sh"
+
+#############################################
+# lookup array's intersection
+#############################################
+lookupIntersection () {
+   local ARG_ARRAY1=$1
+   local ARG_ARRAY2=$2
+#   echo "#############################################"
+#   echo "target-config.sh::lookupIntersection() args:"
+#   echo "ARG_ARRAY1=${ARG_ARRAY1}"
+#   echo "ARG_ARRAY2=${ARG_ARRAY2}"
+
+   if [ -z "${ARG_ARRAY1}" ] && [ -z "${ARG_ARRAY2}" ]; then
+      # one or both array is empty - no intersection
+      return 0
+   fi
+   local ARRAY2
+   read -a ARRAY2 <<< "${ARG_ARRAY2}"
+   for item in "${ARRAY2[@]}"; do
+      if [[ "${ARG_ARRAY1}" == *${item}* ]]; then
+         # found intersection
+         return 1
+      fi
+   done
+   # no intersection
+   return 0
+}

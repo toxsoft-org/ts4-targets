@@ -8,6 +8,8 @@ BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 
 # include nextcloud common support
 # source ${BUILDER_DIR}/nextcloud-support.sh
+# include target configuration
+source ${BUILDER_DIR}/targets-config.sh
 
 # include mail support
 source ${BUILDER_DIR}/mail-support.sh

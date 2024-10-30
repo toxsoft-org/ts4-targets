@@ -31,28 +31,29 @@ createIfNeedQueriesDir () {
 #############################################
 createSyncQuery () {
    local ARG_REPOS=$1
-   echo "nextcloud-support::createSyncQuery args:"
-   echo "ARG_REPOS=${ARG_REPOS}"
+   read -a ARG_REPOS_ARRAY <<< "${ARG_REPOS}"
+   # echo "nextcloud-support::createSyncQuery args:"
+   # echo "ARG_REPOS=${ARG_REPOS}"
 
    #  if necessary creates a queries directory
    createIfNeedQueriesDir
 
-#   for FILE in ${NEXTCLOUD_QUERIES_DIR}/*;
-#   do
-#      local QUERY_SYNC_REPOS=$(<${FILE})
-#      local ARG_REPOS_ARRAY
-#      read -a ARG_REPOS_ARRAY <<< "${ARG_REPOS}"
-#      for item in "${ARG_REPOS_ARRAY[@]}"; do
-#         if [[ "${QUERY_SYNC_REPOS}" != *${item}* ]]; then
-#            printf "${item}" >> ${FILE}
-#         fi
-#      done
-#      return 1
-#   done
-
-   local QUERY_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
-   local QUERY_FILE=${NEXTCLOUD_QUERIES_DIR}/query-${QUERY_DATE}.txt
-   printf "${ARG_REPOS}" >> ${QUERY_FILE}
-
-   return 0
+   if [ -z "$( ls -A ${NEXTCLOUD_QUERIES_DIR} )" ]; then
+      # no sync queries
+      local QUERY_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
+      local QUERY_FILE=${NEXTCLOUD_QUERIES_DIR}/query-${QUERY_DATE}.txt
+      printf "${ARG_REPOS}" >> ${QUERY_FILE}
+      return 0
+   fi
+   for QUERY_FILE in ${NEXTCLOUD_QUERIES_DIR}/*;
+   do
+      local QUERY_REPOS=$(<${QUERY_FILE})
+      local QUERY_REPOS_ARRAY
+      for item in "${ARG_REPOS_ARRAY[@]}"; do
+         if [[ "${QUERY_REPOS}" != *${item}* ]]; then
+            printf " ${item}" >> ${QUERY_FILE}
+         fi
+      done
+   done
+   return 1
 }

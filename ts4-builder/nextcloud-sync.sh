@@ -89,8 +89,8 @@ syncPath () {
       return 0
    fi
 
-   DIR_BASENAME=$(basename $1)
-   TO_DIR="$2/${DIR_BASENAME}"
+   local DIR_BASENAME=$(basename $1)
+   local TO_DIR="$2/${DIR_BASENAME}"
    echo "curl MKCOL TO_DIR=${TO_DIR}"
    ${CURL_CMD} --request MKCOL ${TO_DIR}
    for FILE in $1/*;

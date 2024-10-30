@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# nextcloud-support.sh
+# nextcloud-sync.sh
 #
 
 ABSOLUTE_FILENAME=`readlink -e "$0"`
@@ -83,7 +83,7 @@ syncPath () {
    # ARG_FROM=$1
    # ARG_TO=$2
 
-   echo "nextcloud-support::syncPath args:"
+   echo "nextcloud-sync::syncPath args:"
    echo "ARG_FROM=$1"
    echo "ARG_TO=$2"
 
@@ -115,7 +115,7 @@ syncPath () {
 handleSyncQuery () {
    ARG_REPOS=$1
 
-   echo "nextcloud-support::handleSyncQuery args:"
+   echo "nextcloud-sync::handleSyncQuery args:"
    echo "ARG_REPOS=${ARG_REPOS}"
 
    for (( index = 0; index < ${#REPO_PRODUCTS_ARRAY[@]}; index = index + 4 ))

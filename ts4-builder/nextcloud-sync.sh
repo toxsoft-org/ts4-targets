@@ -7,7 +7,7 @@ ABSOLUTE_FILENAME=`readlink -e "$0"`
 BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 
 # include nextcloud common support
-source ${BUILDER_DIR}/nextcloud-support.sh
+# source ${BUILDER_DIR}/nextcloud-support.sh
 
 # include mail support
 source ${BUILDER_DIR}/mail-support.sh
@@ -25,6 +25,8 @@ NEXTCLOUD_HTTPS_PATH="https://${NEXTCLOUD_HOST}/index.php/apps/files/files?dir=/
 NEXTCLOUD_SYNC_PATH="${NEXTCLOUD_PATH}/${NEXTCLOUD_PRODUCT_PATH}"
 # nextcloud trashbin path
 NEXTCLOUD_TRASHBIN_PATH=https://${NEXTCLOUD_HOST}/remote.php/dav/trashbin/kovach/trash
+# nextcloud queries directory
+NEXTCLOUD_QUERIES_DIR=${TARGETS_TMP_DIR}/nextcloud-sync-queries
 
 # nextcloud user login
 NEXTCLOUD_LOGIN=kovach@toxsoft.ru

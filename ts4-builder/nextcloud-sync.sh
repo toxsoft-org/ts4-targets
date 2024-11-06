@@ -7,13 +7,10 @@ ABSOLUTE_FILENAME=`readlink -e "$0"`
 BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 
 # include nextcloud common support
-# source ${BUILDER_DIR}/nextcloud-support.sh
-# include target configuration
-source ${BUILDER_DIR}/targets-config.sh
+source ${BUILDER_DIR}/nextcloud-support.sh
 
 # include mail support
 source ${BUILDER_DIR}/mail-support.sh
-
 
 # nextcloud host
 NEXTCLOUD_HOST="tsapp.ru"
@@ -25,10 +22,10 @@ NEXTCLOUD_PRODUCT_PATH="kovach/products"
 NEXTCLOUD_HTTPS_PATH="https://${NEXTCLOUD_HOST}/index.php/apps/files/files?dir=/${NEXTCLOUD_PRODUCT_PATH}"
 # nextcloud sync path
 NEXTCLOUD_SYNC_PATH="${NEXTCLOUD_PATH}/${NEXTCLOUD_PRODUCT_PATH}"
+# nextcloud uploading path
+NEXTCLOUD_UPLOADING_PATH="${NEXTCLOUD_PATH}/${NEXTCLOUD_PRODUCT_PATH}/_uploading"
 # nextcloud trashbin path
 NEXTCLOUD_TRASHBIN_PATH=https://${NEXTCLOUD_HOST}/remote.php/dav/trashbin/kovach/trash
-# nextcloud queries directory
-NEXTCLOUD_QUERIES_DIR=${TARGETS_TMP_DIR}/nextcloud-sync-queries
 
 # nextcloud user login
 NEXTCLOUD_LOGIN=kovach@toxsoft.ru
@@ -37,36 +34,40 @@ NEXTCLOUD_PASSWORD=xYyeqTqn
 # nextcloud sync date
 NEXTCLOUD_SYNC_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
 
-
 REPO_PRODUCTS="\
-mcc 17023_Москокс АРМ ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-linux.gtk.x86_64.zip \
-mcc 17023_Москокс АРМ ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-win32.win32.x86_64.zip \
-mcc 17023_Москокс АРМ ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-macosx.cocoa.x86_64.tar.gz \
-mcc 17023_Москокс АРМ ru.toxsoft.mcc.ws.exe.product/target/repository \
-vetrol-ci 21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск АРМ ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-linux.gtk.x86_64.zip \
-vetrol-ci 21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск АРМ ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-win32.win32.x86_64.zip \
-vetrol-ci 21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск АРМ ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-macosx.cocoa.x86_64.tar.gz \
-vetrol-ci 21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск АРМ ru.toxsoft.ci.ws.exe.product/target/repository \
-cp-val 24015_АСУТП_АКО_ВАЛКОМ АРМ ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-linux.gtk.x86_64.zip \
-cp-val 24015_АСУТП_АКО_ВАЛКОМ АРМ ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-win32.win32.x86_64.zip \
-cp-val 24015_АСУТП_АКО_ВАЛКОМ АРМ ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-macosx.cocoa.x86_64.tar.gz \
-cp-val 24015_АСУТП_АКО_ВАЛКОМ АРМ ru.toxsoft.val.ws.exe.product/target/repository \
-cp-val 24015_АСУТП_АКО_ВАЛКОМ SkIDE ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-linux.gtk.x86_64.zip \
-cp-val 24015_АСУТП_АКО_ВАЛКОМ SkIDE ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-win32.win32.x86_64.zip \
-cp-val 24015_АСУТП_АКО_ВАЛКОМ SkIDE ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-macosx.cocoa.x86_64.tar.gz \
-cp-val 24015_АСУТП_АКО_ВАЛКОМ SkIDE ru.toxsoft.val.skide.exe.product/target/repository \
-cp-mmk 23014_MMK_Ветрол_Магнитогорск АРМ ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-linux.gtk.x86_64.zip \
-cp-mmk 23014_MMK_Ветрол_Магнитогорск АРМ ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-win32.win32.x86_64.zip \
-cp-mmk 23014_MMK_Ветрол_Магнитогорск АРМ ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-macosx.cocoa.x86_64.tar.gz \
-cp-mmk 23014_MMK_Ветрол_Магнитогорск АРМ ru.toxsoft.mmk.ws.exe.product/target/repository \
-cp-mmk 23014_MMK_Ветрол_Магнитогорск SkIDE ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-linux.gtk.x86_64.zip \
-cp-mmk 23014_MMK_Ветрол_Магнитогорск SkIDE ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-win32.win32.x86_64.zip \
-cp-mmk 23014_MMK_Ветрол_Магнитогорск SkIDE ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-macosx.cocoa.x86_64.tar.gz \
-cp-mmk 23014_MMK_Ветрол_Магнитогорск SkIDE ru.toxsoft.mmk.skide.exe.product/target/repository"
+mcc        17023_Москокс                           АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-linux.gtk.x86_64.zip \
+mcc        17023_Москокс                           АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-win32.win32.x86_64.zip \
+mcc        17023_Москокс                           АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-macosx.cocoa.x86_64.tar.gz \
+mcc        17023_Москокс                           АРМ    ru.toxsoft.mcc.ws.exe.product/target/repository \
+vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-linux.gtk.x86_64.zip \
+vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-win32.win32.x86_64.zip \
+vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-macosx.cocoa.x86_64.tar.gz \
+vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/repository \
+cp-val     24015_АСУТП_АКО_ВАЛКОМ                  АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-linux.gtk.x86_64.zip \
+cp-val     24015_АСУТП_АКО_ВАЛКОМ                  АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-win32.win32.x86_64.zip \
+cp-val     24015_АСУТП_АКО_ВАЛКОМ                  АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-macosx.cocoa.x86_64.tar.gz \
+cp-val     24015_АСУТП_АКО_ВАЛКОМ                  АРМ    ru.toxsoft.val.ws.exe.product/target/repository \
+cp-val     24015_АСУТП_АКО_ВАЛКОМ                  SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-linux.gtk.x86_64.zip \
+cp-val     24015_АСУТП_АКО_ВАЛКОМ                  SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-win32.win32.x86_64.zip \
+cp-val     24015_АСУТП_АКО_ВАЛКОМ                  SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-macosx.cocoa.x86_64.tar.gz \
+cp-val     24015_АСУТП_АКО_ВАЛКОМ                  SkIDE  ru.toxsoft.val.skide.exe.product/target/repository \
+cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-linux.gtk.x86_64.zip \
+cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-win32.win32.x86_64.zip \
+cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-macosx.cocoa.x86_64.tar.gz \
+cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/repository \
+cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-linux.gtk.x86_64.zip \
+cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-win32.win32.x86_64.zip \
+cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-macosx.cocoa.x86_64.tar.gz \
+cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/repository"
 
 # REPO_PRODUCTS="\
 # vetrol-ci 21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск АРМ ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-win32.win32.x86_64.zip \
 # cp-mmk 23014_MMK_Ветрол_Магнитогорск АРМ ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-linux.gtk.x86_64.zip"
+
+# REPO_PRODUCTS="\
+# mcc    17023_Москокс                 АРМ ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-macosx.cocoa.x86_64.tar.gz \
+# cp-mmk 23014_MMK_Ветрол_Магнитогорск АРМ ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-linux.gtk.x86_64.zip"
+
 read -a REPO_PRODUCTS_ARRAY <<< "${REPO_PRODUCTS}"
 
 CURL_CMD="curl --user ${NEXTCLOUD_LOGIN}:${NEXTCLOUD_PASSWORD}"
@@ -80,33 +81,48 @@ HANDLING_LOG=
 #############################################
 syncPath () {
    # ATTENTION! Recursive function call is used. local vars are not allowed
-   # ARG_FROM=$1
-   # ARG_TO=$2
+   local ARG_REPO=$1
+   local ARG_FROM=$2
+   local ARG_TO=$3
 
    echo "nextcloud-sync::syncPath args:"
-   echo "ARG_FROM=$1"
-   echo "ARG_TO=$2"
+   echo "ARG_REPO=${ARG_REPO}"
+   echo "ARG_FROM=${ARG_FROM}"
+   echo "ARG_TO=${ARG_TO}"
 
-   if [[ -f $1 ]]; then
-      echo "curl PUT ARG_TO=$2, upload-file=$1"
-      ${CURL_CMD} --request PUT $2/ --upload-file $1
+   hasSyncQueryCancel ${ARG_REPO}
+   local CANCEL_RESULT=$?
+   if [ ${CANCEL_RESULT} -eq 1 ] ; then
+      echo "nextcloud-sync::syncPath: ${ARG_REPO} sync query was cancelled"
+      return 1
+   fi
+
+   if [[ -f ${ARG_FROM} ]]; then
+      echo "curl PUT ARG_TO=${ARG_TO}, upload-file=${ARG_FROM}"
+      ${CURL_CMD} --request PUT ${ARG_TO}/ --upload-file ${ARG_FROM}
       return 0
    fi
 
-   local DIR_BASENAME=$(basename $1)
-   local TO_DIR="$2/${DIR_BASENAME}"
+   local DIR_BASENAME=$(basename ${ARG_FROM})
+   local TO_DIR="${ARG_TO}/${DIR_BASENAME}"
    echo "curl MKCOL TO_DIR=${TO_DIR}"
    ${CURL_CMD} --request MKCOL ${TO_DIR}
-   for FILE in $1/*;
+   # for FILE in ${ARG_FROM}/*;
+   # do
+   #    echo "PARENT=${ARG_FROM}, CHILD=${FILE}, TO_DIR=${TO_DIR}"
+   # done
+   for FILE in ${ARG_FROM}/*;
    do
-      echo "PARENT=$1, CHILD=${FILE}, TO_DIR=${TO_DIR}"
+      DIR_BASENAME=$(basename ${ARG_FROM})
+      TO_DIR="${ARG_TO}/${DIR_BASENAME}"
+      syncPath ${ARG_REPO} ${FILE} ${TO_DIR}
+      local SYNC_RESULT=$?
+      if [ ${SYNC_RESULT} -eq 1 ] ; then
+         echo "nextcloud-sync::syncPath: ${ARG_REPO} sync query was cancelled"
+         return 1
+      fi
    done
-   for FILE in $1/*;
-   do
-      DIR_BASENAME=$(basename $1)
-      TO_DIR="$2/${DIR_BASENAME}"
-      syncPath ${FILE} ${TO_DIR}
-   done
+   return 0
 }
 
 #############################################
@@ -120,39 +136,36 @@ handleSyncQuery () {
 
    for (( index = 0; index < ${#REPO_PRODUCTS_ARRAY[@]}; index = index + 4 ))
    do
-      PRODUCT_REPO=${REPO_PRODUCTS_ARRAY[index]}
-      PRODUCT_PROJECT=${REPO_PRODUCTS_ARRAY[index + 1]}
-      PRODUCT_APP=${REPO_PRODUCTS_ARRAY[index + 2]}
-      PRODUCT_FILE=${GIT_REPOS_HOME}/${PRODUCT_REPO}/${REPO_PRODUCTS_ARRAY[index + 3]}
-      NEXTCLOUD_PROJ_PATH=${NEXTCLOUD_SYNC_PATH}/${PRODUCT_PROJECT}
-      NEXTCLOUD_APP_PATH=${NEXTCLOUD_PROJ_PATH}/${PRODUCT_APP}
+      local PRODUCT_REPO=${REPO_PRODUCTS_ARRAY[index]}
+      local PRODUCT_PROJECT=${REPO_PRODUCTS_ARRAY[index + 1]}
+      local PRODUCT_APP=${REPO_PRODUCTS_ARRAY[index + 2]}
+      local PRODUCT_FILE=${GIT_REPOS_HOME}/${PRODUCT_REPO}/${REPO_PRODUCTS_ARRAY[index + 3]}
+      local NEXTCLOUD_PROJ_PATH=${NEXTCLOUD_UPLOADING_PATH}/${PRODUCT_PROJECT}
+      local NEXTCLOUD_APP_PATH=${NEXTCLOUD_PROJ_PATH}/${PRODUCT_APP}
 
       if [[ ${ARG_REPOS} == *${PRODUCT_REPO}* ]]; then
          if [[ ${HANDLING_REPOS} != *${PRODUCT_REPO}* ]]; then
-            HANDLING_REPOS="${HANDLING_REPOS} ${PRODUCT_REPO}"
+            # a new repo was found. backup project dir, creating new project dir
+            HANDLING_REPOS="${HANDLING_REPOS}${PRODUCT_REPO} "
 
-            echo "recreate ${NEXTCLOUD_PROJ_PATH} project directory"
-            echo "curl DELETE OLD_PROJECT=${NEXTCLOUD_PROJ_PATH}"
-            ${CURL_CMD} --request DELETE ${NEXTCLOUD_PROJ_PATH}
+            # echo "backup ${PRODUCT_PROJECT} directory"
+            # eval "${CURL_CMD} --request MOVE -H 'Destination: ${NEXTCLOUD_UPLOADING_PATH}/${PRODUCT_PROJECT}' '${NEXTCLOUD_PROJ_PATH}'"
 
             echo "curl MKCOL NEXTCLOUD_PROJ_PATH=${NEXTCLOUD_PROJ_PATH}"
             ${CURL_CMD} --request MKCOL ${NEXTCLOUD_PROJ_PATH}
-
-            HANDLING_LOG="${HANDLING_LOG}\n\nПроект ${PRODUCT_PROJECT}: "
          fi
          if [[ ${HANDLING_APPS} != *${PRODUCT_REPO}/${PRODUCT_APP}* ]]; then
+            # a new project app was found. creating a new app dir
             HANDLING_APPS="${HANDLING_APPS} ${PRODUCT_REPO}/${PRODUCT_APP}"
 
             echo "curl MKCOL NEXTCLOUD_APP_PATH=${NEXTCLOUD_APP_PATH}"
             ${CURL_CMD} --request MKCOL ${NEXTCLOUD_APP_PATH}
-            HANDLING_LOG="${HANDLING_LOG}\n   ${PRODUCT_APP} - ${NEXTCLOUD_HTTPS_PATH}/${PRODUCT_PROJECT}/${PRODUCT_APP}"
-            # HANDLING_LOG="${HANDLING_LOG}\n   ${PRODUCT_APP} - [url=${NEXTCLOUD_HTTPS_PATH}/${PRODUCT_PROJECT}/${PRODUCT_APP}]ссылка на продукт в облаке[/url]."
          fi
          echo "**************************************************************"
          echo "HANDLING_APPS=${HANDLING_APPS}"
          echo "**************************************************************"
 
-         syncPath ${PRODUCT_FILE} ${NEXTCLOUD_APP_PATH}
+         syncPath ${PRODUCT_REPO} ${PRODUCT_FILE} ${NEXTCLOUD_APP_PATH}
 
       fi
    done
@@ -170,6 +183,20 @@ handleSyncQueries () {
       echo "nextcloud-sync.sh::handleSyncQueries: no sync queries."
       return 1
    fi
+
+   ########################
+   # prepare sync operations
+   ########################
+   if [ -f "${NEXTCLOUD_CANCELS_FILE}" ]; then
+      echo "nextcloud-sync.sh::handleSyncQueries: clear prev cancels: remove ${NEXTCLOUD_CANCELS_FILE}"
+      rm ${NEXTCLOUD_CANCELS_FILE}
+   fi
+   echo "nextcloud-sync::handleSyncQueries: creating upload directory: ${NEXTCLOUD_UPLOADING_PATH}."
+   ${CURL_CMD} --request MKCOL ${NEXTCLOUD_UPLOADING_PATH}
+
+   ########################
+   # handle new queries
+   ########################
    for QUERY_FILE in ${NEXTCLOUD_QUERIES_DIR}/*;
    do
       QUERY_SYNC_REPOS=$(<${QUERY_FILE})
@@ -180,10 +207,53 @@ handleSyncQueries () {
       break
    done
 
+   ########################
+   # handle sync results
+   ########################
    if [ ! -z "${HANDLING_REPOS}" ]; then
-      echo "############################# clear trashbin ###############################"
-      curl --request DELETE ${NEXTCLOUD_TRASHBIN_PATH} --user ${NEXTCLOUD_LOGIN}:${NEXTCLOUD_PASSWORD}
+      local UPLOADED_REPOS=${HANDLING_REPOS}
+      echo "############################# clear trashbin. HANDLING_REPOS=${HANDLING_REPOS}, CLEARING_REPOS=${CLEARING_REPOS} ###############################"
+      for (( index = 0; index < ${#REPO_PRODUCTS_ARRAY[@]}; index = index + 4 ))
+      do
+         local PRODUCT_REPO=${REPO_PRODUCTS_ARRAY[index]}
+         local PRODUCT_PROJECT=${REPO_PRODUCTS_ARRAY[index + 1]}
+         if [[ ${UPLOADED_REPOS} != *${PRODUCT_REPO}* ]]; then
+            continue
+         fi
+         UPLOADED_REPOS=${UPLOADED_REPOS#${PRODUCT_REPO} }
+
+         NEXTCLOUD_PROJ_PATH=${NEXTCLOUD_SYNC_PATH}/${PRODUCT_PROJECT}
+         hasSyncQueryCancel ${PRODUCT_REPO}
+         local CANCEL_RESULT=$?
+         if [ ${CANCEL_RESULT} -eq 1 ] ; then
+            echo "nextcloud-sync::handleSyncQueries: ${PRODUCT_PROJECT} uploading was cancelled."
+            continue
+         fi
+         echo "nextcloud-sync::handleSyncQueries: ${PRODUCT_REPO} is uploaded. try remove old version. NEXTCLOUD_PROJ_PATH=${NEXTCLOUD_PROJ_PATH}"
+         ${CURL_CMD} --request DELETE ${NEXTCLOUD_PROJ_PATH}
+
+         echo "move new version of ${PRODUCT_PROJECT} to the target directory."
+         eval "${CURL_CMD} --request MOVE -H 'Destination: ${NEXTCLOUD_PROJ_PATH}' '${NEXTCLOUD_UPLOADING_PATH}/${PRODUCT_PROJECT}'"
+
+         local LOGGED_PROJECTS=
+         HANDLING_LOG="${HANDLING_LOG}\n\nПроект ${PRODUCT_PROJECT}: "
+         for (( index2 = 0; index2 < ${#REPO_PRODUCTS_ARRAY[@]}; index2 = index2 + 4 ))
+         do
+            local PRODUCT_REPO2=${REPO_PRODUCTS_ARRAY[index2]}
+            local PRODUCT_PROJECT2=${REPO_PRODUCTS_ARRAY[index2 + 1]}
+            local PRODUCT_APP2=${REPO_PRODUCTS_ARRAY[index2 + 2]}
+            if [[ ${PRODUCT_REPO} == ${PRODUCT_REPO2} ]] && [[ ${LOGGED_PROJECTS} != *${PRODUCT_PROJECT2}* ]]; then
+               LOGGED_PROJECTS="${LOGGED_PROJECTS}${PRODUCT_PROJECT2} "
+               HANDLING_LOG="${HANDLING_LOG}\n   ${PRODUCT_APP2} - ${NEXTCLOUD_HTTPS_PATH}/${PRODUCT_PROJECT2}/${PRODUCT_APP2}"
+            fi
+         done
+      done
    fi
+   echo "nextcloud-sync::handleSyncQueries: deleting upload directory: ${NEXTCLOUD_UPLOADING_PATH}."
+   ${CURL_CMD} --request DELETE ${NEXTCLOUD_UPLOADING_PATH}
+
+   echo "nextcloud-sync::handleSyncQueries: clear trash."
+   eval "${CURL_CMD} --request DELETE ${NEXTCLOUD_TRASHBIN_PATH}"
 
    # calc build time elapsed
    duration=$SECONDS

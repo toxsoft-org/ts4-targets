@@ -7,17 +7,23 @@
 # 2. sendemail -f software.builder@toxsoft.org -s smtp.gmail.com:587 -o tls=yes -xu "kovach.mike@gmail.com" -xp "dnhk zuiv ztli ylnm" -t kovach.mike@gmail.com -u "Тема сообщения4" -m "Текст сообщения4" -a attachments files
 
 
-export MAIL_USERS=\
-goga@toxsoft.ru,\
-vs@toxsoft.ru,\
-egorov.dmitry.alex@gmail.com,\
-prokhorov_m@mail.ru,\
-tdo@toxsoft.ru,\
-slavage@toxsoft.ru,\
-kovach@toxsoft.ru,\
-kovach.mike@gmail.com
+# disable(1)/enable(0) mail sending (for debug)
+MAIL_DISABLE=0
+# MAIL_DISABLE=1
 
-# export MAIL_USERS=kovach.mike@gmail.com
+if [ "${MAIL_DISABLE}" -eq 0 ] ; then
+   export MAIL_USERS=\
+   goga@toxsoft.ru,\
+   vs@toxsoft.ru,\
+   egorov.dmitry.alex@gmail.com,\
+   prokhorov_m@mail.ru,\
+   tdo@toxsoft.ru,\
+   slavage@toxsoft.ru,\
+   kovach@toxsoft.ru,\
+   kovach.mike@gmail.com
+else
+   export MAIL_USERS=kovach.mike@gmail.com
+fi
 
 export MAIL_ADMINS=\
 kovach@toxsoft.ru,\
@@ -52,6 +58,7 @@ SEND_FROM="software.builder@toxsoft.org"
 SEND_GMAIL_SERVER="smtp.gmail.com:587"
 SEND_GMAIL_USER="kovach.mike@gmail.com"
 SEND_GMAIL_USER_PASSWD="'dnhk zuiv ztli ylnm'"
+
 export MAIL_SEND_CMD="sendemail -f ${SEND_FROM} -s ${SEND_GMAIL_SERVER} -o tls=yes -xu ${SEND_GMAIL_USER} -xp ${SEND_GMAIL_USER_PASSWD}"
 
 # sendemail -f software.builder@toxsoft.org -s smtp.gmail.com:587 -o tls=yes -xu kovach.mike@gmail.com -xp 'dnhk zuiv ztli ylnm' -t kovach.mike@gmail.com -u 'Тема сообщения9' -m 'Текст сообщения9' -a attachments files

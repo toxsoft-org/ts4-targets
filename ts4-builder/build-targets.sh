@@ -113,7 +113,7 @@ buildAll () {
    ${BUILD_MAIN_NONE}     ${SKF_DEVS_REPO}     "${TS4_USKAT_REPO} ${SKF_REPORTS_REPO} ${TS4_SKIDE_REPO}" &
 
    # multithread building
-   ${BUILD_MAIN_LOCAL}     ${SKT_VETROL_REPO}   "${TS4_USKAT_REPO} ${SKF_DQ_REPO} ${SKF_ONEWS_REPO} ${SKF_LEGACY_REPO} ${TS4_SKIDE_REPO}"  &
+   ${BUILD_MAIN_LOCAL}     ${SKT_VETROL_REPO}   "${TS4_USKAT_REPO} ${SKF_DQ_REPO} ${SKF_ONEWS_REPO} ${SKF_LEGACY_REPO} ${TS4_SKIDE_REPO}" &
    # ${BUILD_MAIN_NONE}    ${SKT_SITROL_REPO}   ${TS4_USKAT_REPO}  &
 
    echo "waiting for ${TARGETS_ID} platform building to be completed..."
@@ -225,6 +225,7 @@ buildAll () {
      MESSAGE="${MAIL_MESSAGE}\n\nBuild Time:\n${PLATFORM_BUILD_TIME}\n${PROJECTS_BUILD_TIME}"
      eval "${MAIL_SEND_CMD} -t ${MAIL_USERS} -u ${MAIL_SUBJECT}${BUILDED_REPOS} -m \"${MESSAGE}\" -a ${ATTACHMENTS}"
    fi
+   return 0
 }
 
 # if need create tmp dir 
@@ -250,7 +251,7 @@ fi
    buildAll
 
    popd
-   echo "${BUILT_DATE}: ============================================================================== $(date)"
+   echo "${BUILT_DATE}: =================================================== $(date)"
 
 ) 9>${TARGETS_TMP_DIR}/${TARGETS_ID}-build.lock
 
@@ -258,6 +259,47 @@ fi
 if [ $? -eq 1 ]; then
    echo "${BUILT_DATE}: script $0 is already running: exiting"
    echo "${BUILT_DATE}: ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "
+   exit 1
 fi
+exit 0
 ) >> ${TARGETS_TMP_DIR}/_build.log
 
+if [ $? -eq 1 ]; then
+   echo "${BUILT_DATE}: script $0 is already running: exiting"
+   exit
+fi
+
+if [ -f ${TARGETS_BUILDED_RESULT_FILE} ]; then
+   BUILDED_REPOS=$(<${TARGETS_BUILDED_RESULT_FILE})
+fi
+if [ -f ${TARGETS_ERRORED_RESULT_FILE} ]; then
+   ERRORED_REPOS=$(<${TARGETS_ERRORED_RESULT_FILE})
+fi
+if [ -f ${TARGETS_CANCELED_RESULT_FILE} ]; then
+   CANCELED_REPOS=$(<${TARGETS_CANCELED_RESULT_FILE})
+fi
+
+if [ ! -z "${ERRORED_REPOS}" ] || [ ! -z "${CANCELED_REPOS}" ]; then
+   echo "/////////////////////////////////////////////////////////////////////////////////////////////////////"
+   echo "//                                                                                                 //"
+   echo "//                                                                                                 //"
+   echo "//                                                                                                 //"
+   echo "//                                  B U I L D  F A I L E D  !                                      //"
+   echo "//                                                                                                 //"
+   echo "//                                                                                                 //"
+   echo "//                                                                                                 //"
+   echo "/////////////////////////////////////////////////////////////////////////////////////////////////////"
+   exit
+fi
+
+if [ ! -z "${BUILDED_REPOS}" ]; then
+   echo "*****************************************************************************************************"
+   echo "*****************************************************************************************************"
+   echo "*****************************************************************************************************"
+   echo "*****************************************************************************************************"
+   echo "***************************     B U I L D   C O M P L I T E D  !     ********************************"
+   echo "*****************************************************************************************************"
+   echo "*****************************************************************************************************"
+   echo "*****************************************************************************************************"
+   echo "*****************************************************************************************************"
+fi

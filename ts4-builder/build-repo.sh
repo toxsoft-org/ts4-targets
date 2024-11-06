@@ -24,6 +24,11 @@
 #
 # 5. start build4.sh by /etc/crotntab
 
+# disable(1)/enable(0) git writing (for debug)
+BUILD_FORCE=0
+# BUILD_FORCE=1
+
+
 ABSOLUTE_FILENAME=`readlink -e "$0"`
 BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 
@@ -36,8 +41,22 @@ source ${BUILDER_DIR}/mail-support.sh
 # include git support
 source ${BUILDER_DIR}/git-support.sh
 
+# include nextcloud support
+source ${BUILDER_DIR}/nextcloud-support.sh
+
 # maven command
-MVN_CMD="mvn"
+# MVN_CMD="mvn clean install"
+#MVN_CMD="mvn -X -e clean install"
+MVN_CMD="mvn -e clean install"
+# maven command using takari API (source: http://takari.io/book/30-team-maven.html)
+# MVN_CMD="mvn clean -e install -Drcp --builder smart -T8"
+
+# MVN_CMD="mvn -T 4 clean install"
+# maven memory limit at a process
+# export MAVEN_OPTS="-Xms2048m -Xmx2048m"
+# export MAVEN_OPTS="-Xms512m -Xmx4096m" # success 23
+# export MAVEN_OPTS="-Xms512m -Xmx32768m"  # success > 20
+export MAVEN_OPTS="-Xms512m -Xmx4096m"  # success > 20
 
 # build mode constants
 MODE_NONE="none"
@@ -161,8 +180,6 @@ buildTarget () {
       # echo ${ARG_BUILT_DATE} > ${ERROR_TAG_FILE}
       # set mail
       ### eval "${MAIL_SEND_CMD} -t ${MAIL_ADMINS} -u ${MAIL_GIT_SUBJECT_ERROR}${ARG__REPO} -m ${MAIL_GIT_FETCH_MESSAGE_ERROR}${ARG__REPO}"
-
-
       popd
       return 4
    fi
@@ -218,12 +235,16 @@ buildTarget () {
    echo
    echo "call buildTarget(REPO=${ARG_REPO}, DEPENDS=\"${ARG_DEPENDS}\", BRANCH=${ARG_BRANCH}, MODE=${ARG_MODE})"
 
-   if [ ! -z "${ARTEFACT_MODULES}" ] || [ "${ARG_MODE}" = "${MODE_FORCE}" ]; then 
+   if [ ! -z "${ARTEFACT_MODULES}" ] || [ "${ARG_MODE}" = "${MODE_FORCE}" ] || [ "${BUILD_FORCE}" -eq 1  ]; then 
      echo "${ARG_BUILT_DATE}: [${ARG_REPO}] changed modules: \"${ARTEFACT_MODULES}\". build repository [${ARG_REPO}/${ARG_BRANCH}]"
+
+     echo "nextcloud cancelSyncQuery ${ARG_REPO}"
+     cancelSyncQuery ${ARG_REPO}
+
      # TODO: build except common, rcp or rap
 #    mvn --fail-at-end -o install -Drcp -pl "${ARTEFACT_MODULES}",${TS4_RCP_MODULES}
 #    mvn --fail-at-end -o install -Drap -pl "${ARTEFACT_MODULES}",${TS4_RAP_MODULES}
-     ${MVN_CMD} clean install -Drcp > ${BUILD_LOG_FILE}
+     ${MVN_CMD} -Drcp > ${BUILD_LOG_FILE}
      RCP_BUILD_RETCODE=$?
      RCP_RESULTS=$(cat ${BUILD_LOG_FILE})
      echo "${RCP_RESULTS}"
@@ -239,7 +260,7 @@ buildTarget () {
      fi
      printf "${BUILD_LOG_FILE} " >> ${TARGETS_ATTACHMENTS_RESULT_FILE}
 
-     ## ${MVN_CMD} clean install -Drap > ${BUILD_RAP_LOG}
+     ## ${MVN_CMD} -Drap > ${BUILD_RAP_LOG}
      ## RAP_BUILD_RETCODE=$?
      ## RAP_RESULTS=$(cat ${BUILD_RAP_LOG})
      ## echo "${RAP_RESULTS}"

@@ -3,6 +3,11 @@
 # git-config.sh
 #
 
+# disable(1)/enable(0) git writing (for debug)
+GIT_WRITE_DISABLE=0
+# GIT_WRITE_DISABLE=1
+
+
 ABSOLUTE_FILENAME=`readlink -e "$0"`
 BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 
@@ -18,10 +23,6 @@ export GIT_DIFF_PARSER_CMD="java -XX:-UsePerfData -jar /home/ts4-targets/works/g
 # git main branch variants
 export GIT_MAIN_BRANCH=main
 export GIT_MASTER_BRANCH=master
-
-
-# disable(1)/enable(0) git writing (for debug)
-GIT_WRITE_DISABLE=0
 
 # write to git
 writeToGit () {

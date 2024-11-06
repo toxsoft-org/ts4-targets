@@ -1,13 +1,15 @@
 #!/bin/bash
 #
-# nextcloud-support.sh
+# nextcloud-sync.sh
 #
 
 ABSOLUTE_FILENAME=`readlink -e "$0"`
 BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 
 # include nextcloud common support
-source ${BUILDER_DIR}/nextcloud-support.sh
+# source ${BUILDER_DIR}/nextcloud-support.sh
+# include target configuration
+source ${BUILDER_DIR}/targets-config.sh
 
 # include mail support
 source ${BUILDER_DIR}/mail-support.sh
@@ -25,6 +27,8 @@ NEXTCLOUD_HTTPS_PATH="https://${NEXTCLOUD_HOST}/index.php/apps/files/files?dir=/
 NEXTCLOUD_SYNC_PATH="${NEXTCLOUD_PATH}/${NEXTCLOUD_PRODUCT_PATH}"
 # nextcloud trashbin path
 NEXTCLOUD_TRASHBIN_PATH=https://${NEXTCLOUD_HOST}/remote.php/dav/trashbin/kovach/trash
+# nextcloud queries directory
+NEXTCLOUD_QUERIES_DIR=${TARGETS_TMP_DIR}/nextcloud-sync-queries
 
 # nextcloud user login
 NEXTCLOUD_LOGIN=kovach@toxsoft.ru
@@ -79,7 +83,7 @@ syncPath () {
    # ARG_FROM=$1
    # ARG_TO=$2
 
-   echo "nextcloud-support::syncPath args:"
+   echo "nextcloud-sync::syncPath args:"
    echo "ARG_FROM=$1"
    echo "ARG_TO=$2"
 
@@ -89,8 +93,8 @@ syncPath () {
       return 0
    fi
 
-   DIR_BASENAME=$(basename $1)
-   TO_DIR="$2/${DIR_BASENAME}"
+   local DIR_BASENAME=$(basename $1)
+   local TO_DIR="$2/${DIR_BASENAME}"
    echo "curl MKCOL TO_DIR=${TO_DIR}"
    ${CURL_CMD} --request MKCOL ${TO_DIR}
    for FILE in $1/*;
@@ -111,7 +115,7 @@ syncPath () {
 handleSyncQuery () {
    ARG_REPOS=$1
 
-   echo "nextcloud-support::handleSyncQuery args:"
+   echo "nextcloud-sync::handleSyncQuery args:"
    echo "ARG_REPOS=${ARG_REPOS}"
 
    for (( index = 0; index < ${#REPO_PRODUCTS_ARRAY[@]}; index = index + 4 ))
@@ -159,19 +163,18 @@ handleSyncQuery () {
 # handle sync queries
 #############################################
 handleSyncQueries () {
-   echo "handleSyncQueries"
    # calc sync time elapsed
    SECONDS=0
 
    if [ -z "$( ls -A ${NEXTCLOUD_QUERIES_DIR} )" ]; then
-      echo "No sync queries."
+      echo "nextcloud-sync.sh::handleSyncQueries: no sync queries."
       return 1
    fi
    for QUERY_FILE in ${NEXTCLOUD_QUERIES_DIR}/*;
    do
       QUERY_SYNC_REPOS=$(<${QUERY_FILE})
       rm ${QUERY_FILE}
-      echo "query sync repo: ${QUERY_SYNC_REPOS}"
+      echo "nextcloud-sync.sh::handleSyncQueries: query sync repo: ${QUERY_SYNC_REPOS}"
       handleSyncQuery "${QUERY_SYNC_REPOS}"
       # one query at a time
       break
@@ -208,9 +211,9 @@ createIfNeedQueriesDir
    flock -n 9 || exit 1
 
    echo "${NEXTCLOUD_SYNC_DATE}: ------------------------------------------------------------------------------ "
-   echo "start nextcloud sync for: '${TARGETS_HOME}'"
+   echo "nextcloud-sync.sh: start nextcloud sync for: '${TARGETS_HOME}'"
 
-   pushd ${TARGETS_HOME}
+   pushd ${TARGETS_HOME} > /dev/null 2>&1
 
    ###
    # createSyncQuery  "ts4-core ts4-uskat cp-mmk cp-val mcc vetrol-ci"
@@ -220,7 +223,7 @@ createIfNeedQueriesDir
 
    handleSyncQueries
 
-   popd
+   popd > /dev/null 2>&1
 
    echo "${NEXTCLOUD_SYNC_DATE}: ============================================================================== $(date)"
 

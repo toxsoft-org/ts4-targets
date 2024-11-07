@@ -235,16 +235,15 @@ handleSyncQueries () {
          echo "move new version of ${PRODUCT_PROJECT} to the target directory."
          eval "${CURL_CMD} --request MOVE -H 'Destination: ${NEXTCLOUD_PROJ_PATH}' '${NEXTCLOUD_UPLOADING_PATH}/${PRODUCT_PROJECT}'"
 
-         local LOGGED_APPS=
+         local LOGGED_PROJECTS=
          HANDLING_LOG="${HANDLING_LOG}\n\nПроект ${PRODUCT_PROJECT}: "
          for (( index2 = 0; index2 < ${#REPO_PRODUCTS_ARRAY[@]}; index2 = index2 + 4 ))
          do
             local PRODUCT_REPO2=${REPO_PRODUCTS_ARRAY[index2]}
             local PRODUCT_PROJECT2=${REPO_PRODUCTS_ARRAY[index2 + 1]}
             local PRODUCT_APP2=${REPO_PRODUCTS_ARRAY[index2 + 2]}
-            local PRODUCT_PROJECT_APP="${PRODUCT_PROJECT2}/${PRODUCT_APP2}"
-            if [[ ${PRODUCT_REPO} == ${PRODUCT_REPO2} ]] && [[ ${LOGGED_APPS} != *${PRODUCT_PROJECT_APP}* ]]; then
-               LOGGED_PROJECTS="${LOGGED_APPS}${PRODUCT_PROJECT_APP} "
+            if [[ ${PRODUCT_REPO} == ${PRODUCT_REPO2} ]] && [[ ${LOGGED_PROJECTS} != *${PRODUCT_PROJECT2}* ]]; then
+               LOGGED_PROJECTS="${LOGGED_PROJECTS}${PRODUCT_PROJECT2} "
                HANDLING_LOG="${HANDLING_LOG}\n   ${PRODUCT_APP2} - ${NEXTCLOUD_HTTPS_PATH}/${PRODUCT_PROJECT2}/${PRODUCT_APP2}"
             fi
          done

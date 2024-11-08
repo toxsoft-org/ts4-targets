@@ -1,1 +1,0 @@
-skf-journals skf-devs skt-vetrol skf-mnemo skf-alarms skf-bridge cp-gwp mcc vetrol-ci cp-val cp-mmk cp-gbh 

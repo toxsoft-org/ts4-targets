@@ -219,14 +219,15 @@ buildTarget () {
    if [ ${NEED_CANCEL_RETCODE} -ne 0 ]; then
       echo
       echo "cancel buildTarget(REPO=${ARG_REPO}, DEPENDS=\"${ARG_DEPENDS}\", BRANCH=${ARG_BRANCH}, MODE=${ARG_MODE})"
-      if [ ! -f ${CANCEL_TAG_FILE} ] || [ ! -z "${ARTEFACT_MODULES}" ]; then
+      # if [ ! -f ${CANCEL_TAG_FILE} ] || [ ! -z "${ARTEFACT_MODULES}" ]; then
+      if [ ! -f ${CANCEL_TAG_FILE} ] || [ ! -z "${ARTEFACT_MODULES}" ] || [ "${ARG_MODE}" = "${MODE_FORCE}" ] || [ "${BUILD_FORCE}" -eq 1  ]; then
          # set/update canceled flag
          echo "${ARG_BUILT_DATE}" > ${CANCEL_TAG_FILE}
          echo "${ARG_BUILT_DATE}: cancel build ${ARG_REPO} by the states of dependencies: " > ${BUILD_LOG_FILE}
          logDepends ${BUILD_LOG_FILE} "${ARG_DEPENDS}"
          printf "${BUILD_LOG_FILE} " >> ${TARGETS_ATTACHMENTS_RESULT_FILE}
       fi
-      if [ ! -z "${ARTEFACT_MODULES}" ] || [ -f ${TARGETS_BUILDED_RESULT_FILE} ]; then
+      if [ ! -z "${ARTEFACT_MODULES}" ] || [ "${ARG_MODE}" = "${MODE_FORCE}" ] || [ "${BUILD_FORCE}" -eq 1  ] || [ -f ${TARGETS_BUILDED_RESULT_FILE} ]; then
          return 2
       fi
       return 3

@@ -113,7 +113,7 @@ buildAll () {
    ${BUILD_MAIN_NONE}     ${SKF_DEVS_REPO}     "${TS4_USKAT_REPO} ${SKF_REPORTS_REPO} ${TS4_SKIDE_REPO}" &
 
    # multithread building
-   ${BUILD_MAIN_LOCAL}     ${SKT_VETROL_REPO}   "${TS4_USKAT_REPO} ${SKF_DQ_REPO} ${SKF_ONEWS_REPO} ${SKF_LEGACY_REPO} ${TS4_SKIDE_REPO}" &
+   ${BUILD_MAIN_LOCAL}     ${SKT_VETROL_REPO}   "${TS4_USKAT_REPO} ${SKF_DQ_REPO} ${SKF_ALARMS_REPO} ${SKF_RRI_REPO} ${SKF_ONEWS_REPO} ${SKF_LEGACY_REPO} ${TS4_SKIDE_REPO}" &
    # ${BUILD_MAIN_NONE}    ${SKT_SITROL_REPO}   ${TS4_USKAT_REPO}  &
 
    echo "waiting for ${TARGETS_ID} platform building to be completed..."

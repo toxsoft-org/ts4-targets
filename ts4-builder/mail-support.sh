@@ -59,7 +59,7 @@ SEND_GMAIL_SERVER="smtp.gmail.com:587"
 SEND_GMAIL_USER="kovach.mike@gmail.com"
 SEND_GMAIL_USER_PASSWD="'dnhk zuiv ztli ylnm'"
 
-export MAIL_SEND_CMD="sendemail -f ${SEND_FROM} -s ${SEND_GMAIL_SERVER} -o tls=yes -xu ${SEND_GMAIL_USER} -xp ${SEND_GMAIL_USER_PASSWD}"
+export MAIL_SEND_CMD="sendemail -f ${SEND_FROM} -s ${SEND_GMAIL_SERVER} -o message-charset=UTF-8 -o tls=yes -xu ${SEND_GMAIL_USER} -xp ${SEND_GMAIL_USER_PASSWD}"
 
 # sendemail -f software.builder@toxsoft.org -s smtp.gmail.com:587 -o tls=yes -xu kovach.mike@gmail.com -xp 'dnhk zuiv ztli ylnm' -t kovach.mike@gmail.com -u 'Тема сообщения9' -m 'Текст сообщения9' -a attachments files
 # eval "${SEND_CMD} -t ${MAIL_USERS} -u ${MAIL_GIT_SUBJECT_ERROR}${MAIL_USKAT_REPO} -m ${MAIL_GIT_DIFF_MESSAGE_ERROR}${MAIL_USKAT_REPO}"

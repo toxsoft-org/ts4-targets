@@ -259,10 +259,11 @@ handleSyncQueries () {
    # calc build time elapsed
    duration=$SECONDS
    SYNC_TIME="sync time = $((duration / 60)) minutes and $((duration % 60)) seconds."
+   CHARSET_INFO="mail charset = ${MAIL_CHARSET}."
 
    if [ ! -z "${HANDLING_LOG}" ]; then
         # send mail
-        MESSAGE="${MAIL_MESSAGE_PRODUCT}${HANDLING_LOG}\n\n${SYNC_TIME}\n\n${MAIL_BEST_REGARDS}"
+        MESSAGE="${MAIL_MESSAGE_PRODUCT}${HANDLING_LOG}\n\n${SYNC_TIME}\n${CHARSET_INFO}\n\n${MAIL_BEST_REGARDS}"
         eval "${MAIL_SEND_CMD} -t ${MAIL_PRODUCT_USERS} -u ${MAIL_SUBJECT_PRODUCT} -m \"${MESSAGE}\""
    fi
 

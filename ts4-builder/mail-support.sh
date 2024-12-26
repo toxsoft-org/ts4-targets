@@ -30,16 +30,26 @@ kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 
 export MAIL_PRODUCT_USERS=\
+serg@toxsoft.ru,\
+svf@toxsoft.ru,\
+kaa@toxsoft.ru,\
+goga@toxsoft.ru,\
+egorov.dmitry.alex@gmail.com,\
+vs@toxsoft.ru,\
+prokhorov_m@mail.ru,\
+tdo@toxsoft.ru,\
+slavage@toxsoft.ru,\
 kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 
+export MAIL_CHARSET=utf-8
 export MAIL_SUBJECT="SoftwareBuilder. Updated targets: "
 export MAIL_MESSAGE="The software builder rebuilt the toxsoft targets and committed the results to github."
 export MAIL_MESSAGE_PRODUCT="Здравствуйте!\n\nВ облаке компании ТоксСофт https://tsapp.ru/ обновлены дистрибутивы следующих проектов."
 export MAIL_BEST_REGARDS="С уважением, компания ТоксСофт."
 
 export MAIL_SUBJECT_ERROR="SoftwareBuilder. Build ERROR: "
-export MAIL_SUBJECT_PRODUCT="tsapp.ru: обновление продуктов компании ТоксСофт."
+export MAIL_SUBJECT_PRODUCT="=?${MAIL_CHARSET}?Q?tsapp.ru: обновление продуктов компании ТоксСофт.?="
 export MAIL_MESSAGE_ERROR="The software builder cannot execute rebuild toxsoft targets [ERROR]."
 
 
@@ -59,7 +69,7 @@ SEND_GMAIL_SERVER="smtp.gmail.com:587"
 SEND_GMAIL_USER="kovach.mike@gmail.com"
 SEND_GMAIL_USER_PASSWD="'dnhk zuiv ztli ylnm'"
 
-export MAIL_SEND_CMD="sendemail -f ${SEND_FROM} -s ${SEND_GMAIL_SERVER} -o message-charset=UTF-8 -o tls=yes -xu ${SEND_GMAIL_USER} -xp ${SEND_GMAIL_USER_PASSWD}"
+export MAIL_SEND_CMD="sendemail -f ${SEND_FROM} -s ${SEND_GMAIL_SERVER} -o message-charset=${MAIL_CHARSET} -o tls=yes -xu ${SEND_GMAIL_USER} -xp ${SEND_GMAIL_USER_PASSWD}"
 
 # sendemail -f software.builder@toxsoft.org -s smtp.gmail.com:587 -o tls=yes -xu kovach.mike@gmail.com -xp 'dnhk zuiv ztli ylnm' -t kovach.mike@gmail.com -u 'Тема сообщения9' -m 'Текст сообщения9' -a attachments files
 # eval "${SEND_CMD} -t ${MAIL_USERS} -u ${MAIL_GIT_SUBJECT_ERROR}${MAIL_USKAT_REPO} -m ${MAIL_GIT_DIFF_MESSAGE_ERROR}${MAIL_USKAT_REPO}"

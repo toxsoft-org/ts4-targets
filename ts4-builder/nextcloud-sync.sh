@@ -17,7 +17,8 @@ NEXTCLOUD_HOST="tsapp.ru"
 # nextcloud address
 NEXTCLOUD_PATH="https://${NEXTCLOUD_HOST}/remote.php/webdav"
 # nextcloud product path
-NEXTCLOUD_PRODUCT_PATH="kovach/products"
+# NEXTCLOUD_PRODUCT_PATH="kovach/products"
+NEXTCLOUD_PRODUCT_PATH="Архив/products"
 # nextcloud project path
 NEXTCLOUD_HTTPS_PATH="https://${NEXTCLOUD_HOST}/index.php/apps/files/files?dir=/${NEXTCLOUD_PRODUCT_PATH}"
 # nextcloud sync path

@@ -100,20 +100,20 @@ buildAll () {
    ${BUILD_MAIN_GLOBAL}   ${TS4_SKIDE_REPO}    "${TS4_USKAT_REPO}" &
    ${BUILD_MAIN_GLOBAL}   ${SKF_DQ_REPO}       "${TS4_USKAT_REPO}" &
    ${BUILD_MAIN_LOCAL}    ${SKF_LEGACY_REPO}   "${TS4_USKAT_REPO}" &
-   echo "waiting for ${TARGETS_ID} platform building to be completed..."
+   echo "waiting for ${TARGETS_ID} platform building (part 1) to be completed..."
    wait
 
    ${BUILD_MAIN_GLOBAL}   ${SKF_USERS_REPO}    "${TS4_USKAT_REPO} ${TS4_SKIDE_REPO}" &
    ${BUILD_MAIN_GLOBAL}   ${SKF_REFBOOKS_REPO} "${TS4_USKAT_REPO} ${TS4_SKIDE_REPO}" &
    ${BUILD_MAIN_GLOBAL}   ${SKF_REPORTS_REPO}  "${TS4_USKAT_REPO} ${SKF_DQ_REPO} ${TS4_SKIDE_REPO}" &
    ${BUILD_MAIN_NONE}     ${SKF_JOURNALS_REPO} "${TS4_USKAT_REPO} ${SKF_DQ_REPO}" &
-   echo "waiting for ${TARGETS_ID} platform building to be completed..."
+   echo "waiting for ${TARGETS_ID} platform building (part 2) to be completed..."
    wait
 
    ${BUILD_MAIN_GLOBAL}   ${SKF_ONEWS_REPO}    "${TS4_USKAT_REPO} ${SKF_USERS_REPO}" &
    ${BUILD_MAIN_LOCAL}    ${SKF_ALARMS_REPO}   "${TS4_USKAT_REPO} ${SKF_REPORTS_REPO} ${TS4_SKIDE_REPO}" &
    ${BUILD_MAIN_NONE}     ${SKF_DEVS_REPO}     "${TS4_USKAT_REPO} ${SKF_REPORTS_REPO} ${TS4_SKIDE_REPO}" &
-   echo "waiting for ${TARGETS_ID} platform building to be completed..."
+   echo "waiting for ${TARGETS_ID} platform building (part 3) to be completed..."
    wait
 
    ${BUILD_MAIN_GLOBAL}   ${SKF_RRI_REPO}      "${TS4_USKAT_REPO} ${SKF_ALARMS_REPO} ${TS4_SKIDE_REPO}"
@@ -122,11 +122,13 @@ buildAll () {
    ${BUILD_MAIN_NONE}     ${SKF_BRIDGE_REPO}   "${TS4_USKAT_REPO} ${SKF_DQ_REPO} ${SKF_RRI_REPO} ${SKF_REFBOOKS_REPO} ${TS4_L2_REPO} ${TS4_SKIDE_REPO}" &
    ${BUILD_MAIN_NONE}     ${SKF_MNEMO_REPO}    "${TS4_USKAT_REPO} ${SKF_REPORTS_REPO} ${SKF_RRI_REPO} ${TS4_SKIDE_REPO}" &
 
-   # multithread building
+   echo "waiting for ${TARGETS_ID} platform building (part 4) to be completed..."
+   wait
+
    ${BUILD_MAIN_LOCAL}     ${SKT_VETROL_REPO}   "${TS4_USKAT_REPO} ${SKF_DQ_REPO} ${SKF_ALARMS_REPO} ${SKF_RRI_REPO} ${SKF_ONEWS_REPO} ${SKF_BRIDGE_REPO} ${SKF_LEGACY_REPO} ${TS4_SKIDE_REPO}" &
    # ${BUILD_MAIN_NONE}    ${SKT_SITROL_REPO}   ${TS4_USKAT_REPO}  &
 
-   echo "waiting for ${TARGETS_ID} platform building to be completed..."
+   echo "waiting for ${TARGETS_ID} platform building (part 5) to be completed..."
    wait
 
    if [ -f ${TARGETS_BUILDED_RESULT_FILE} ]; then

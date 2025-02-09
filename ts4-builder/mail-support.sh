@@ -30,15 +30,7 @@ kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 
 export MAIL_PRODUCT_USERS=\
-serg@toxsoft.ru,\
-svf@toxsoft.ru,\
-kaa@toxsoft.ru,\
-goga@toxsoft.ru,\
 egorov.dmitry.alex@gmail.com,\
-vs@toxsoft.ru,\
-prokhorov_m@mail.ru,\
-tdo@toxsoft.ru,\
-slavage@toxsoft.ru,\
 kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 

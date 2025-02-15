@@ -29,10 +29,11 @@ export MAIL_ADMINS=\
 kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 
-export MAIL_PRODUCT_USERS=\
-egorov.dmitry.alex@gmail.com,\
-kovach@toxsoft.ru,\
-kovach.mike@gmail.com
+export MAIL_PRODUCT_USERS=
+# export MAIL_PRODUCT_USERS=\
+# egorov.dmitry.alex@gmail.com,\
+# kovach@toxsoft.ru,\
+# kovach.mike@gmail.com
 
 export MAIL_CHARSET=utf-8
 export MAIL_SUBJECT="SoftwareBuilder. Updated targets: "

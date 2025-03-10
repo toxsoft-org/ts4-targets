@@ -181,7 +181,7 @@
           <archive>
             <manifestEntries>
               <Built-Date>${maven.build.timestamp}</Built-Date>
-            </manifestEntries>						
+            </manifestEntries>            
           </archive>
         </configuration>
       </plugin>
@@ -295,10 +295,12 @@
           <useUIThread>true</useUIThread>
           <!--<showEclipseLog>true</showEclipseLog> -->
           <!--<testFailureIgnore>true</testFailureIgnore> -->
+          <!--
           <argLine>${ui.test.vmargs}</argLine>
           <jvmArgs>
             <args>${ui.test.vmargs}</args>
           </jvmArgs>
+          -->
           <bundleStartLevel>
             <bundle>
               <id>org.eclipse.equinox.launcher</id>
@@ -449,35 +451,34 @@
   <modules>
     <module>eclipse-releng/${platform.rcp.artifactId}</module>
     <module>eclipse-releng/${platform.rap.artifactId}</module>
-    <module>../ts4-extlibs</module>
 
+    <!-- <module>../ts4-extlibs</module> -->
     <module>../ts4-core</module>
     <module>../ts4-uskat</module>
-    <module>../skf-alarms</module> 
     <module>../ts4-skide</module>
-
-
-    <module>../skf-users</module>
-    <module>../skf-reports</module>
-    <module>../skf-refbooks</module>
-    <module>../skf-journals</module>
-    <module>../skf-bridge</module>
     <module>../skf-dq</module>
+    <module>../skf-legacy</module>
+    <module>../skf-users</module>
+    <module>../skf-refbooks</module>
+    <module>../skf-reports</module>
+    <module>../skf-journals</module>
     <module>../skf-onews</module>
-    <module>../skf-ggprefs</module>
-    <module>../skf-mnemo</module>
-    <module>../skf-rri</module>
-
+    <module>../skf-alarms</module>
     <module>../skf-devs</module>
+    <module>../skf-rri</module>
+    <module>../ts4-l2</module>
+    <module>../skf-bridge</module>
+    <module>../skf-mnemos</module> 
+    <module>../skt-vetrol</module>
+
 <!--
+    <module>../skf-ggprefs</module>
     <module>../skf-tags</module> 
     <module>../skf-maps</module> 
     <module>../skf-charts</module> 
 -->
 
-    <module>../skt-vetrol</module>
 
-    <module>../ts4-l2</module>
 
 
   </modules>

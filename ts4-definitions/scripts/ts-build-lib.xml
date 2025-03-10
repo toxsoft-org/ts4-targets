@@ -31,11 +31,8 @@
       <!-- распаковка всех jar-ов -->
       <!-- <zipgroupfileset dir="lib/default/" includes="*.jar" excludes="*.properties" /> -->
       <zipgroupfileset dir="" includes="*.jar" /> 
-	
+
       <!-- добавление собственных классов с возможностью перекрытия классов из выше распакованных jars -->
-      <fileset dir="bin" erroronmissingdir="false">
-        <include name="**/*.class" />
-      </fileset>
       <fileset dir="target/classes" erroronmissingdir="false">
         <include name="**/*.class" />
       </fileset>

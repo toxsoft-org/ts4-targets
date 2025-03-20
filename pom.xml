@@ -468,7 +468,7 @@
     <module>../skf-rri</module>
     <module>../ts4-l2</module>
     <module>../skf-bridge</module>
-    <module>../skf-mnemos</module> 
+    <module>../skf-mnemo</module> 
     <module>../skt-vetrol</module>
 
 <!--

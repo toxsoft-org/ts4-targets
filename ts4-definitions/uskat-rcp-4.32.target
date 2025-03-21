@@ -48,8 +48,8 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-journals/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-maps/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-maps/rcp" type="Directory"/>
-    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-mnemo/main" type="Directory"/>
-    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-mnemo/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-mnemos/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-mnemos/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-onews/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-onews/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-refbooks/main" type="Directory"/>

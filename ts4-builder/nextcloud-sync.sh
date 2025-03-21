@@ -35,31 +35,46 @@ NEXTCLOUD_PASSWORD=xYyeqTqn
 # nextcloud sync date
 NEXTCLOUD_SYNC_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
 
+# REPO_PRODUCTS="\
+# mcc        17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-linux.gtk.x86_64.zip \
+# mcc        17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-win32.win32.x86_64.zip \
+# mcc        17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-macosx.cocoa.x86_64.tar.gz \
+# mcc        17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/repository \
+# vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-linux.gtk.x86_64.zip \
+# vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-win32.win32.x86_64.zip \
+# vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-macosx.cocoa.x86_64.tar.gz \
+# vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/repository \
+# cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-linux.gtk.x86_64.zip \
+# cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-win32.win32.x86_64.zip \
+# cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-macosx.cocoa.x86_64.tar.gz \
+# cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/repository \
+# cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-linux.gtk.x86_64.zip \
+# cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-win32.win32.x86_64.zip \
+# cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-macosx.cocoa.x86_64.tar.gz \
+# cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/repository \
+# cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-linux.gtk.x86_64.zip \
+# cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-win32.win32.x86_64.zip \
+# cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-macosx.cocoa.x86_64.tar.gz \
+# cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/repository \
+# cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-linux.gtk.x86_64.zip \
+# cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-win32.win32.x86_64.zip \
+# cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-macosx.cocoa.x86_64.tar.gz \
+# cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/repository "
+
 REPO_PRODUCTS="\
 mcc        17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-linux.gtk.x86_64.zip \
 mcc        17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-win32.win32.x86_64.zip \
-mcc        17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-macosx.cocoa.x86_64.tar.gz \
-mcc        17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/repository \
 vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-linux.gtk.x86_64.zip \
 vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-win32.win32.x86_64.zip \
-vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-macosx.cocoa.x86_64.tar.gz \
-vetrol-ci  21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/repository \
 cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-linux.gtk.x86_64.zip \
 cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-win32.win32.x86_64.zip \
-cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-macosx.cocoa.x86_64.tar.gz \
-cp-mmk     23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/repository \
 cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-linux.gtk.x86_64.zip \
 cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-win32.win32.x86_64.zip \
-cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-macosx.cocoa.x86_64.tar.gz \
-cp-mmk     23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/repository \
 cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-linux.gtk.x86_64.zip \
 cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-win32.win32.x86_64.zip \
-cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-macosx.cocoa.x86_64.tar.gz \
-cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/repository \
 cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-linux.gtk.x86_64.zip \
 cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-win32.win32.x86_64.zip \
-cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-macosx.cocoa.x86_64.tar.gz \
-cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/repository "
+"
 
 read -a REPO_PRODUCTS_ARRAY <<< "${REPO_PRODUCTS}"
 

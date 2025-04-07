@@ -39,7 +39,7 @@ SKF_JOURNALS_REPO=skf-journals
 SKF_REPORTS_REPO=skf-reports
 SKF_DEVS_REPO=skf-devs
 SKF_LEGACY_REPO=skf-legacy
-SKF_GENERAL=skf-general
+SKF_GENERAL_REPO=skf-general
 SKT_VETROL_REPO=skt-vetrol
 
 # projects repos

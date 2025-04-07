@@ -459,6 +459,7 @@
     <module>../skf-dq</module>
     <module>../skf-legacy</module>
     <module>../skf-users</module>
+    <module>../skf-ggprefs</module>
     <module>../skf-refbooks</module>
     <module>../skf-reports</module>
     <module>../skf-journals</module>
@@ -472,7 +473,6 @@
     <module>../skt-vetrol</module>
 
 <!--
-    <module>../skf-ggprefs</module>
     <module>../skf-tags</module> 
     <module>../skf-maps</module> 
     <module>../skf-charts</module> 

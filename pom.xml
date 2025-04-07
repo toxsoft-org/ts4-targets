@@ -470,6 +470,7 @@
     <module>../ts4-l2</module>
     <module>../skf-bridge</module>
     <module>../skf-mnemos</module> 
+    <module>../skf-general</module>
     <module>../skt-vetrol</module>
 
 <!--

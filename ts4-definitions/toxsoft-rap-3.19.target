@@ -57,5 +57,7 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-users/rap" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-legacy/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-legacy/rap" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-general/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-general/rap" type="Directory"/>
   </locations>
 </target>

@@ -65,6 +65,6 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-legacy/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-legacy/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-general/main" type="Directory"/>
-    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-general/rcp" type="Directory"/>
+    <!-- <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-general/rcp" type="Directory"/> -->
   </locations>
 </target>

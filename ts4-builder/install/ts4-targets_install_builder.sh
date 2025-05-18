@@ -1,17 +1,5 @@
 #!/bin/bash
 
-ABSOLUTE_FILENAME=`readlink -e "$0"`
-BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
-BUILDER_LAST_DIR=`basename ${BUILDER_DIR}`
-
-if [ "${BUILDER_LAST_DIR}" != "git-repos" ]; then
-  echo "ОШИБКА: сценарий установки сборки ts4-targets должен быть запущен из каталога git-repos!"
-  exit
-fi
-
-# curl is need for nextcloud
-sudo apt-get install curl
-
 PLATFORM_REPOS='\
  ts4-targets\
  ts4-extlibs\
@@ -46,6 +34,26 @@ CP_REPOS='\
  cp-gbh\
  cp-val\
  cp-mmk'
+
+##################################################################################################
+# install
+#
+
+ABSOLUTE_FILENAME=`readlink -e "$0"`
+BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
+BUILDER_LAST_DIR=`basename ${BUILDER_DIR}`
+
+if [ "${BUILDER_LAST_DIR}" != "git-repos" ]; then
+  echo "ОШИБКА: сценарий установки сборки ts4-targets должен быть запущен из каталога git-repos!"
+  exit
+fi
+
+# mail is need for notification
+sudo apt install sendemail
+
+# curl is need for nextcloud
+sudo apt-get install curl
+
 
 read -a PLATFORM_REPOS_ITEMS <<< "${PLATFORM_REPOS}"
 for item in "${PLATFORM_REPOS_ITEMS[@]}"; do

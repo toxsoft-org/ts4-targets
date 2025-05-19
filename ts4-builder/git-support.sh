@@ -18,7 +18,7 @@ source ${BUILDER_DIR}/targets-config.sh
 source ${BUILDER_DIR}/mail-support.sh
 
 # 2024-10-12 +++mvk: -XX:-UsePerfData (source: https://stackoverflow.com/questions/76327/how-can-i-prevent-java-from-creating-hsperfdata-files)
-export GIT_DIFF_PARSER_CMD="java -XX:-UsePerfData -jar /home/ts4-targets/works/git-repos/ts4-targets/ts4-target-core/lib/org.toxsoft.core.git.parser-lib.jar"
+export GIT_DIFF_PARSER_CMD="java -XX:-UsePerfData -jar /home/${TARGETS_USER}/works/git-repos/ts4-targets/ts4-target-core/lib/org.toxsoft.core.git.parser-lib.jar"
 
 # git main branch variants
 export GIT_MAIN_BRANCH=main

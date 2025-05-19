@@ -29,11 +29,13 @@ SUB_PLATFORM_REPOS='\
 
 # projects repos
 CP_REPOS='\
- vetrol-ci\
- cp-gwp\
- cp-gbh\
+ cp-sitrol-nm\
+ cp-vetrol-bkn\
  cp-val\
+ vetrol-ci\
  cp-mmk\
+ cp-gbh\
+ cp-gwp\
  mcc'
 
 ##################################################################################################

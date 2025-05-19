@@ -18,7 +18,6 @@ vs@toxsoft.ru,\
 egorov.dmitry.alex@gmail.com,\
 prokhorov_m@mail.ru,\
 tdo@toxsoft.ru,\
-slavage@toxsoft.ru,\
 kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 else
@@ -36,7 +35,7 @@ export MAIL_PRODUCT_USERS=
 # kovach.mike@gmail.com
 
 export MAIL_CHARSET=utf-8
-export MAIL_SUBJECT="SoftwareBuilder. Updated targets: "
+export MAIL_SUBJECT="ToxsoftBuilder4. Updated targets: "
 export MAIL_MESSAGE="The software builder rebuilt the toxsoft targets and committed the results to github."
 export MAIL_MESSAGE_PRODUCT="Здравствуйте!\n\nВ облаке компании ТоксСофт https://tsapp.ru/ обновлены дистрибутивы следующих проектов."
 export MAIL_BEST_REGARDS="С уважением, компания ТоксСофт."

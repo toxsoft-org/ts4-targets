@@ -280,8 +280,8 @@ if [ $? -eq 1 ]; then
    exit 1
 fi
 exit 0
-) >> ${TARGETS_TMP_DIR}/_build.log
-# ) 
+ ) >> ${TARGETS_TMP_DIR}/_build.log
+# )
 
 if [ $? -eq 1 ]; then
    echo "${BUILT_DATE}: script $0 is already running: exiting"

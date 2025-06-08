@@ -472,6 +472,7 @@
     <module>../skf-mnemos</module> 
     <module>../skf-general</module>
     <module>../skt-vetrol</module>
+    <module>../skt-sitrol</module>
 
 <!--
     <module>../skf-tags</module> 

@@ -34,29 +34,30 @@ export MAIL_PRODUCT_USERS=
 # kovach@toxsoft.ru,\
 # kovach.mike@gmail.com
 
+export MAIL_SERVER_ID="ToxsoftBuilder4"
 export MAIL_CHARSET=utf-8
-export MAIL_SUBJECT="ToxsoftBuilder4. Updated targets: "
-export MAIL_MESSAGE="The software builder rebuilt the toxsoft targets and committed the results to github."
+export MAIL_SUBJECT="${MAIL_SERVER_ID}, updated targets: "
+export MAIL_MESSAGE="${MAIL_SERVER_ID} rebuilt the toxsoft targets and committed the results to github."
 export MAIL_MESSAGE_PRODUCT="Здравствуйте!\n\nВ облаке компании ТоксСофт https://tsapp.ru/ обновлены дистрибутивы следующих проектов."
 export MAIL_BEST_REGARDS="С уважением, компания ТоксСофт."
 
-export MAIL_SUBJECT_ERROR="SoftwareBuilder. Build ERROR: "
+export MAIL_SUBJECT_ERROR="${MAIL_SERVER_ID}, build ERROR: "
 export MAIL_SUBJECT_PRODUCT="=?${MAIL_CHARSET}?Q?tsapp.ru: обновление продуктов компании ТоксСофт.?="
-export MAIL_MESSAGE_ERROR="The software builder cannot execute rebuild toxsoft targets [ERROR]."
+export MAIL_MESSAGE_ERROR="${MAIL_SERVER_ID} cannot execute rebuild toxsoft targets [ERROR]."
 
 
-export MAIL_GIT_SUBJECT_ERROR="SoftwareBuilder. Git ERROR: "
-export MAIL_GIT_FETCH_MESSAGE_ERROR="The software builder cannot execute command: git fetch. Repository: "
-export MAIL_GIT_DIFF_MESSAGE_ERROR="The software builder cannot execute command: git diff. Repository: "
-export MAIL_GIT_MERGE_MESSAGE_ERROR="The software builder cannot execute git merge. Repository: "
-export MAIL_GIT_ADD_INDEX_MESSAGE_ERROR="The software builder cannot execute git add index. Repository: "
-export MAIL_GIT_COMMIT_MESSAGE_ERROR="The software builder cannot execute git commit. Repository: "
-export MAIL_GIT_PUSH_MESSAGE_ERROR="The software builder cannot execute git push. Repository: "
+export MAIL_GIT_SUBJECT_ERROR="${MAIL_SERVER_ID}, git ERROR: "
+export MAIL_GIT_FETCH_MESSAGE_ERROR="${MAIL_SERVER_ID} cannot execute command: git fetch. Repository: "
+export MAIL_GIT_DIFF_MESSAGE_ERROR="${MAIL_SERVER_ID} cannot execute command: git diff. Repository: "
+export MAIL_GIT_MERGE_MESSAGE_ERROR="${MAIL_SERVER_ID} cannot execute git merge. Repository: "
+export MAIL_GIT_ADD_INDEX_MESSAGE_ERROR="${MAIL_SERVER_ID} cannot execute git add index. Repository: "
+export MAIL_GIT_COMMIT_MESSAGE_ERROR="${MAIL_SERVER_ID} cannot execute git commit. Repository: "
+export MAIL_GIT_PUSH_MESSAGE_ERROR="${MAIL_SERVER_ID} cannot execute git push. Repository: "
  
-export MAIL_SUBJECT_CANCEL="SoftwareBuilder. Build CANCEL: "
-export MAIL_MESSAGE_CANCEL="The software builder cannot execute build toxsoft targets [CANCEL].\\n\\nSee the attachments for details:"
+export MAIL_SUBJECT_CANCEL="${MAIL_SERVER_ID}, build CANCEL: "
+export MAIL_MESSAGE_CANCEL="${MAIL_SERVER_ID} cannot execute build toxsoft targets [CANCEL].\\n\\nSee the attachments for details:"
 
-SEND_FROM="software.builder@toxsoft.org"
+SEND_FROM="${MAIL_SERVER_ID}@toxsoft.org"
 SEND_GMAIL_SERVER="smtp.gmail.com:587"
 SEND_GMAIL_USER="kovach.mike@gmail.com"
 SEND_GMAIL_USER_PASSWD="'dnhk zuiv ztli ylnm'"

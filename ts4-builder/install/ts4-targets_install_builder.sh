@@ -16,6 +16,7 @@ PLATFORM_REPOS='\
  skf-ggprefs\
  skf-refbooks\
  skf-rri\
+ skf-sad\
  skf-mnemos\
  skf-journals\
  skf-reports\

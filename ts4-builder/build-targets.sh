@@ -41,6 +41,7 @@ SKF_ONEWS_REPO=skf-onews
 SKF_GGPREFS_REPO=skf-ggprefs
 SKF_REFBOOKS_REPO=skf-refbooks
 SKF_RRI_REPO=skf-rri
+SKF_SAD_REPO=skf-sad
 SKF_MNEMOS_REPO=skf-mnemos
 SKF_JOURNALS_REPO=skf-journals
 SKF_REPORTS_REPO=skf-reports
@@ -110,6 +111,7 @@ buildAll () {
 
    ${BUILD_MAIN_GLOBAL}   ${TS4_SKIDE_REPO}    "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
    ${BUILD_MAIN_GLOBAL}   ${SKF_DQ_REPO}       "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
+   ${BUILD_MAIN_GLOBAL}   ${SKF_SAD_REPO}      "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
    ${BUILD_MAIN_LOCAL}    ${SKF_LEGACY_REPO}   "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
    echo "waiting for ${TARGETS_ID} platform building (part 1) to be completed..."
    wait

@@ -62,6 +62,10 @@ NEXTCLOUD_SYNC_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
 # cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/repository "
 
 REPO_PRODUCTS="\
+cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          АРМ    ru.toxsoft.nm.ws.exe/product/target/products/nm-ws-linux.gtk.x86_64.zip \
+cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          АРМ    ru.toxsoft.nm.ws.exe/product/target/products/nm-ws-win32.win32.x86_64.zip \
+cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          SkIDE  ru.toxsoft.nm.skide.exe/product/target/products/nm-skide-linux.gtk.x86_64.zip \
+cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          SkIDE  ru.toxsoft.nm.skide.exe/product/target/products/nm-skide-win32.win32.x86_64.zip \
 cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       АРМ    ru.toxsoft.bkn.ws.exe/product/target/products/bkn-ws-linux.gtk.x86_64.zip \
 cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       АРМ    ru.toxsoft.bkn.ws.exe/product/target/products/bkn-ws-win32.win32.x86_64.zip \
 cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       SkIDE  ru.toxsoft.bkn.skide.exe/product/target/products/bkn-skide-linux.gtk.x86_64.zip \

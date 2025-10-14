@@ -58,6 +58,10 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-reports/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-rri/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-rri/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-sad/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-sad/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-ha/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-ha/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-tags/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-tags/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-users/main" type="Directory"/>

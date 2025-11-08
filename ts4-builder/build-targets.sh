@@ -113,7 +113,7 @@ buildAll () {
    ${BUILD_MAIN_GLOBAL}   ${TS4_SKIDE_REPO}    "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
    ${BUILD_MAIN_GLOBAL}   ${SKF_DQ_REPO}       "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
    ${BUILD_MAIN_GLOBAL}   ${SKF_SAD_REPO}      "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
-   ${BUILD_MAIN_GLOBAL}   ${SKF_HA_REPO}       "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
+   ${BUILD_MAIN_ALL}      ${SKF_HA_REPO}       "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
    ${BUILD_MAIN_LOCAL}    ${SKF_LEGACY_REPO}   "${TS4_USKAT_REPO}" ${TS4_CONCURRENT}
    echo "waiting for ${TARGETS_ID} platform building (part 1) to be completed..."
    wait

@@ -30,6 +30,8 @@
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-core/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-uskat/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-uskat/rcp" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-ext/main" type="Directory"/>
+    <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-ext/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skide/main" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skide/rcp" type="Directory"/>
     <location path="${workspace_loc}/../git-repos/ts4-targets/ts4-target-skf-alarms/main" type="Directory"/>

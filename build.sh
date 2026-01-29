@@ -70,11 +70,22 @@ BUILDER_LAST_DIR=`basename ${BUILDER_DIR}`
 
 pushd ${GIT_REPOS_HOME}
 
-# mail is need for notification
-sudo apt install sendemail
+if [ "${ARG_CMD}" = "install" ]; then
+  # git is need for sources
+  sudo apt install git
 
-# curl is need for nextcloud
-sudo apt-get install curl
+  # maven is need for build
+  sudo apt install maven
+
+  # ant is need for build
+  sudo apt install ant
+
+  # mail is need for notification
+  sudo apt install sendemail
+  
+  # curl is need for nextcloud
+  sudo apt-get install curl
+fi
 
 
 ##################################################################################################

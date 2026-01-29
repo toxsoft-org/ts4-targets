@@ -116,6 +116,7 @@ buildAll () {
    ${BUILD_MAIN_GLOBAL}   ${TS4_SKIDE_REPO}    "${SKF_EXT_REPO}" ${TS4_CONCURRENT}
    ${BUILD_MAIN_GLOBAL}   ${SKF_DQ_REPO}       "${SKF_EXT_REPO}" ${TS4_CONCURRENT}
    ${BUILD_MAIN_GLOBAL}   ${SKF_SAD_REPO}      "${SKF_EXT_REPO}" ${TS4_CONCURRENT}
+   ${BUILD_MAIN_GLOBAL}   ${SKF_GGPREFS_REPO}      "${SKF_EXT_REPO}" ${TS4_CONCURRENT}
    ${BUILD_MAIN_ALL}      ${SKF_HA_REPO}       "${SKF_EXT_REPO}" ${TS4_CONCURRENT}
    ${BUILD_MAIN_LOCAL}    ${SKF_LEGACY_REPO}   "${SKF_EXT_REPO}" ${TS4_CONCURRENT}
    echo "waiting for ${TARGETS_ID} platform building (part 1) to be completed..."

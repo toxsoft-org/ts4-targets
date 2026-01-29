@@ -1,28 +1,38 @@
 #!/bin/bash
 
+ARG_CMD=$1
+
+GIT_REPOS_HOME="../"
+
 PLATFORM_REPOS='\
  ts4-targets\
  ts4-extlibs\
  ts4-core\
- ts4-core\
  ts4-uskat\
- ts4-l2\
+ skf-ext\
+
  ts4-skide\
- skf-users\
- skf-bridge\
- skf-alarms\
  skf-dq\
- skf-onews\
- skf-ggprefs\
- skf-refbooks\
- skf-rri\
  skf-sad\
- skf-mnemos\
- skf-journals\
- skf-reports\
- skf-devs\
+ skf-ha\
  skf-legacy\
- skf-general'
+
+ skf-users\
+ skf-refbooks\
+ skf-reports\
+ skf-journals\
+ skf-onews\
+ skf-alarms\
+ skf-rri\
+ ts4-l2\
+ skf-bridge\
+ skf-mnemos\
+ skf-devs\
+ skf-general\
+ skt-vetrol\
+ skt-sitrol'
+
+# skf-ggprefs\
 
 SUB_PLATFORM_REPOS='\
  skt-vetrol\
@@ -40,17 +50,25 @@ CP_REPOS='\
  mcc'
 
 ##################################################################################################
-# install
+#
+# 0. clean
+#
+if [ "${ARG_CMD}" = "clean" ]; then
+   echo "removing local git repository (clean)..."
+   rm -rf /.m2
+fi
+
+
+##################################################################################################
+#
+# 1. install
 #
 
 ABSOLUTE_FILENAME=`readlink -e "$0"`
 BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 BUILDER_LAST_DIR=`basename ${BUILDER_DIR}`
 
-if [ "${BUILDER_LAST_DIR}" != "git-repos" ]; then
-  echo "ОШИБКА: сценарий установки сборки ts4-targets должен быть запущен из каталога git-repos!"
-  exit
-fi
+pushd ${GIT_REPOS_HOME}
 
 # mail is need for notification
 sudo apt install sendemail
@@ -58,6 +76,11 @@ sudo apt install sendemail
 # curl is need for nextcloud
 sudo apt-get install curl
 
+
+##################################################################################################
+#
+# 2. load ts4 sources
+#
 
 read -a PLATFORM_REPOS_ITEMS <<< "${PLATFORM_REPOS}"
 for item in "${PLATFORM_REPOS_ITEMS[@]}"; do
@@ -74,5 +97,11 @@ for item in "${CP_REPOS_ITEMS[@]}"; do
   git clone https://github.com/toxsoft/${item}
 done
 
-cd ts4-targets
+popd
+
+##################################################################################################
+#
+# 3. build all
+#
+
 mvn clean install -Drcp

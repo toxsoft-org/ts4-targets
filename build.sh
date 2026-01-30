@@ -55,7 +55,7 @@ CP_REPOS='\
 #
 if [ "${ARG_CMD}" = "clean" ]; then
    echo "removing local git repository (clean)..."
-   rm -rf /.m2
+   rm -rf ~/.m2
 fi
 
 
@@ -96,16 +96,25 @@ fi
 read -a PLATFORM_REPOS_ITEMS <<< "${PLATFORM_REPOS}"
 for item in "${PLATFORM_REPOS_ITEMS[@]}"; do
   git clone https://github.com/toxsoft-org/${item}
+  pushd ${item}
+  git pull
+  popd
 done
 
 read -a SUB_PLATFORM_REPOS_ITEMS <<< "${SUB_PLATFORM_REPOS}"
 for item in "${SUB_PLATFORM_REPOS_ITEMS[@]}"; do
   git clone https://github.com/toxsoft/${item}
+  pushd ${item}
+  git pull
+  popd
 done
 
 read -a CP_REPOS_ITEMS <<< "${CP_REPOS}"
 for item in "${CP_REPOS_ITEMS[@]}"; do
   git clone https://github.com/toxsoft/${item}
+  pushd ${item}
+  git pull
+  popd
 done
 
 popd

@@ -5,7 +5,7 @@ process_directory() {
     local target_dir="$1"
     echo "target_dir = ${target_dir}"
     # Ищем все подкаталоги lib, main, rcp, rap в текущем каталоге и его подкаталогах
-    find "$target_dir" -type d \( -name "lib" -o -name "plugins" -o -name "deploy" \) | while read -r target_dir; do
+    find "$target_dir" -type d \( -name "lib" -o -name "plugins" -o -name "deploy" -o -name "deploy-local" \) | while read -r target_dir; do
 
         # Проверяем, есть ли jar-файлы в каталоге
         if find "$target_dir" -maxdepth 1 -name "*.jar" | grep -q .; then
@@ -29,8 +29,22 @@ process_directory() {
 }
 
 process_directory "$(pwd)/../ts4-targets"
+process_directory "$(pwd)/../skf-ha/zz-targets"
+process_directory "$(pwd)/../skf-alarms/zz-targets"
+process_directory "$(pwd)/../skf-devs/zz-targets"
+process_directory "$(pwd)/../skf-legacy/zz-targets"
+process_directory "$(pwd)/../skf-general/zz-targets"
+process_directory "$(pwd)/../skt-vetrol/zz-targets"
 process_directory "$(pwd)/../skt-sitrol/zz-releng/targets"
 
+process_directory "$(pwd)/../mcc/zz-targets"
+process_directory "$(pwd)/../vetrol-ci/zz-targets"
+process_directory "$(pwd)/../cp-gbh/zz-targets"
+process_directory "$(pwd)/../cp-gwp/zz-targets"
+process_directory "$(pwd)/../cp-mmk/zz-targets"
+process_directory "$(pwd)/../cp-val/zz-targets"
+process_directory "$(pwd)/../cp-vetrol-bkn/zz-releng/targets"
+process_directory "$(pwd)/../cp-sitrol-nm/zz-releng/targets"
 
 echo "done"
 

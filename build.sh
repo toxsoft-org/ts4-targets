@@ -10,13 +10,12 @@ PLATFORM_REPOS='\
  ts4-core\
  ts4-uskat\
  skf-ext\
-
  ts4-skide\
  skf-dq\
  skf-sad\
+ skf-ggprefs\
  skf-ha\
  skf-legacy\
-
  skf-users\
  skf-refbooks\
  skf-reports\

@@ -2,10 +2,10 @@
 Built target libraries and plugins
 
 1. install & build
-./build.sh
+ ./build.sh
 
 2. clear git local repository
-./build.sh clean
+ ./build.sh clean
 
 3. Build of a specific project for rcp, for example, skf-general:
 cd ../skf-general
@@ -20,7 +20,7 @@ mvn clean install -Drap dependency:go-offline
 
 6. Offline build:
 mvn -o clean install -Drcp
-или
+ГЁГ«ГЁ
 mvn -o clean install -Drap
 
 7. Change plugin version, for example: ts4-uskat

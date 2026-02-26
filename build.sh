@@ -27,9 +27,7 @@ PLATFORM_REPOS='\
  skf-bridge\
  skf-mnemos\
  skf-devs\
- skf-general\
- skt-vetrol\
- skt-sitrol'
+ skf-general'
 
 # skf-ggprefs\
 
@@ -67,8 +65,6 @@ ABSOLUTE_FILENAME=`readlink -e "$0"`
 BUILDER_DIR=`dirname ${ABSOLUTE_FILENAME}`
 BUILDER_LAST_DIR=`basename ${BUILDER_DIR}`
 
-pushd ${GIT_REPOS_HOME}
-
 if [ "${ARG_CMD}" = "install" ]; then
   # git is need for sources
   sudo apt install git
@@ -81,7 +77,7 @@ if [ "${ARG_CMD}" = "install" ]; then
 
   # mail is need for notification
   sudo apt install sendemail
-  
+
   # curl is need for nextcloud
   sudo apt-get install curl
 fi
@@ -91,6 +87,7 @@ fi
 #
 # 2. load ts4 sources
 #
+pushd ${GIT_REPOS_HOME}
 
 read -a PLATFORM_REPOS_ITEMS <<< "${PLATFORM_REPOS}"
 for item in "${PLATFORM_REPOS_ITEMS[@]}"; do

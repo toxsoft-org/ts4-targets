@@ -62,26 +62,30 @@ NEXTCLOUD_SYNC_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
 # cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/repository "
 
 REPO_PRODUCTS="\
+cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       АРМ    ru.toxsoft.bkn.ws.exe/product/target/products/bkn-ws-linux.gtk.x86_64.zip \
+cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       АРМ    ru.toxsoft.bkn.ws.exe/product/target/products/bkn-ws-win32.win32.x86_64.zip \
+cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       SkIDE  ru.toxsoft.bkn.skide.exe/product/target/products/bkn-skide-linux.gtk.x86_64.zip \
+cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       SkIDE  ru.toxsoft.bkn.skide.exe/product/target/products/bkn-skide-win32.win32.x86_64.zip \
 cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          АРМ    ru.toxsoft.nm.ws.exe/product/target/products/nm-ws-linux.gtk.x86_64.zip \
 cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          АРМ    ru.toxsoft.nm.ws.exe/product/target/products/nm-ws-win32.win32.x86_64.zip \
 cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          Admin  ru.toxsoft.nm.admin.exe/product/target/products/nm-admin-linux.gtk.x86_64.zip \
 cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          Admin  ru.toxsoft.nm.admin.exe/product/target/products/nm-admin-win32.win32.x86_64.zip \
 cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          SkIDE  ru.toxsoft.nm.skide.exe/product/target/products/nm-skide-linux.gtk.x86_64.zip \
 cp-sitrol-nm   24053_NM_ДЦХ_метро_Новосибирск          SkIDE  ru.toxsoft.nm.skide.exe/product/target/products/nm-skide-win32.win32.x86_64.zip \
-cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       АРМ    ru.toxsoft.bkn.ws.exe/product/target/products/bkn-ws-linux.gtk.x86_64.zip \
-cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       АРМ    ru.toxsoft.bkn.ws.exe/product/target/products/bkn-ws-win32.win32.x86_64.zip \
-cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       SkIDE  ru.toxsoft.bkn.skide.exe/product/target/products/bkn-skide-linux.gtk.x86_64.zip \
-cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       SkIDE  ru.toxsoft.bkn.skide.exe/product/target/products/bkn-skide-win32.win32.x86_64.zip \
+cp-vetrol-si   24052_SI_Samsung_Irakaz                 АРМ    ru.toxsoft.si.ws.exe/product/target/products/si-ws-linux.gtk.x86_64.zip \
+cp-vetrol-si   24052_SI_Samsung_Irakaz                 АРМ    ru.toxsoft.si.ws.exe/product/target/products/si-ws-win32.win32.x86_64.zip \
+cp-vetrol-si   24052_SI_Samsung_Irakaz                 SkIDE  ru.toxsoft.si.skide.exe/product/target/products/si-skide-linux.gtk.x86_64.zip \
+cp-vetrol-si   24052_SI_Samsung_Irakaz                 SkIDE  ru.toxsoft.si.skide.exe/product/target/products/si-skide-win32.win32.x86_64.zip \
 cp-val         24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-linux.gtk.x86_64.zip \
 cp-val         24015_VAL_АСУТП_АКО_ВАЛКОМ              АРМ    ru.toxsoft.val.ws.exe.product/target/products/val_ws_install-win32.win32.x86_64.zip \
 cp-val         24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-linux.gtk.x86_64.zip \
 cp-val         24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/products/val_skide_install-win32.win32.x86_64.zip \
-vetrol-ci      21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-linux.gtk.x86_64.zip \
-vetrol-ci      21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-win32.win32.x86_64.zip \
 cp-mmk         23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-linux.gtk.x86_64.zip \
 cp-mmk         23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-win32.win32.x86_64.zip \
 cp-mmk         23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-linux.gtk.x86_64.zip \
 cp-mmk         23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-win32.win32.x86_64.zip \
+vetrol-ci      21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-linux.gtk.x86_64.zip \
+vetrol-ci      21016_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-win32.win32.x86_64.zip \
 mcc            17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-linux.gtk.x86_64.zip \
 mcc            17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-win32.win32.x86_64.zip \
 "

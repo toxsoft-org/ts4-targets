@@ -62,10 +62,10 @@ NEXTCLOUD_SYNC_DATE=$(date '+%Y-%m-%d_%H:%M:%S')
 # cp-val     24015_VAL_АСУТП_АКО_ВАЛКОМ              SkIDE  ru.toxsoft.val.skide.exe.product/target/repository "
 
 REPO_PRODUCTS="\
-skf-general    Базовый (skf-general)                   АРМ    org.toxsoft.skf.general.ws.exe/product/target/products/general-ws-linux.gtk.x86_64.zip \
-skf-general    Базовый (skf-general)                   АРМ    org.toxsoft.skf.general.ws.exe/product/target/products/general-ws-win32.win32.x86_64.zip \
-skf-general    Базовый (skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-linux.gtk.x86_64.zip \
-skf-general    Базовый (skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-win32.win32.x86_64.zip \
+skf-general    Базовый_(skf-general)                   АРМ    org.toxsoft.skf.general.ws.exe/product/target/products/general-ws-linux.gtk.x86_64.zip \
+skf-general    Базовый_(skf-general)                   АРМ    org.toxsoft.skf.general.ws.exe/product/target/products/general-ws-win32.win32.x86_64.zip \
+skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-linux.gtk.x86_64.zip \
+skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-win32.win32.x86_64.zip \
 cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       АРМ    ru.toxsoft.bkn.ws.exe/product/target/products/bkn-ws-linux.gtk.x86_64.zip \
 cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       АРМ    ru.toxsoft.bkn.ws.exe/product/target/products/bkn-ws-win32.win32.x86_64.zip \
 cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       SkIDE  ru.toxsoft.bkn.skide.exe/product/target/products/bkn-skide-linux.gtk.x86_64.zip \

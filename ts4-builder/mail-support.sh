@@ -61,6 +61,8 @@ SEND_FROM="${MAIL_SERVER_ID}@toxsoft.org"
 SEND_GMAIL_SERVER="smtp.gmail.com:587"
 SEND_GMAIL_USER="kovach.mike@gmail.com"
 SEND_GMAIL_USER_PASSWD="'dnhk zuiv ztli ylnm'"
+# SEND_GMAIL_USER_PASSWD="'dlet udyt klsa bdnu'"
+
 
 export MAIL_SEND_CMD="sendemail -f ${SEND_FROM} -s ${SEND_GMAIL_SERVER} -o message-charset=${MAIL_CHARSET} -o tls=yes -xu ${SEND_GMAIL_USER} -xp ${SEND_GMAIL_USER_PASSWD}"
 

@@ -22,10 +22,10 @@ PLATFORM_REPOS='\
  skf-journals\
  skf-onews\
  skf-alarms\
+ skf-mnemos\
  skf-rri\
  ts4-l2\
  skf-bridge\
- skf-mnemos\
  skf-devs\
  skf-general'
 

@@ -135,11 +135,11 @@ buildAll () {
    echo "waiting for ${TARGETS_ID} platform building (part 3) to be completed..."
    wait
 
-   ${BUILD_MAIN_GLOBAL}   ${SKF_RRI_REPO}      "${SKF_EXT_REPO} ${SKF_ALARMS_REPO} ${TS4_SKIDE_REPO}"
+   ${BUILD_MAIN_GLOBAL}   ${SKF_MNEMOS_REPO}   "${SKF_EXT_REPO} ${SKF_REPORTS_REPO} ${TS4_SKIDE_REPO}" ${TS4_CONCURRENT}
+   ${BUILD_MAIN_GLOBAL}   ${SKF_RRI_REPO}      "${SKF_EXT_REPO} ${SKF_MNEMOS_REPO} ${SKF_ALARMS_REPO} ${TS4_SKIDE_REPO}"
    ${BUILD_MAIN_GLOBAL}   ${TS4_L2_REPO}       "${SKF_EXT_REPO} ${SKF_DQ_REPO} ${SKF_RRI_REPO}"
 
    ${BUILD_MAIN_NONE}     ${SKF_BRIDGE_REPO}   "${SKF_EXT_REPO} ${SKF_DQ_REPO} ${SKF_RRI_REPO} ${SKF_REFBOOKS_REPO} ${TS4_L2_REPO} ${TS4_SKIDE_REPO}" ${TS4_CONCURRENT}
-   ${BUILD_MAIN_NONE}     ${SKF_MNEMOS_REPO}    "${SKF_EXT_REPO} ${SKF_REPORTS_REPO} ${SKF_RRI_REPO} ${TS4_SKIDE_REPO}" ${TS4_CONCURRENT}
 
    echo "waiting for ${TARGETS_ID} platform building (part 4) to be completed..."
    wait

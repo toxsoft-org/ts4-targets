@@ -45,6 +45,7 @@ process_directory "$(pwd)/../cp-mmk/zz-targets"
 process_directory "$(pwd)/../cp-val/zz-targets"
 process_directory "$(pwd)/../cp-vetrol-bkn/zz-releng/targets"
 process_directory "$(pwd)/../cp-sitrol-nm/zz-releng/targets"
+process_directory "$(pwd)/../cp-vetrol-si/zz-releng/targets"
 
 echo "done"
 

@@ -30,11 +30,7 @@ TS4_EXTLIBS_REPO=ts4-extlibs
 TS4_CORE_REPO=ts4-core
 TS4_USKAT_REPO=ts4-uskat
 SKF_EXT_REPO=skf-ext
-
-# l2 repo temporary off
-# TS4_L2_REPO=ts4-l2
-TS4_L2_REPO=skf-rri
-
+TS4_L2_REPO=ts4-l2
 TS4_SKIDE_REPO=ts4-skide
 
 # platform repos (extensions)

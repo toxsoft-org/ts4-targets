@@ -37,6 +37,7 @@ SUB_PLATFORM_REPOS='\
 
 # projects repos
 CP_REPOS='\
+ cp-vetrol-vdm\
  cp-sitrol-nm\
  cp-vetrol-si\
  cp-vetrol-bkn\

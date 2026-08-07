@@ -68,6 +68,8 @@ skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft
 skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-win32.win32.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           АРМ    ru.toxsoft.vdm.ws.exe/product/target/products/vdm-ws-linux.gtk.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           АРМ    ru.toxsoft.vdm.ws.exe/product/target/products/vdm-ws-win32.win32.x86_64.zip \
+cp-vetrol-vdm  26032_VDM_ВДМ                           Admin  ru.toxsoft.vdm.admin.exe/product/target/products/vdm-admin-linux.gtk.x86_64.zip \
+cp-vetrol-vdm  26032_VDM_ВДМ                           Admin  ru.toxsoft.vdm.admin.exe/product/target/products/vdm-admin-win32.win32.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           SkIDE  ru.toxsoft.vdm.skide.exe/product/target/products/vdm-skide-linux.gtk.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           SkIDE  ru.toxsoft.vdm.skide.exe/product/target/products/vdm-skide-win32.win32.x86_64.zip \
 cp-vetrol-bkn  24068_BKN_ЦЭНКИ_Байтерек_Байконур       АРМ    ru.toxsoft.bkn.ws.exe/product/target/products/bkn-ws-linux.gtk.x86_64.zip \

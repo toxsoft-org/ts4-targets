@@ -8,8 +8,8 @@
 
 
 # disable(1)/enable(0) mail sending (for debug)
-MAIL_DISABLE=0
-# MAIL_DISABLE=1
+# MAIL_DISABLE=0
+MAIL_DISABLE=1
 
 if [ "${MAIL_DISABLE}" -eq 0 ] ; then
 export MAIL_USERS=\
@@ -21,7 +21,8 @@ tdo@toxsoft.ru,\
 kovach@toxsoft.ru,\
 kovach.mike@gmail.com
 else
-export MAIL_USERS=kovach.mike@gmail.com
+# export MAIL_USERS=kovach.mike@gmail.com
+export MAIL_USERS=kovach@toxsoft.ru
 fi
 
 export MAIL_ADMINS=\
@@ -57,11 +58,10 @@ export MAIL_GIT_PUSH_MESSAGE_ERROR="${MAIL_SERVER_ID} cannot execute git push. R
 export MAIL_SUBJECT_CANCEL="${MAIL_SERVER_ID}, build CANCEL: "
 export MAIL_MESSAGE_CANCEL="${MAIL_SERVER_ID} cannot execute build toxsoft targets [CANCEL].\\n\\nSee the attachments for details:"
 
-SEND_FROM="${MAIL_SERVER_ID}@toxsoft.org"
+SEND_FROM="\"${MAIL_SERVER_ID} <toxsoft.builder@gmail.com>\""
 SEND_GMAIL_SERVER="smtp.gmail.com:587"
 SEND_GMAIL_USER="kovach.mike@gmail.com"
-SEND_GMAIL_USER_PASSWD="'dnhk zuiv ztli ylnm'"
-# SEND_GMAIL_USER_PASSWD="'dlet udyt klsa bdnu'"
+SEND_GMAIL_USER_PASSWD="'ybfd izyb malg nrrc'"
 
 
 export MAIL_SEND_CMD="sendemail -f ${SEND_FROM} -s ${SEND_GMAIL_SERVER} -o message-charset=${MAIL_CHARSET} -o tls=yes -xu ${SEND_GMAIL_USER} -xp ${SEND_GMAIL_USER_PASSWD}"

@@ -66,6 +66,8 @@ skf-general    Базовый_(skf-general)                   АРМ    org.toxs
 skf-general    Базовый_(skf-general)                   АРМ    org.toxsoft.skf.general.ws.exe/product/target/products/general-ws-win32.win32.x86_64.zip \
 skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-linux.gtk.x86_64.zip \
 skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-win32.win32.x86_64.zip \
+cp-vetrol-ci   21016_26025_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-linux.gtk.x86_64.zip \
+cp-vetrol-ci   21016_26025_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-win32.win32.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           АРМ    ru.toxsoft.vdm.ws.exe/product/target/products/vdm-ws-linux.gtk.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           АРМ    ru.toxsoft.vdm.ws.exe/product/target/products/vdm-ws-win32.win32.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           Admin  ru.toxsoft.vdm.admin.exe/product/target/products/vdm-admin-linux.gtk.x86_64.zip \
@@ -94,8 +96,6 @@ cp-mmk         23014_MMK_Ветрол_Магнитогорск           АРМ 
 cp-mmk         23014_MMK_Ветрол_Магнитогорск           АРМ    ru.toxsoft.mmk.ws.exe.product/target/products/mmk_ws_install-win32.win32.x86_64.zip \
 cp-mmk         23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-linux.gtk.x86_64.zip \
 cp-mmk         23014_MMK_Ветрол_Магнитогорск           SkIDE  ru.toxsoft.mmk.skide.exe.product/target/products/mmk_skide_install-win32.win32.x86_64.zip \
-cp-vetrol-ci   21016_26025_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-linux.gtk.x86_64.zip \
-cp-vetrol-ci   21016_26025_CI_Ветрол_АСУ_компр_РУСАЛ_Братск  АРМ    ru.toxsoft.ci.ws.exe.product/target/products/ci_ws_exe_product-win32.win32.x86_64.zip \
 mcc            17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-linux.gtk.x86_64.zip \
 mcc            17023_MCC_Москокс                       АРМ    ru.toxsoft.mcc.ws.exe.product/target/products/mcc_ws_exe_product-win32.win32.x86_64.zip \
 "

@@ -66,8 +66,8 @@ skf-general    Базовый_(skf-general)                   АРМ    org.toxs
 skf-general    Базовый_(skf-general)                   АРМ    org.toxsoft.skf.general.ws.exe/product/target/products/general-ws-win32.win32.x86_64.zip \
 skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-linux.gtk.x86_64.zip \
 skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-win32.win32.x86_64.zip \
-cp-vetrol-ci   21016_26025_CI_компр_ИркАЗ              АРМ    ru.toxsoft.ci.ws.exe/product/target/products/ci_ws-linux.gtk.x86_64.zip \
-cp-vetrol-ci   21016_26025_CI_компр_ИркАЗ              АРМ    ru.toxsoft.ci.ws.exe/product/target/products/ci_ws-win32.win32.x86_64.zip \
+cp-vetrol-ci   21016_26025_CI_компр_ИркАЗ              АРМ    ru.toxsoft.ci.ws.exe/product/target/products/ci-ws-linux.gtk.x86_64.zip \
+cp-vetrol-ci   21016_26025_CI_компр_ИркАЗ              АРМ    ru.toxsoft.ci.ws.exe/product/target/products/ci-ws-win32.win32.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           АРМ    ru.toxsoft.vdm.ws.exe/product/target/products/vdm-ws-linux.gtk.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           АРМ    ru.toxsoft.vdm.ws.exe/product/target/products/vdm-ws-win32.win32.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           Admin  ru.toxsoft.vdm.admin.exe/product/target/products/vdm-admin-linux.gtk.x86_64.zip \

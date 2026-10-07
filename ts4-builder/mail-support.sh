@@ -8,8 +8,8 @@
 
 
 # disable(1)/enable(0) mail sending (for debug)
-# MAIL_DISABLE=0
-MAIL_DISABLE=1
+MAIL_DISABLE=0
+# MAIL_DISABLE=1
 
 if [ "${MAIL_DISABLE}" -eq 0 ] ; then
 export MAIL_USERS=\

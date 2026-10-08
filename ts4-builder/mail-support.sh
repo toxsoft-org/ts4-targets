@@ -15,11 +15,10 @@ if [ "${MAIL_DISABLE}" -eq 0 ] ; then
 export MAIL_USERS=\
 goga@toxsoft.ru,\
 vs@toxsoft.ru,\
-egorov.dmitry.alex@gmail.com,\
-prokhorov_m@mail.ru,\
+dima@toxsoft.ru,\
+pme@toxsoft.ru,\
 tdo@toxsoft.ru,\
-kovach@toxsoft.ru,\
-kovach.mike@gmail.com
+kovach@toxsoft.ru
 else
 # export MAIL_USERS=kovach.mike@gmail.com
 export MAIL_USERS=kovach@toxsoft.ru

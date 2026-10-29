@@ -66,6 +66,10 @@ skf-general    Базовый_(skf-general)                   АРМ    org.toxs
 skf-general    Базовый_(skf-general)                   АРМ    org.toxsoft.skf.general.ws.exe/product/target/products/general-ws-win32.win32.x86_64.zip \
 skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-linux.gtk.x86_64.zip \
 skf-general    Базовый_(skf-general)                   SkIDE  org.toxsoft.skf.general.skide.exe/product/target/products/general-skide-win32.win32.x86_64.zip \
+cp-bi          26054_BI_ИРКАЗ_Шелехов                  АРМ    ru.toxsoft.bi.ws.exe/product/target/products/bi-ws-linux.gtk.x86_64.zip \
+cp-bi          26054_BI_ИРКАЗ_Шелехов                  АРМ    ru.toxsoft.bi.ws.exe/product/target/products/bi-ws-win32.win32.x86_64.zip \
+cp-bi          26054_BI_ИРКАЗ_Шелехов                  SkIDE  ru.toxsoft.bi.skide.exe/product/target/products/bi-skide-linux.gtk.x86_64.zip \
+cp-bi          26054_BI_ИРКАЗ_Шелехов                  SkIDE  ru.toxsoft.bi.skide.exe/product/target/products/bi-skide-win32.win32.x86_64.zip \
 cp-vetrol-ci   21016_26025_CI_компр_ИркАЗ              АРМ    ru.toxsoft.ci.ws.exe/product/target/products/ci-ws-linux.gtk.x86_64.zip \
 cp-vetrol-ci   21016_26025_CI_компр_ИркАЗ              АРМ    ru.toxsoft.ci.ws.exe/product/target/products/ci-ws-win32.win32.x86_64.zip \
 cp-vetrol-vdm  26032_VDM_ВДМ                           АРМ    ru.toxsoft.vdm.ws.exe/product/target/products/vdm-ws-linux.gtk.x86_64.zip \
